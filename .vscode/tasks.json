@@ -6,7 +6,7 @@
         {
             "label": "Build and Run WASM",
             "type": "shell",
-            "command": "./buildandrun.bat",
+            "command": "emcc index.cpp -s WASM=1 -o index.js;start http://localhost:8080/index.html",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -15,7 +15,7 @@
         {
             "label": "Start Python web",
             "type": "shell",
-            "command": "./startweb.bat",
+            "command": "python -m http.server 8080; python -m SimpleHTTPServer 8080",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -25,7 +25,7 @@
         {
             "label": "Run compiled WASM",
             "type": "shell",
-            "command": "./index.html",
+            "command": " start http://localhost:8080/index.html",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -34,11 +34,12 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o main.html",
+            "command": "emcc index.cpp -s WASM=1 -o index.js",
             "group": {
                 "kind": "test",
                 "isDefault": true
             }
         }
+
     ]
 }
