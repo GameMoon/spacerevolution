@@ -11,7 +11,7 @@
         {
             "label": "Start Python web",
             "type": "shell",
-            "command": "python -m http.server 8080; python -m SimpleHTTPServer 8080",
+            "command": "python -m http.server 8080",
             "group": {
                 "kind": "test",
                 "isDefault": true
