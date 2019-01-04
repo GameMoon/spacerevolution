@@ -4,5 +4,5 @@ using namespace std;
 
 int main(void)
 {
-    cout<<"Hello world Casd++"<<endl;
+    cout<<"Hello world C++"<<endl;
 }
