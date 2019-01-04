@@ -17,7 +17,7 @@
             "type": "shell",
             "command": "./startweb.bat",
             "group": {
-                "kind": "build",
+                "kind": "test",
                 "isDefault": true
             },
             "problemMatcher": []
