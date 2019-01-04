@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build and RunWASM",
+            "label": "Build and Run WASM",
             "type": "shell",
             "command": "./buildandrun.bat",
             "group": {
@@ -13,22 +13,32 @@
             }
         },
         {
+            "label": "Start Python web",
+            "type": "shell",
+            "command": "./startweb.bat",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Run compiled WASM",
             "type": "shell",
-            "command": "main.html",
+            "command": "./index.html",
             "group": {
                 "kind": "test",
                 "isDefault": true
             }
         },
         {
-        "label": "Build WASM",
-        "type": "shell",
-        "command": "emcc main.cpp -s WASM=1 -o main.html",
-        "group": {
-            "kind": "test",
-            "isDefault": true
-        }
+            "label": "Build WASM",
+            "type": "shell",
+            "command": "emcc index.cpp -s WASM=1 -o main.html",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         }
     ]
 }
