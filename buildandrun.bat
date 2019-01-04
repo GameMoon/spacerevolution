@@ -3,7 +3,7 @@ cls
 echo Build
 @echo on
 
-start /I /W emcc main.cpp -s WASM=1 -o main.html
+start /I /W build.bat emcc
 @echo off
 echo Run
 @echo on
