@@ -10,11 +10,9 @@ In this time of opression the only people who are brave enough to face the merci
 whose duty is to overthrow Fidas and bring peace to the universe.
 
 You are Colonel Shepherd, one of the best Hacker in the Space Resistance Marine corps.
-.....
-
+Your job is to lead your team and to help them get to where they need to be even int the face of danger.
 
 Missions-----------
 
 Mission 0 (tutorial)
-
-....
+Welcome Colonel!
