@@ -11,7 +11,7 @@
         {
             "label": "Start Python web",
             "type": "shell",
-            "command": "python -m http.server 8080; python -m SimpleHTTPServer 8080",
+            "command": "python webserver.py",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -26,7 +26,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js",
+            "command": "emcc index.cpp -s WASM=1 -o index.js -Oz --closure 1",
             "group": {
                 "kind": "build",
                 "isDefault": true
