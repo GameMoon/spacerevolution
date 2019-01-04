@@ -2,5 +2,5 @@
 
 int main(void)
 {
-     printf("Hello world C++");
+     printf("Hello world C++\n");
 }
