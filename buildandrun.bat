@@ -7,5 +7,5 @@ start /I /W build.bat emcc
 @echo off
 echo Run
 @echo on
-start main.html
+start index.html
 EXIT

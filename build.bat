@@ -1,2 +1,2 @@
-python "%~dp$PATH:1emcc" main.cpp -s WASM=1 -o main.html -Oz --closure 1
+python "%~dp$PATH:1emcc" index.cpp -s WASM=1 -o index.js -Oz --closure 1
 exit
