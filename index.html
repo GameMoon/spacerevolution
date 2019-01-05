@@ -12,11 +12,12 @@
     <canvas id="screen"></canvas>
 
     <script>
+        
         var Module = {
             print: function(text) { console.log('stdout: ' + text) },
             printErr: function(text) { console.error('stderr: ' + text) },
         };
-       
+        
     </script>
     <script src="index.js"></script>
    
@@ -40,34 +41,23 @@
         }*/
 
         Module.renderImageFromMemory = function(){
-            var offset = this._getMemoryOffset();
+            this.canvasContext.putImageData(this.imageData,0,0);
+        }
+      
+        Module.onRuntimeInitialized = function() {
+
+           // var image = loadImage("assets/tiles.png");
             var width = this._getScreenWidth();
             var height = this._getScreenHeight();
-
-            var usub = new Uint8ClampedArray(this.wasmMemory.buffer, offset, width*height*4);
-            var img = new ImageData(usub, width, height);
+            var offset = this._getMemoryOffset();
 
             var canvas = document.getElementById('screen');
             canvas.width = width;
             canvas.height = height;
-            var ctx = canvas.getContext('2d');
-            ctx.putImageData(img,0,0);
-        }
-        
-       
-
-        Module.onRuntimeInitialized = function() {
-
-           // var image = loadImage("assets/tiles.png");
-        
-             
-            setInterval(function(){
-                Module._update(1);
-                Module.renderImageFromMemory();
-            },1*1000/120);
+            this.canvasContext = canvas.getContext('2d');
+            this.imageData = new ImageData( new Uint8ClampedArray(this.wasmMemory.buffer, offset,width*height*4), width, height);
 
             document.querySelector('.mybutton').addEventListener('click', function () {
-                Module._update(10);
                 Module.renderImageFromMemory();
                 running = false;
             });
