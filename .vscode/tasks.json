@@ -21,7 +21,8 @@
         {
             "label": "Run compiled WASM",
             "type": "shell",
-            "command": " start http://localhost:8080/index.html"
+            "command": " start http://localhost:8080/index.html",
+            "problemMatcher": []
         },
         {
             "label": "Build WASM",
