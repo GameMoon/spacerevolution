@@ -8,25 +8,68 @@
 </head>
  
 <body>
-    <button class="mybutton">Run myFunction</button>
+    <button class="mybutton">Run myFunction</button><br>
+    <canvas id="screen"></canvas>
 
     <script>
         var Module = {
-            print: function(text) { alert('stdout: ' + text) },
-            printErr: function(text) { console.log('stderr: ' + text) },
-          
+            print: function(text) { console.log('stdout: ' + text) },
+            printErr: function(text) { console.error('stderr: ' + text) },
         };
+       
     </script>
     <script src="index.js"></script>
    
     
     <script>
         
+        /*async function loadImage(src) {
+            // Load image
+            const imgBlob = await fetch(src).then(resp => resp.blob());
+            const img = await createImageBitmap(imgBlob);
+            // Make canvas same size as image
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            // Draw image onto canvas
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            var imageData = ctx.getImageData(0, 0, img.width, img.height);
+            console.log(imageData);
+            return imageData;
+        }*/
+
+        Module.renderImageFromMemory = function(){
+            var offset = this._getMemoryOffset();
+            var width = this._getScreenWidth();
+            var height = this._getScreenHeight();
+
+            var usub = new Uint8ClampedArray(this.wasmMemory.buffer, offset, width*height*4);
+            var img = new ImageData(usub, width, height);
+
+            var canvas = document.getElementById('screen');
+            canvas.width = width;
+            canvas.height = height;
+            var ctx = canvas.getContext('2d');
+            ctx.putImageData(img,0,0);
+        }
+        
+       
+
         Module.onRuntimeInitialized = function() {
 
+           // var image = loadImage("assets/tiles.png");
+        
+             
+            setInterval(function(){
+                Module._update(1);
+                Module.renderImageFromMemory();
+            },1*1000/120);
+
             document.querySelector('.mybutton').addEventListener('click', function () {
-                var result = Module._myFunction(10);
-                console.log(result);
+                Module._update(10);
+                Module.renderImageFromMemory();
+                running = false;
             });
         }
         
