@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 #include <math.h>
 #include <emscripten/emscripten.h>
+#include <emscripten/html5.h>
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -11,9 +13,45 @@ const int SIZE = WIDTH * HEIGHT * 4;
 
 uint8_t data[SIZE];
 
+int posX = 0;
+int posY = 0;
+int pressedButtons[4];
 
 extern "C"
 {
+    EM_BOOL key_callback(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
+    {
+        printf("%s | %d\n", e->code, eventType);
+        
+        if (strcmp(e->code, "KeyW") == 0){
+            if(eventType == 2) 
+                pressedButtons[0] = 1;
+            else 
+                pressedButtons[0] = 0;
+        }
+        else if(strcmp(e->code,"KeyS")==0){
+            if (eventType == 2)
+                pressedButtons[1] = 1;
+            else
+                pressedButtons[1] = 0;
+        }
+           
+        if(strcmp(e->code,"KeyA")==0){
+            if (eventType == 2)
+                pressedButtons[2] = 1;
+            else
+                pressedButtons[2] = 0;
+        }
+        else if(strcmp(e->code,"KeyD")==0){
+            if (eventType == 2)
+                pressedButtons[3] = 1;
+            else
+                pressedButtons[3] = 0;
+        } 
+
+        return true;
+    }
+
     EMSCRIPTEN_KEEPALIVE uint8_t * getMemoryOffset()
     {
         return &data[0];
@@ -75,15 +113,23 @@ void clearScreen(){
 }
 
 int startPos = 10;
+
 float omega = 0.78f;
 void updateLoop()
 {
     
     clearScreen();
+    if(pressedButtons[0] == 1) posY-=5;
+    if(pressedButtons[1] == 1) posY+=5;
+    if(pressedButtons[2] == 1) posX-=5;
+    if(pressedButtons[3] == 1) posX+=5;
 
-    drawRectangle(100, 100, 48, 48, 0.0);
+    drawRectangle(posX, posY, 48, 48, 0.0);
 
     drawRectangle(startPos, 50, 48, 48, omega);
+    drawRectangle(startPos, 150, 48, 48, omega);
+    drawRectangle(startPos, 200, 48, 48, omega);
+    drawRectangle(startPos, 300, 48, 48, omega);
 
     omega += 0.1f;
     startPos += 2;
@@ -93,6 +139,10 @@ void updateLoop()
 
 int main(void)
 {
+    emscripten_set_keydown_callback(0, 0, 1, key_callback);
+    emscripten_set_keyup_callback(0, 0, 1, key_callback);
+    
+
     emscripten_set_main_loop(updateLoop, 0, 1);
 }
 
