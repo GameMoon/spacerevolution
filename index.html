@@ -11,6 +11,7 @@
     <canvas id="screen" class="canvas"></canvas>
     <img id="overlay" src="overlay.png" class="hidden">
     <button class="mybutton">Run myFunction</button><br>
+    <button class="FullscreenButton">Toggle<br>Fullscreen</button>
 
     <script>
         
@@ -61,8 +62,16 @@
             
             document.querySelector('.mybutton').addEventListener('click', function () {
                 Module.renderImageFromMemory();
+                running = false;
+            });
+            document.querySelector('.FullscreenButton').addEventListener('click', function () {
                 openFullscreen();
                 running = false;
+            });
+            document.addEventListener('keydown', function(event) {
+                if(event.getModifierState("Alt") && event.keyCode == 13) {
+                    openFullscreen();
+                }
             });
         }
 
