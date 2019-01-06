@@ -9,8 +9,9 @@
  
 <body>
     <canvas id="screen" class="canvas"></canvas>
-    <img id="overlay" src="overlay.png" class="hidden">
-    <button class="mybutton">Run myFunction</button><br>
+    <img id="overlay" src="overlay.png" class="hidden" height="1080" width="1920">
+    <button class="mybutton">Run myFunction</button>
+    <button class="FullscreenButton">Toggle<br>Fullscreen</button>
 
     <script>
         
@@ -61,6 +62,9 @@
             
             document.querySelector('.mybutton').addEventListener('click', function () {
                 Module.renderImageFromMemory();
+                running = false;
+            });
+            document.querySelector('.FullscreenButton').addEventListener('click', function () {
                 openFullscreen();
                 running = false;
             });
