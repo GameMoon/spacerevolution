@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
  
 <body>
+    <canvas id="screen" class="canvas"></canvas>
+    <img id="overlay" src="overlay.png" class="hidden">
     <button class="mybutton">Run myFunction</button><br>
-    <canvas id="screen"></canvas>
 
     <script>
         
@@ -42,6 +43,7 @@
 
         Module.renderImageFromMemory = function(){
             this.canvasContext.putImageData(this.imageData,0,0);
+            this.canvasContext.drawImage(overlay, 0, 0);
         }
       
         Module.onRuntimeInitialized = function() {
@@ -56,15 +58,16 @@
             canvas.height = height;
             this.canvasContext = canvas.getContext('2d');
             this.imageData = new ImageData( new Uint8ClampedArray(this.wasmMemory.buffer, offset,width*height*4), width, height);
-
+            
             document.querySelector('.mybutton').addEventListener('click', function () {
                 Module.renderImageFromMemory();
                 openFullscreen();
                 running = false;
             });
         }
+
         function openFullscreen() {
-            var canvas = document.getElementById('screen');
+                var canvas = document.getElementById('screen');
                 if (canvas.requestFullscreen) {
                     canvas.requestFullscreen();
                 } else if (canvas.mozRequestFullScreen) { /* Firefox */

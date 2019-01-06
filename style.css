@@ -1,0 +1,21 @@
+.overlayImg {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    pointer-events: none;
+}
+.hidden {
+    display:none;
+}
+.mybutton {
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+.canvas {
+    position:absolute;
+    top:0px;
+    left:0px;
+}
