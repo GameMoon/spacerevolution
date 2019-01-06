@@ -14,11 +14,6 @@
     top:0px;
     left:0px;
 }
-.FullscreenButton {
-    position: relative;
-    bottom: -1020px;
-    right: -1818px;
-}
 .canvas {
     position:absolute;
     top:0px;
