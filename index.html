@@ -61,6 +61,7 @@
             this.imageData = new ImageData( new Uint8ClampedArray(this.wasmMemory.buffer, offset,width*height*4), width, height);
             
             document.querySelector('.mybutton').addEventListener('click', function () {
+                alert("Run myFunction");
                 Module.renderImageFromMemory();
                 running = false;
             });

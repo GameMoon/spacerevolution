@@ -16,3 +16,39 @@ Missions-----------
 
 Mission 0 (tutorial)
 Welcome Colonel!
+
+Mission 1 - Liberating the press
+
+
+Mission 2 - Felelős ministeriumot Buda-Pesten.
+
+
+Mission 3 - Évenkinti országgyülést Pesten.
+
+
+Mission 4 - Törvény előtti egyenlőséget polgári és vallási tekintetben.
+
+
+Mission 5 - Nemzeti őrsereg.
+
+
+Mission 6 - Közös teherviselés.
+
+
+Mission 7 - Urbéri viszonyok megszüntetése.
+
+
+Mission 8 - Esküdtszék, képviselet egyenlőség alapján.
+
+
+Mission 9 - Nemzeti Bank.
+
+
+
+Mission 10 - A’ katonaság esküdjék meg az alkotmányra, magyar katonáinkat ne vigyék külföldre, a’ külföldieket vigyék el tőlünk.
+
+
+Mission 11 - A’ politikai statusfoglyok szabadon bocsáttassanak.
+
+
+Mission 12 - Unio.
