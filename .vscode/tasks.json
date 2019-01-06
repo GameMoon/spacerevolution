@@ -36,8 +36,8 @@
         {
             "label": "Build Optmized WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js -Oz",
-            
+            "command": "emcc index.cpp -s WASM=1 -o index.js --closure 1 -Oz",
+            "problemMatcher": []
         }
     ]
 }
