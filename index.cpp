@@ -6,8 +6,8 @@
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
-const int WIDTH = 800;
-const int HEIGHT = 600;
+const int WIDTH = 1920;
+const int HEIGHT = 1080;
 
 const int SIZE = WIDTH * HEIGHT * 4;
 
