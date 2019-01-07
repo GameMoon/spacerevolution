@@ -1,3 +1,22 @@
+/*
+playarea1 is:
+1024x768
+starting pixel at(top left corner is):
+X=61
+Y=183
+end pixel at(bottom right corner is):
+X=1084
+Y=950
+----------
+playarea2 is:
+720x480
+starting pixel at(top left corner is):
+X=1137
+Y=75
+end pixel at(bottom right corner is):
+X=1856
+Y=554
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -13,8 +32,8 @@ const int SIZE = WIDTH * HEIGHT * 4;
 
 uint8_t data[SIZE];
 
-int posX = 0;
-int posY = 0;
+int posX = 61;
+int posY = 183;
 int pressedButtons[4];
 
 extern "C"
@@ -80,6 +99,12 @@ extern "C"
     EM_JS(void, render, (), {
         Module.renderImageFromMemory();
     });
+    
+    
+    EMSCRIPTEN_KEEPALIVE void startgame()
+    {
+        printf("startgamesdfsdf");
+    }
 }
 
 void setPixel(int x, int y, int r, int g, int b)
@@ -122,7 +147,7 @@ void clearScreen(){
     }
 }
 
-int startPos = 10;
+int startPos = 1069;
 
 float omega = 0.78f;
 void updateLoop()
@@ -133,22 +158,23 @@ void updateLoop()
     if(pressedButtons[1] == 1) posY+=5;
     if(pressedButtons[2] == 1) posX-=5;
     if(pressedButtons[3] == 1) posX+=5;
-    if(posX > 1920) posX=1920;
-    if(posX < 0) posX=0;
-    if(posY > 1080) posY=1080;
-    if(posY < 0) posY=0;
+    if(posX > 1037) posX=1037;
+    if(posX < 61) posX=61;
+    if(posY > 903) posY=903;
+    if(posY < 183) posY=183;
     //printf("%d\n", posX);
     //printf("%d\n", posY);
 
     drawRectangle(posX, posY, 48, 48, 0.0);
 
-    drawRectangle(startPos, 50, 48, 48, omega);
-    drawRectangle(startPos, 150, 48, 48, omega);
+    drawRectangle(startPos, 100, 48, 48, omega);
     drawRectangle(startPos, 200, 48, 48, omega);
     drawRectangle(startPos, 300, 48, 48, omega);
+    drawRectangle(startPos, 400, 48, 48, omega);
 
     omega += 0.1f;
     startPos += 2;
+    if(startPos > 1876)startPos=1069;
     render();
 }
 

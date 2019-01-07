@@ -6,7 +6,7 @@
         {
             "label": "Build and Run WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js --closure 1 -Oz;start http://localhost:8080/index.html"
+            "command": "emcc index.cpp -s WASM=1 -o index.js --closure 1 -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap'];start http://localhost:8080/index.html"
         },
         {
             "label": "Start Python web",
@@ -27,7 +27,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js",
+            "command": "emcc index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap']",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -37,7 +37,7 @@
         {
             "label": "Build Optmized WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js --closure 1 -Oz",
+            "command": "emcc index.cpp -s WASM=1 -o index.js --closure 1 -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap']",
             "problemMatcher": []
         }
     ]
