@@ -51,6 +51,17 @@ extern "C"
 
         return true;
     }
+    /*EM_BOOL mouse_callback_func(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
+    {
+        printf("%s | %d\n", mouseEvent->code, eventType);
+            else if(strcmp(mouseEvent->code,"KeyD")==0){
+            if (eventType == 2)
+                pressedButtons[3] = 1;
+            else
+                pressedButtons[3] = 0;
+        }
+
+    }*/
 
     EMSCRIPTEN_KEEPALIVE uint8_t * getMemoryOffset()
     {
@@ -69,7 +80,6 @@ extern "C"
     EM_JS(void, render, (), {
         Module.renderImageFromMemory();
     });
-   
 }
 
 void setPixel(int x, int y, int r, int g, int b)
@@ -123,6 +133,12 @@ void updateLoop()
     if(pressedButtons[1] == 1) posY+=5;
     if(pressedButtons[2] == 1) posX-=5;
     if(pressedButtons[3] == 1) posX+=5;
+    if(posX > 1920) posX=1920;
+    if(posX < 0) posX=0;
+    if(posY > 1080) posY=1080;
+    if(posY < 0) posY=0;
+    //printf("%d\n", posX);
+    //printf("%d\n", posY);
 
     drawRectangle(posX, posY, 48, 48, 0.0);
 
@@ -133,7 +149,6 @@ void updateLoop()
 
     omega += 0.1f;
     startPos += 2;
-
     render();
 }
 

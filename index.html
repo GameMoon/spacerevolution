@@ -22,7 +22,6 @@
         
     </script>
     <script src="index.js"></script>
-   
     
     <script>
         
@@ -48,8 +47,7 @@
         }
       
         Module.onRuntimeInitialized = function() {
-
-           // var image = loadImage("assets/tiles.png");
+            //var image = loadImage("assets/tiles.png");
             var width = this._getScreenWidth();
             var height = this._getScreenHeight();
             var offset = this._getMemoryOffset();
@@ -73,6 +71,11 @@
                 if(event.getModifierState("Alt") && event.keyCode == 13) {
                     openFullscreen();
                 }
+            });
+            canvas.addEventListener('click', function(event) {
+                var clickXPos=event.x;
+                var clickYPos=event.y;
+                alert("Mouse X: "+event.x+" Mouse Y: "+event.y);
             });
         }
 
