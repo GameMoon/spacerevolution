@@ -60,6 +60,7 @@
                 StartGame();
                 running = false;
             });
+            
             document.addEventListener('keydown', function(event) {
                 if(event.getModifierState("Alt") && event.keyCode == 13) {
                     openFullscreen();

@@ -25,12 +25,15 @@ Y=554
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
+
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
 
 const int SIZE = WIDTH * HEIGHT * 4;
 
 uint8_t data[SIZE];
+//int screenMem1 [1024][768][3];
+//int screenMem2 [720][480][3];
 
 int posX = 61;
 int posY = 183;
@@ -81,7 +84,6 @@ extern "C"
         }
 
     }*/
-
     EMSCRIPTEN_KEEPALIVE uint8_t * getMemoryOffset()
     {
         return &data[0];
@@ -182,8 +184,6 @@ int main(void)
 {
     emscripten_set_keydown_callback(0, 0, 1, key_callback);
     emscripten_set_keyup_callback(0, 0, 1, key_callback);
-    
-
     emscripten_set_main_loop(updateLoop, 0, 1);
 }
 
