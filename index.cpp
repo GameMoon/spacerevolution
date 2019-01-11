@@ -25,6 +25,7 @@ Y=554
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
+#include "src/Rectangle.h"
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
@@ -182,9 +183,11 @@ void updateLoop()
 
 int main(void)
 {
-    emscripten_set_keydown_callback(0, 0, 1, key_callback);
-    emscripten_set_keyup_callback(0, 0, 1, key_callback);
-    emscripten_set_main_loop(updateLoop, 0, 1);
+ //   emscripten_set_keydown_callback(0, 0, 1, key_callback);
+  //  emscripten_set_keyup_callback(0, 0, 1, key_callback);
+  //  emscripten_set_main_loop(updateLoop, 0, 1);
+    Rectangle rect(Vector2(10,10),100,100);
+    rect.draw();
 }
 
 
