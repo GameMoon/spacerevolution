@@ -27,7 +27,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap']",
+            "command": "em++ index.cpp -s WASM=1 -o index.js",
             "group": {
                 "kind": "build",
                 "isDefault": true
