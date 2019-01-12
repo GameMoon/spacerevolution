@@ -1,0 +1,11 @@
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.exe.config
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.exe
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.pdb
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csprojAssemblyReference.cache
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Form_neworload.resources
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Properties.Resources.resources
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.GenerateResource.cache
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.CoreCompileInputs.cache
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.exe
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.pdb
+C:\Users\david\source\repos\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Form_editor.resources
