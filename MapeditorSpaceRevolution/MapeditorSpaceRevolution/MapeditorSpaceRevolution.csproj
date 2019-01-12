@@ -58,6 +58,7 @@
     <Compile Include="Form_neworload.Designer.cs">
       <DependentUpon>Form_neworload.cs</DependentUpon>
     </Compile>
+    <Compile Include="loadsavepoopper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form_editor.resx">
