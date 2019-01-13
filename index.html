@@ -9,8 +9,8 @@
 </head>
  
 <body>
-    <canvas id="screen" class="canvas"></canvas>
-    <img id="overlay" src="overlay.png"></img>
+    <canvas id="screen" class="canvas" ></canvas>
+    <img id="overlay" src="overlay.png" style="position: absolute; top: 0px; left: 0px;"></img>
     <!--<button class="mybutton">Run myFunction</button><br>-->
     <button class="FullscreenButton">Start Game</button>
 
@@ -23,8 +23,8 @@
     <script src="index.js"></script>
     
     <script>
-        
-        /*async function loadImage(src) {
+
+        async function loadImage(src) {
             // Load image
             const imgBlob = await fetch(src).then(resp => resp.blob());
             const img = await createImageBitmap(imgBlob);
@@ -34,26 +34,34 @@
             canvas.height = img.height;
             // Draw image onto canvas
             const ctx = canvas.getContext('2d');
+
             ctx.drawImage(img, 0, 0);
             var imageData = ctx.getImageData(0, 0, img.width, img.height);
-            console.log(imageData);
-            return imageData;
-        }*/
+            // console.log(imageData.data.length)
+            dataPointer = Module._malloc(imageData.data.length);
+            Module.writeArrayToMemory(imageData.data,dataPointer);
+            Module._addImage(dataPointer,img.width,img.height);
+        }
 
         Module.renderImageFromMemory = function(){
+         
             this.canvasContext.putImageData(this.imageData,0,0);
-            this.canvasContext.drawImage(overlay, 0, 0);
+           // this.canvasContext.drawImage(overlay, 0, 0);
         }
-      
-        Module.onRuntimeInitialized = function() {
+        
+        Module.renderSetup = function(){
             var canvas = document.getElementById('screen');
             this.canvasContext = canvas.getContext('2d');
             var width = this._getScreenWidth();
             var height = this._getScreenHeight();
             var offset = this._getMemoryOffset();
+
             canvas.width = width;
             canvas.height = height;
-            this.imageData = new ImageData( new Uint8ClampedArray(this.wasmMemory.buffer, offset,width*height*4), width, height);
+            this.imageData = new ImageData(new Uint8ClampedArray(this.wasmMemory.buffer, offset, width * height * 4), width, height);      
+        }   
+        Module.onRuntimeInitialized = function() {
+           
 
             document.querySelector('.FullscreenButton').addEventListener('click', function () {
                 openFullscreen();
@@ -67,11 +75,12 @@
                     StartGame();
             }
             });
-            canvas.addEventListener('click', function(event) {
+          /*  canvas.addEventListener('click', function(event) {
                 var clickXPos=event.x;
                 var clickYPos=event.y;
                 alert("Mouse X: "+event.x+" Mouse Y: "+event.y);
-            });
+            });*/
+
             /*document.querySelector('.mybutton').addEventListener('click', function () {
                 alert("Run myFunction");
                 Module.renderImageFromMemory();

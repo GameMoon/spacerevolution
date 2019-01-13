@@ -7,13 +7,13 @@
 class Object
 {
   protected:
-    Vector2 pos;
-    Image img;
+    Vector2 *pos;
+    Image * img;
 
   public:
-    void setPosition(Vector2 pos) {this->pos = pos; }
-    Vector2 getPosition() { return this->pos; }
-    virtual void draw() = 0;
+    void setPosition(Vector2 * pos) {this->pos = pos; }
+    Vector2* getPosition() { return this->pos; }
+    virtual void draw(Screen *screen) = 0;
 };
 
 #endif

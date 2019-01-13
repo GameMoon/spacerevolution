@@ -25,14 +25,17 @@ Y=554
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
-#include "src/Rectangle.h"
+#include "src/Screen.h"
+#include "src/Player.h"
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
 
-const int SIZE = WIDTH * HEIGHT * 4;
 
-uint8_t data[SIZE];
+Screen * screen;
+Image * images;
+int numberOfImages = 0;
+
 //int screenMem1 [1024][768][3];
 //int screenMem2 [720][480][3];
 
@@ -44,7 +47,7 @@ extern "C"
 {
     EM_BOOL key_callback(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
     {
-        printf("%s | %d\n", e->code, eventType);
+        // printf("%s | %d\n", e->code, eventType);
         
         if (strcmp(e->code, "KeyW") == 0){
             if(eventType == 2) 
@@ -87,107 +90,92 @@ extern "C"
     }*/
     EMSCRIPTEN_KEEPALIVE uint8_t * getMemoryOffset()
     {
-        return &data[0];
+        return screen->getPixels();
     }
 
     EMSCRIPTEN_KEEPALIVE int getScreenWidth()
     {
-        return WIDTH;
+        return screen->getWidth();
     }
     EMSCRIPTEN_KEEPALIVE int getScreenHeight()
     {
-        return HEIGHT;
+        return screen->getHeight();
+    }
+    EMSCRIPTEN_KEEPALIVE void addImage(int pointerValue, int width, int height)
+    {
+        uint8_t *pointer = ((uint8_t *)(intptr_t)(pointerValue));
+        images[numberOfImages].setPixels(pointer);
+        images[numberOfImages].setSize(width,height);
+        numberOfImages++;
     }
 
     EM_JS(void, render, (), {
         Module.renderImageFromMemory();
     });
-    
-    
+
+    EM_JS(void, renderSetup, (), {
+        Module.renderSetup();
+    });
+
+    EM_JS(void, loadImage, (const char *str),{
+        loadImage(UTF8ToString(str));
+    });
+
     EMSCRIPTEN_KEEPALIVE void startgame()
     {
-        printf("startgamesdfsdf");
+        printf("startgamesdfsdf\n");
     }
 }
 
-void setPixel(int x, int y, int r, int g, int b)
-{
-    int offset = (x + y * WIDTH) * 4;
-    data[offset] = r;
-    data[offset + 1] = g;
-    data[offset + 2] = b;
-    data[offset + 3] = 255;
-}
 
-void rotate(int x, int y,int centerX, int centerY, float omega)
-{
-    float translatedX = (x - centerX) * cos(omega) - (y - centerY) * sin(omega);
-    float translatedY = (x - centerX) * sin(omega) + (y - centerY) * cos(omega);
-
-    setPixel(translatedX+centerX, translatedY+centerY, 200, 0, 0);
-}
-
-void drawRectangle(int x, int y, int width, int height, float omega = 0.0f)
-{
-    int centerX = x+width/2;
-    int centerY = y + height /2;
-    for (int xOffset = 0; xOffset < width; xOffset++)
-    {
-        for (int yOffset = 0; yOffset < height; yOffset++)
-        {
-            rotate(x + xOffset, y + yOffset, centerX, centerY, omega);
-        }
-    }
-}
-
-void clearScreen(){
-    for (int i = 0; i < SIZE; i += 4)
-    {
-        data[i] = 255;
-        data[i + 1] = 255;
-        data[i + 2] = 255;
-        data[i + 3] = 255;
-    }
-}
-
-int startPos = 1069;
-
-float omega = 0.78f;
+Player * p;
 void updateLoop()
 {
+    if(numberOfImages == 0) return;
+    else if(numberOfImages == 1){
+        printf("Images loaded\n");
+       
+        numberOfImages++;
+        p = new Player(new Vector2(10, 10), &images[0]);
+    }
+    else if(numberOfImages == 2){
     
-    clearScreen();
-    if(pressedButtons[0] == 1) posY-=5;
-    if(pressedButtons[1] == 1) posY+=5;
-    if(pressedButtons[2] == 1) posX-=5;
-    if(pressedButtons[3] == 1) posX+=5;
-    if(posX > 1037) posX=1037;
-    if(posX < 61) posX=61;
-    if(posY > 903) posY=903;
-    if(posY < 183) posY=183;
-    //printf("%d\n", posX);
-    //printf("%d\n", posY);
+        //Movement update
+        if(pressedButtons[0] == 1) posY-=5;
+        if(pressedButtons[1] == 1) posY+=5;
+        if(pressedButtons[2] == 1) posX-=5;
+        if(pressedButtons[3] == 1) posX+=5;
 
-    drawRectangle(posX, posY, 48, 48, 0.0);
-
-    drawRectangle(startPos, 100, 48, 48, omega);
-    drawRectangle(startPos, 200, 48, 48, omega);
-    drawRectangle(startPos, 300, 48, 48, omega);
-    drawRectangle(startPos, 400, 48, 48, omega);
-
-    omega += 0.1f;
-    startPos += 2;
-    if(startPos > 1876)startPos=1069;
-    render();
+        p->move(posX,posY);
+        
+        // if(posX > 1037) posX=1037;
+        // if(posX < 61) posX=61;
+        // if(posY > 903) posY=903;
+        // if(posY < 183) posY=183;
+        
+        //Render
+        screen->clearArea1();
+        screen->clearArea2();
+        p->draw(screen);
+        render();
+    }
 }
+
 
 int main(void)
 {
- //   emscripten_set_keydown_callback(0, 0, 1, key_callback);
-  //  emscripten_set_keyup_callback(0, 0, 1, key_callback);
-  //  emscripten_set_main_loop(updateLoop, 0, 1);
-    Rectangle rect(Vector2(10,10),100,100);
-    rect.draw();
+    screen = new Screen(WIDTH,HEIGHT);
+    images = new Image[5];
+
+    renderSetup();
+    loadImage("assets/Ninja.png");
+    
+    //Keypress handling
+    emscripten_set_keydown_callback(0, 0, 1, key_callback);
+    emscripten_set_keyup_callback(0, 0, 1, key_callback);
+
+    //Main loop handler
+    emscripten_set_main_loop(updateLoop, 0, 1);
 }
 
 
