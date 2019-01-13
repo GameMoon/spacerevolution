@@ -60,6 +60,7 @@
             canvas.height = height;
             this.imageData = new ImageData(new Uint8ClampedArray(this.wasmMemory.buffer, offset, width * height * 4), width, height);      
         }   
+      
         Module.onRuntimeInitialized = function() {
            
 
@@ -90,12 +91,11 @@
 
         function StartGame() {
 
-            const startgame= Module.cwrap('startgame');
-            startgame();
+            Module._startgame();
         }
 
         function openFullscreen() {
-                var canvas = document.getElementById('screen');
+                var canvas = document.getElementsByTagName('body')[0];
                 if (canvas.requestFullscreen) {
                     canvas.requestFullscreen();
                 } else if (canvas.mozRequestFullScreen) { /* Firefox */
