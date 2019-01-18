@@ -22,7 +22,7 @@ class Sprite : public Image{
           frameWidth = width / numberOfFrames;
           frameHeight = height / numberOfMovements;
 
-          maxNumberOfFrames = numberOfMovements;
+          maxNumberOfFrames = numberOfFrames;
           currentFrame = 0;
           timeForFrame = 0;
           currentMovement = 0;
@@ -35,9 +35,9 @@ class Sprite : public Image{
         int getFrameHeight(){ return frameHeight;}
 
         void draw(int xPos, int yPos, Screen *screen){
-            for (int x = currentFrame * frameWidth ; x < (currentFrame + 1) * frameWidth; x += 1)
+            for (int x = currentFrame * frameWidth; x < (currentFrame + 1) * frameWidth; x += 1)
             {
-                for (int y = currentMovement * frameHeight ; y < (currentMovement + 1) * frameHeight; y += 1)
+                for (int y = currentMovement * frameHeight; y < (currentMovement + 1) * frameHeight; y += 1)
                 {
                     int imageOffset = (x + y * this->getWidth()) * 4;
                     screen->draw(
@@ -53,15 +53,16 @@ class Sprite : public Image{
         void updateFrame(int elapsedTime){
             if (timeForFrame < 0)
             {
-                    currentFrame = (currentFrame + 1) % maxNumberOfFrames;
-                    timeForFrame = 1000 / 12; // 12 fps 
+                currentFrame = (currentFrame + 1) % maxNumberOfFrames;
+                timeForFrame = 1000 / 12; // 12 fps 
             }
             timeForFrame -= elapsedTime;
         }
 
         void setCurrentFrame(int frame){ this->currentFrame = frame;}
+
         void setCurrentMovement(int movement, int maxNumberOfFrames = -1) {
-            if (maxNumberOfFrames == -1) maxNumberOfFrames = numberOfMovements;
+            if (maxNumberOfFrames == -1) maxNumberOfFrames = numberOfFrames;
             this->maxNumberOfFrames = maxNumberOfFrames;
 
             this->currentMovement = movement; 
