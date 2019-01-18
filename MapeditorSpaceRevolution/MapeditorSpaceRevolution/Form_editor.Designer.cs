@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.toolStrip_editwindow = new System.Windows.Forms.ToolStrip();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip_File = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,9 +37,16 @@
             this.loadTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dataGridView_mapdata = new System.Windows.Forms.DataGridView();
+            this.dataGridView_tiles = new System.Windows.Forms.DataGridView();
             this.toolStrip_editwindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mapdata)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tiles)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip_editwindow
@@ -52,23 +58,6 @@
             this.toolStrip_editwindow.Size = new System.Drawing.Size(800, 25);
             this.toolStrip_editwindow.TabIndex = 0;
             this.toolStrip_editwindow.Text = "toolStrip_editor";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitContainer1.Size = new System.Drawing.Size(800, 425);
-            this.splitContainer1.SplitterDistance = 143;
-            this.splitContainer1.TabIndex = 1;
             // 
             // toolStrip_File
             // 
@@ -87,46 +76,84 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.saveToolStripMenuItem.Text = "Save...";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
             // 
             // loadMapFileToolStripMenuItem
             // 
             this.loadMapFileToolStripMenuItem.Name = "loadMapFileToolStripMenuItem";
-            this.loadMapFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadMapFileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.loadMapFileToolStripMenuItem.Text = "Load Map File...";
             this.loadMapFileToolStripMenuItem.Click += new System.EventHandler(this.loadMapFileToolStripMenuItem_Click);
             // 
             // loadTilesetToolStripMenuItem
             // 
             this.loadTilesetToolStripMenuItem.Name = "loadTilesetToolStripMenuItem";
-            this.loadTilesetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadTilesetToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.loadTilesetToolStripMenuItem.Text = "Load Tileset...";
             this.loadTilesetToolStripMenuItem.Click += new System.EventHandler(this.loadTilesetToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(154, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView_tiles);
+            this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.splitContainer1_Panel1_SizeChanged);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView_mapdata);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 425);
+            this.splitContainer1.SplitterDistance = 143;
+            this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+            this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
+            // 
+            // dataGridView_mapdata
+            // 
+            this.dataGridView_mapdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_mapdata.Location = new System.Drawing.Point(4, 4);
+            this.dataGridView_mapdata.Name = "dataGridView_mapdata";
+            this.dataGridView_mapdata.Size = new System.Drawing.Size(649, 421);
+            this.dataGridView_mapdata.TabIndex = 0;
+            // 
+            // dataGridView_tiles
+            // 
+            this.dataGridView_tiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_tiles.Location = new System.Drawing.Point(4, 4);
+            this.dataGridView_tiles.Name = "dataGridView_tiles";
+            this.dataGridView_tiles.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView_tiles.TabIndex = 0;
             // 
             // Form_editor
             // 
@@ -139,10 +166,15 @@
             this.Text = "Space Revolution - Map Editor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_editor_FormClosed);
+            this.Resize += new System.EventHandler(this.Form_editor_Resize);
             this.toolStrip_editwindow.ResumeLayout(false);
             this.toolStrip_editwindow.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mapdata)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tiles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +192,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadTilesetToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataGridView_mapdata;
+        private System.Windows.Forms.DataGridView dataGridView_tiles;
     }
 }

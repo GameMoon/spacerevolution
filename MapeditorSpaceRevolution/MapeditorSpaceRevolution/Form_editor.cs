@@ -16,6 +16,8 @@ namespace MapeditorSpaceRevolution
         public Form_editor()
         {
             InitializeComponent();
+            dataGridView_mapdata.Width = splitContainer1.Panel2.Width;
+            dataGridView_mapdata.Height = splitContainer1.Panel2.Height;
             /*loadsavepoopper.mapFilePath
             loadsavepoopper.tileFilePath;*/
             loadMapData();
@@ -66,6 +68,34 @@ namespace MapeditorSpaceRevolution
 
 
 
+        }
+
+        private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
+        {
+            seteditwinsize();
+        }
+
+        private void Form_editor_Resize(object sender, EventArgs e)
+        {
+            seteditwinsize();
+        }
+
+        private void splitContainer1_SizeChanged(object sender, EventArgs e)
+        {
+            seteditwinsize();
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            seteditwinsize();
+        }
+
+        private void seteditwinsize()
+        {
+            dataGridView_mapdata.Width = splitContainer1.Panel2.Width - 9;
+            dataGridView_mapdata.Height = splitContainer1.Panel2.Height - 9;
+            dataGridView_tiles.Width = splitContainer1.Panel1.Width - 9;
+            dataGridView_tiles.Height = splitContainer1.Panel1.Height - 9;
         }
     }
 }
