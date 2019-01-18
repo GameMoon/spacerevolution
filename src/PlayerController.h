@@ -1,8 +1,9 @@
 #ifndef PLAYERCONTROLLER_H
 #define PLAYERCONTROLLER_H
 
+#include "Game.h"
 #include "Player.h"
-
+#include "Container.h"
 
 class PlayerController
 {
@@ -42,7 +43,7 @@ class PlayerController
     }
 
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
-    void update(int elapsedTime)
+    void update(Container& objectContainer,int elapsedTime)
     {
 
         if(pressedButtons[0] == 1) speedY = -player->getSpeed();
@@ -50,7 +51,15 @@ class PlayerController
         if(pressedButtons[2] == 1) speedX = -player->getSpeed();
         if(pressedButtons[3] == 1) speedX = player->getSpeed();
 
-        player->move(speedX, speedY, elapsedTime);
+        if (!player->isCollide(
+                player->getPosition()->getX() + speedX,
+                player->getPosition()->getY() + speedY,
+                objectContainer.getAll(),
+                objectContainer.getSize()))
+        {
+            player->move(speedX, speedY, elapsedTime);
+        }
+
         if(speedY != 0 || speedX  != 0){
             speedX = 0;
             speedY = 0;

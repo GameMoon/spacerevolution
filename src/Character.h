@@ -5,7 +5,7 @@
 #include "Sprite.h"
 #include "Screen.h"
 
-class Character : Object
+class Character : public Object
 {
   private:
     Sprite *sprite;
@@ -16,16 +16,32 @@ class Character : Object
     {
         this->pos = pos;
         this->sprite = sprite;
+        this->width = this->sprite->getFrameWidth();
+        this->height = this->sprite->getFrameHeight();
+        
         speed = 1;
     }
     ~Character(){ delete sprite;}
 
     void move(int x, int y, int elapsedTime)
     {
-        if(x == 0 && y == 0) sprite->setCurrentFrame(2); //standing animation
+        if(x == 0 && y == 0){
+            sprite->setCurrentFrame(0); //standing animation
+            sprite->setCurrentMovement(8); //standing animation
+        }
         else{
             pos->setX(x+pos->getX());
             pos->setY(y+pos->getY());
+
+            if(x > 0 && y > 0) sprite->setCurrentMovement(5);
+            else if(x < 0 && y < 0) sprite->setCurrentMovement(1);
+            else if(x < 0 && y > 0) sprite->setCurrentMovement(2);
+            else if(x > 0 && y < 0) sprite->setCurrentMovement(4);
+            else if(x == 0 && y > 0)  sprite->setCurrentMovement(6,2);
+            else if(x == 0 && y < 0)  sprite->setCurrentMovement(7,2);
+            else if(x > 0 && y == 0) sprite->setCurrentMovement(3);
+            else if(x < 0 && y == 0) sprite->setCurrentMovement(0);
+
             sprite->updateFrame(elapsedTime);
         }
     }
@@ -35,7 +51,7 @@ class Character : Object
         int xOffset = this->pos->getX();
         int yOffset = this->pos->getY();
 
-        sprite->draw(xOffset, yOffset, 0, screen);
+        sprite->draw(xOffset, yOffset, screen);
     }
     int getSpeed(){
         return speed;

@@ -1,17 +1,18 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <vector>
 #include <sys/time.h>
 #include <math.h>
 #include <stdint.h>
 #include <string.h>
 
 #include <emscripten/html5.h>
-#include <iostream>
+
 #include "Screen.h"
 #include "Player.h"
 #include "PlayerController.h"
+#include "Container.h"
+#include "Terminal.h"
 
 #define WIDTH 1920
 #define HEIGHT 1080
@@ -26,7 +27,7 @@ class Game
 
     PlayerController * playerController;
     Player *p;
-    std::vector<std::string> imagePath;
+    Container objects;
 
     struct timeval currentTimeVal;
     int lastTime;
@@ -43,7 +44,6 @@ class Game
     Game()
     {
         screen = new Screen(WIDTH, HEIGHT);
-       
         lastTime = 0;
         gameState = 0;
         
@@ -52,9 +52,13 @@ class Game
         images = new Image[imagesToLoad];
         printf("Loading ... \n");
     }
+    ~Game(){
+        delete screen;
+    }
 
     Screen* getScreen(){ return screen;}
     PlayerController* getPlayerController(){ return playerController;}
+    Container& getObjects();
 
     void loadImage(int pointerValue, int width, int height)
     {
@@ -73,6 +77,7 @@ class Game
         }
         else if (gameState == 1)
         {
+            //Loading Objects
             printf("Images loaded\n");
             p = new Player(new Vector2(62, 184),
                            new Sprite(
@@ -80,9 +85,13 @@ class Game
                                images[0].getWidth(),
                                images[0].getHeight(),
                                4,
-                               1));
+                               10));
             p->setSpeed(2);
             playerController = new PlayerController(p);
+
+            objects.add(new Terminal(new Vector2(600,600)));
+            objects.add(p);
+            printf("Loading finished\n");
             gameState = 2;
         }
         else if (gameState == 2)
@@ -93,16 +102,17 @@ class Game
             lastTime = currentTime;
             
             //Player update
-            playerController->update(elapsedTime);
+            playerController->update(objects,elapsedTime);
 
             //Render
             screen->clearArea1();
             // screen->clearArea2();
-            p->draw(screen);
+            for(int k = 0; k<objects.getSize();k++){
+                objects.at(k)->draw(screen);
+            }
         }
-    }
-
-   
+    } 
 };
+
 
 #endif

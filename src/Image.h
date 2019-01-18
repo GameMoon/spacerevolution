@@ -2,6 +2,7 @@
 #define IMAGE_H
 
 class Image{
+    protected:
     uint8_t * pixels;
     int width;
     int height;

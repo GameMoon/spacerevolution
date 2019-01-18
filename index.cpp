@@ -97,7 +97,7 @@ int main(void)
 {  
     game = new Game();
     renderSetup();
-    loadImage("assets/simpleanim.png");
+    loadImage("assets/characters/mcharanimall.png");
 
     
     //Callback setup
