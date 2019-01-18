@@ -38,15 +38,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dataGridView_mapdata = new System.Windows.Forms.DataGridView();
-            this.dataGridView_tiles = new System.Windows.Forms.DataGridView();
             this.toolStrip_editwindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mapdata)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tiles)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip_editwindow
@@ -126,34 +120,16 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView_tiles);
             this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.splitContainer1_Panel1_SizeChanged);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView_mapdata);
             this.splitContainer1.Size = new System.Drawing.Size(800, 425);
             this.splitContainer1.SplitterDistance = 143;
             this.splitContainer1.TabIndex = 1;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
-            // 
-            // dataGridView_mapdata
-            // 
-            this.dataGridView_mapdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_mapdata.Location = new System.Drawing.Point(4, 4);
-            this.dataGridView_mapdata.Name = "dataGridView_mapdata";
-            this.dataGridView_mapdata.Size = new System.Drawing.Size(649, 421);
-            this.dataGridView_mapdata.TabIndex = 0;
-            // 
-            // dataGridView_tiles
-            // 
-            this.dataGridView_tiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tiles.Location = new System.Drawing.Point(4, 4);
-            this.dataGridView_tiles.Name = "dataGridView_tiles";
-            this.dataGridView_tiles.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView_tiles.TabIndex = 0;
             // 
             // Form_editor
             // 
@@ -169,12 +145,8 @@
             this.Resize += new System.EventHandler(this.Form_editor_Resize);
             this.toolStrip_editwindow.ResumeLayout(false);
             this.toolStrip_editwindow.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mapdata)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tiles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,7 +164,5 @@
         private System.Windows.Forms.ToolStripMenuItem loadTilesetToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView_mapdata;
-        private System.Windows.Forms.DataGridView dataGridView_tiles;
     }
 }
