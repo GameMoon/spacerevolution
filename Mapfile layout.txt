@@ -1,22 +1,12 @@
---  elválasztó
-
-példa
-
 --Name:Mission 1
 --BaseLayer1  //mindíg teljesen lefedi
 1;2;3;4
 3;2;1;0
 1;2;2;3
 1;2;2;3
---BaseLayer2 //mindíg teljesen lefedi
-;;;
-;2;1;
-;2;2;
-;;;
 --Entities: //tile id; xcoord; ycoord;
 3;1;1
 4;2;2
 
 
-//utána pedíg
---Extralayer1 stb... vagy --EOF
+--EOF
