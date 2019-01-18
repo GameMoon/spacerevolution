@@ -22,6 +22,8 @@ Y=554
 #include <stdint.h>
 #include <string.h>
 #include <math.h>
+#include <sys/time.h>
+
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
@@ -35,6 +37,7 @@ const int HEIGHT = 1080;
 Screen * screen;
 Image * images;
 int numberOfImages = 0;
+int imagesToLoad = 0;
 
 //int screenMem1 [1024][768][3];
 //int screenMem2 [720][480][3];
@@ -117,7 +120,7 @@ extern "C"
         Module.renderSetup();
     });
 
-    EM_JS(void, loadImage, (const char *str),{
+    EM_JS(void, loadImage, (const char* str),{
         loadImage(UTF8ToString(str));
     });
 
@@ -127,26 +130,47 @@ extern "C"
     }
 }
 
+long int getTime()
+{
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    return tp.tv_sec * 1000 + tp.tv_usec / 1000;
+}
 
 Player * p;
+int lastTime = 0;
+int gameState = 0;
+
 void updateLoop()
 {
-    if(numberOfImages == 0) return;
-    else if(numberOfImages == 1){
+    if(gameState == 0){
+        if(numberOfImages == imagesToLoad) gameState++;
+        return;
+    }
+    else if(gameState == 1){
+        
         printf("Images loaded\n");
        
-        numberOfImages++;
-        p = new Player(new Vector2(10, 10), &images[0]);
+        p = new Player(new Vector2(10, 10), new Sprite(
+                images[0].getPixels(),
+                images[0].getWidth(),
+                images[0].getHeight(),
+                10,
+                19)
+            );
+        gameState = 2;
     }
-    else if(numberOfImages == 2){
-    
+    else if(gameState == 2){
+        int currentTime = getTime();
+        int elapsedTime = currentTime - lastTime;
+        lastTime = currentTime;
         //Movement update
-        if(pressedButtons[0] == 1) posY-=5;
+        if (pressedButtons[0] == 1) posY -= 5;
         if(pressedButtons[1] == 1) posY+=5;
         if(pressedButtons[2] == 1) posX-=5;
         if(pressedButtons[3] == 1) posX+=5;
 
-        p->move(posX,posY);
+        p->move(posX,posY,elapsedTime);
         
         // if(posX > 1037) posX=1037;
         // if(posX < 61) posX=61;
@@ -168,6 +192,7 @@ int main(void)
     images = new Image[5];
 
     renderSetup();
+    imagesToLoad = 1;
     loadImage("assets/Ninja.png");
     
     //Keypress handling
