@@ -59,6 +59,7 @@ class PlayerController
         {
             player->move(speedX, speedY, elapsedTime);
         }
+        else player->move(0, 0, elapsedTime);
 
         if(speedY != 0 || speedX  != 0){
             speedX = 0;
