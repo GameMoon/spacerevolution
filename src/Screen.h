@@ -27,18 +27,21 @@ class Screen{
             //Alpha blending
             int offset = (x + y * width) * 4;
             
-            int backR = this->pixels[offset] = r;
-            int backG = this->pixels[offset + 1] = g;
-            int backB = this->pixels[offset+2] = b;
+            int backR = this->pixels[offset];
+            int backG = this->pixels[offset + 1];
+            int backB = this->pixels[offset + 2];
             int backA = this->pixels[offset + 3];
 
-            int alphaConstant = (255-a)*backA;
-            int newAlpha = (a + alphaConstant);
+            float srcA = a / 255.0;
+            float dstA = backA / 255.0;
+
+            float alphaConstant = (1.0-srcA)*dstA;
+            float newAlpha = (srcA + alphaConstant);
             setPixel(x, y,
-                     (alphaConstant * r + backA * backR) / newAlpha,
-                     (alphaConstant * g + backA * backG) / newAlpha,
-                     (alphaConstant * b + backA * backB) / newAlpha,
-                     newAlpha);
+                     (srcA * r + alphaConstant * backR) / newAlpha,
+                     (srcA * g + alphaConstant * backG) / newAlpha,
+                     (srcA * b + alphaConstant * backB) / newAlpha,
+                     newAlpha * 255);
         }
 
         uint8_t * getPixels(){return pixels;}

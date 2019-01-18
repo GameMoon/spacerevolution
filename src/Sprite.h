@@ -26,8 +26,6 @@ class Sprite : Image{
                 for (int y = movement * frameHeight; y < (movement+1) * frameHeight; y += 1)
                 {
                     int imageOffset = (x + y * this->getWidth()) * 4;
-                    // if (this->getPixel(imageOffset + 3) != 0)
-                    // {
                         screen->draw(
                             x + xPos - currentFrame* frameWidth,
                             y + yPos - movement * frameHeight,
@@ -35,7 +33,6 @@ class Sprite : Image{
                             this->getPixel(imageOffset + 1),
                             this->getPixel(imageOffset + 2),
                             this->getPixel(imageOffset + 3));
-                    // }
                 }
             }
         }
