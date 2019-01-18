@@ -1,29 +1,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Object.h"
-#include "Sprite.h"
+#include "Character.h"
 
-class Player : Object{
-    private:
-        Sprite * sprite;
+class Player : public Character{
     public:
-        Player(Vector2 * pos, Sprite * sprite){ this->pos = pos; this->sprite = sprite;}
-        void move(int x, int y, int elapsedTime){ 
-            if(pos->getX() != x || pos->getY() != y)
-            {
-                sprite->updateFrame(elapsedTime,9);
-            } 
-            pos->setX(x);
-            pos->setY(y);
-        }
-        void draw(Screen *screen)
-        {
-            int xOffset = this->pos->getX();
-            int yOffset = this->pos->getY();
-
-            sprite->draw(xOffset, yOffset, 8, screen);
-        }
+        Player(Vector2 * pos, Sprite * sprite) : Character(pos,sprite){ }
+       
 };
 
 #endif

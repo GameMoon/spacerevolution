@@ -44,7 +44,6 @@
         }
 
         Module.renderImageFromMemory = function(){
-         
             this.canvasContext.putImageData(this.imageData,0,0);
            // this.canvasContext.drawImage(overlay, 0, 0);
         }
@@ -58,7 +57,7 @@
 
             canvas.width = width;
             canvas.height = height;
-            this.imageData = new ImageData(new Uint8ClampedArray(this.wasmMemory.buffer, offset, width * height * 4), width, height);      
+            this.imageData = new ImageData(new Uint8ClampedArray(this.wasmMemory.buffer, offset, width * height * 4), width, height);  
         }   
       
         Module.onRuntimeInitialized = function() {

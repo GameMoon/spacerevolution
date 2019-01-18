@@ -36,14 +36,16 @@ class Sprite : Image{
                 }
             }
         }
-        void updateFrame(int elapsedTime, int maxNoFrames){
+        void updateFrame(int elapsedTime){
             //printf("tf: %d dt: %d\n",timeForFrame,elapsedTime);
             if(timeForFrame < 0){
-                currentFrame = (currentFrame + 1) % maxNoFrames;
+                currentFrame = (currentFrame + 1) % numberOfFrames;
                 timeForFrame = 1000 / 12; // 12 fps 
             }
             timeForFrame -= elapsedTime;
         }
+
+        void setCurrentFrame(int frame){ this->currentFrame = frame;}
 };
 
 #endif

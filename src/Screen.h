@@ -16,6 +16,7 @@ class Screen{
         int getSize(){ return width*height*4;}
 
         void setPixel(int x, int y, int r, int g, int b, int a = 255){
+          
             int offset = (x + y * width) * 4;
             this->pixels[offset] = r;
             this->pixels[offset+1] = g; 
@@ -37,11 +38,12 @@ class Screen{
 
             float alphaConstant = (1.0-srcA)*dstA;
             float newAlpha = (srcA + alphaConstant);
+            
             setPixel(x, y,
                      (srcA * r + alphaConstant * backR) / newAlpha,
                      (srcA * g + alphaConstant * backG) / newAlpha,
                      (srcA * b + alphaConstant * backB) / newAlpha,
-                     newAlpha * 255);
+                     (int) newAlpha * 255);
         }
 
         uint8_t * getPixels(){return pixels;}

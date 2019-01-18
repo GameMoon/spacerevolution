@@ -16,100 +16,56 @@ Y=75
 end pixel at(bottom right corner is):
 X=1856
 Y=554
+
+-s TOTAL_MEMORY=30015488
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-#include <math.h>
-#include <sys/time.h>
 
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
-#include "src/Screen.h"
-#include "src/Player.h"
-
-const int WIDTH = 1920;
-const int HEIGHT = 1080;
+#include "src/Game.h"
 
 
-Screen * screen;
-Image * images;
-int numberOfImages = 0;
-int imagesToLoad = 0;
 
 //int screenMem1 [1024][768][3];
 //int screenMem2 [720][480][3];
 
-int posX = 61;
-int posY = 183;
-int pressedButtons[4];
+Game * game;
 
+//Callbacks
 extern "C"
 {
-    EM_BOOL key_callback(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
+    EM_BOOL static handleKeyboard(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
     {
         // printf("%s | %d\n", e->code, eventType);
-        
-        if (strcmp(e->code, "KeyW") == 0){
-            if(eventType == 2) 
-                pressedButtons[0] = 1;
-            else 
-                pressedButtons[0] = 0;
-        }
-        else if(strcmp(e->code,"KeyS")==0){
-            if (eventType == 2)
-                pressedButtons[1] = 1;
-            else
-                pressedButtons[1] = 0;
-        }
-           
-        if(strcmp(e->code,"KeyA")==0){
-            if (eventType == 2)
-                pressedButtons[2] = 1;
-            else
-                pressedButtons[2] = 0;
-        }
-        else if(strcmp(e->code,"KeyD")==0){
-            if (eventType == 2)
-                pressedButtons[3] = 1;
-            else
-                pressedButtons[3] = 0;
-        } 
-
+        game->getPlayerController()->handleKeyboard(eventType, e, userData);
         return true;
     }
-    /*EM_BOOL mouse_callback_func(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
+    EM_BOOL handleMouse(int eventType, const EmscriptenMouseEvent *e, void *userData)
     {
-        printf("%s | %d\n", mouseEvent->code, eventType);
-            else if(strcmp(mouseEvent->code,"KeyD")==0){
-            if (eventType == 2)
-                pressedButtons[3] = 1;
-            else
-                pressedButtons[3] = 0;
-        }
-
-    }*/
+        //printf("%s | %d\n", mouseEvent->code, eventType);
+        game->getPlayerController()->handleMouse(eventType, e, userData);
+        return true;
+    }
     EMSCRIPTEN_KEEPALIVE uint8_t * getMemoryOffset()
     {
-        return screen->getPixels();
+        return game->getScreen()->getPixels();
     }
 
     EMSCRIPTEN_KEEPALIVE int getScreenWidth()
     {
-        return screen->getWidth();
+        return game->getScreen()->getWidth();
     }
     EMSCRIPTEN_KEEPALIVE int getScreenHeight()
     {
-        return screen->getHeight();
+        return game->getScreen()->getHeight();
     }
+
     EMSCRIPTEN_KEEPALIVE void addImage(int pointerValue, int width, int height)
     {
-        uint8_t *pointer = ((uint8_t *)(intptr_t)(pointerValue));
-        images[numberOfImages].setPixels(pointer);
-        images[numberOfImages].setSize(width,height);
-        numberOfImages++;
+       game->loadImage(pointerValue,width,height);
     }
 
     EM_JS(void, render, (), {
@@ -130,74 +86,24 @@ extern "C"
     }
 }
 
-long int getTime()
-{
-    struct timeval tp;
-    gettimeofday(&tp, NULL);
-    return tp.tv_sec * 1000 + tp.tv_usec / 1000;
-}
-
-Player * p;
-int lastTime = 0;
-int gameState = 0;
-
 void updateLoop()
 {
-    if(gameState == 0){
-        if(numberOfImages == imagesToLoad) gameState++;
-        return;
-    }
-    else if(gameState == 1){
-        
-        printf("Images loaded\n");
-       
-        p = new Player(new Vector2(10, 10), new Sprite(
-                images[0].getPixels(),
-                images[0].getWidth(),
-                images[0].getHeight(),
-                10,
-                19)
-            );
-        gameState = 2;
-    }
-    else if(gameState == 2){
-        int currentTime = getTime();
-        int elapsedTime = currentTime - lastTime;
-        lastTime = currentTime;
-        //Movement update
-        if (pressedButtons[0] == 1) posY -= 5;
-        if(pressedButtons[1] == 1) posY+=5;
-        if(pressedButtons[2] == 1) posX-=5;
-        if(pressedButtons[3] == 1) posX+=5;
-
-        p->move(posX,posY,elapsedTime);
-        
-        // if(posX > 1037) posX=1037;
-        // if(posX < 61) posX=61;
-        // if(posY > 903) posY=903;
-        // if(posY < 183) posY=183;
-        
-        //Render
-        screen->clearArea1();
-        screen->clearArea2();
-        p->draw(screen);
-        render();
-    }
+    game->update();
+    render();
 }
 
 
 int main(void)
-{
-    screen = new Screen(WIDTH,HEIGHT);
-    images = new Image[5];
-
+{  
+    game = new Game();
     renderSetup();
-    imagesToLoad = 1;
-    loadImage("assets/Ninja.png");
+    loadImage("assets/simpleanim.png");
+
     
-    //Keypress handling
-    emscripten_set_keydown_callback(0, 0, 1, key_callback);
-    emscripten_set_keyup_callback(0, 0, 1, key_callback);
+    //Callback setup
+    emscripten_set_keydown_callback(0, 0, 1, handleKeyboard);
+    emscripten_set_keyup_callback(0, 0, 1, handleKeyboard);
+    emscripten_set_click_callback(0,0,0,handleMouse);
 
     //Main loop handler
     emscripten_set_main_loop(updateLoop, 0, 1);

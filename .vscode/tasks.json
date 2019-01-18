@@ -27,7 +27,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "em++ index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory']",
+            "command": "em++ index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] ",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -37,7 +37,7 @@
         {
             "label": "Build Optmized WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js --closure 1 -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap']",
+            "command": "emcc index.cpp -s WASM=1 -o index.js  -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] ",
             "problemMatcher": []
         }
     ]
