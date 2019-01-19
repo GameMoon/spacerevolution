@@ -13,8 +13,8 @@ class Map{
 
     public:
         Map(TileController * tileController,const char* file,int level) : tileController(tileController){
-            numberOfTilesInRow = 21;
-            numberOfTiles = 10;
+            numberOfTilesInRow = 32;
+            numberOfTiles = 32*24;
             groundTiles = new int[numberOfTiles];
 
             for (int k = 0; k < numberOfTiles; k++)
