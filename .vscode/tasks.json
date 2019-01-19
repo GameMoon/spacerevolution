@@ -27,7 +27,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "em++ index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] ",
+            "command": "em++ index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] -s TOTAL_MEMORY=33554432",
             "group": {
                 "kind": "build",
                 "isDefault": true

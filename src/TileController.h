@@ -4,6 +4,7 @@
 #include "Container.h"
 #include "Image.h"
 #include <stdint.h>
+#include <math.h>
 
 #define TILE_SIZE 48
 
@@ -33,7 +34,11 @@ class TileController{
                         tile[imageIndex + 3] = tileSet->getPixel(offset + 3);
                     }
                 }
-                tiles.add(new Image(tile,TILE_SIZE,TILE_SIZE));
+                Image *baseImage = new Image(tile, TILE_SIZE, TILE_SIZE);
+                tiles.add(baseImage);
+                tiles.add(baseImage->rotate(90));
+                tiles.add(baseImage->rotate(180));
+                tiles.add(baseImage->rotate(270));
             }
         }
 

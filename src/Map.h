@@ -12,17 +12,21 @@ class Map{
     int numberOfTilesInRow;
 
     public:
-        Map(TileController * tileController,int level) : tileController(tileController){
+        Map(TileController * tileController,const char* file,int level) : tileController(tileController){
             numberOfTilesInRow = 21;
-            numberOfTiles = 50;
+            numberOfTiles = 10;
             groundTiles = new int[numberOfTiles];
 
             for (int k = 0; k < numberOfTiles; k++)
             {
-                groundTiles[k] = 0;
+                groundTiles[k] = k;
             }
         }
 
+        /*void loadLevel(const char* file, int level){
+
+            for()
+        }*/
 
         void draw(Screen * screen){
             for (int k = 0; k < numberOfTiles; k++)

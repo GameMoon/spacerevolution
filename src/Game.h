@@ -96,7 +96,7 @@ class Game
 
             tileController = new TileController(&images[1]);
 
-            currentMap = new Map(tileController,0);
+            currentMap = new Map(tileController,"maps.txt",0);
            /* objects.add(new Terminal(new Vector2(600,600)));
             objects.at(0)->setImage(tileController->getTile(10));*/
             objects.add(p);

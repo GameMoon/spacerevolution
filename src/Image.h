@@ -34,6 +34,44 @@ class Image{
           }
         }
       }
+      int sinI(int degree){
+        if(degree == 90) return 1;
+        if(degree == 180) return 0;
+        if(degree == 270) return -1;
+        return 0;
+      }
+      int cosI(int degree){
+        if(degree == 90) return 0;
+        if(degree == 180) return -1;
+        if(degree == 270) return 0;
+        return 0;
+      }
+
+      Image* rotate(int omega)
+      {
+        if(width != height) return nullptr;
+
+        uint8_t * rotatedPixels = new uint8_t[width*height*4];
+        for (int x = 0; x < width; x++)
+        {
+          for (int y = 0; y < height; y++)
+          {
+              int centerX = width / 2;
+              int centerY = height / 2;
+              int translatedX = (x-centerX) * cosI(omega) - (y - centerY) * sinI(omega);
+              int translatedY = (x - centerX) * sinI(omega) + (y - centerY) * cosI(omega);
+
+              int offset = (translatedX+centerX + (translatedY+centerY)*width) *4;
+              int originalOffset = (x+y*width)*4;
+
+              rotatedPixels[offset] = this->getPixel(originalOffset);
+              rotatedPixels[offset+1] = this->getPixel(originalOffset+1);
+              rotatedPixels[offset+2] = this->getPixel(originalOffset+2);
+              rotatedPixels[offset+3] = this->getPixel(originalOffset+3);
+          }
+        }
+        return new Image(rotatedPixels,width,height);
+      }
 };
 
 #endif
