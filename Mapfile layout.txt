@@ -1,12 +1,16 @@
---Name:Mission 1
---BaseLayer1  //mindíg teljesen lefedi
+Mission 1
+3
+4
 1;2;3;4
 3;2;1;0
 1;2;2;3
-1;2;2;3
---Entities: //tile id; xcoord; ycoord;
 3;1;1
 4;2;2
-
-
---EOF
+--
+Mission 2
+2
+5
+1;5;;5;6
+2;;7;8
+3;2;2
+5;1;3
