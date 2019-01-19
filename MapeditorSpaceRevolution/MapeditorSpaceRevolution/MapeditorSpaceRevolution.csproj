@@ -46,26 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form_editor.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Form_editor.cs" />
     <Compile Include="Form_editor.Designer.cs">
       <DependentUpon>Form_editor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form_neworload.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_neworload.Designer.cs">
-      <DependentUpon>Form_neworload.cs</DependentUpon>
     </Compile>
     <Compile Include="loadsavepoopper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form_editor.resx">
       <DependentUpon>Form_editor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_neworload.resx">
-      <DependentUpon>Form_neworload.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -11,17 +11,27 @@ using System.IO;
 
 namespace MapeditorSpaceRevolution
 {
+    public class mapdata
+    {
+        public string name;
+        public int[,] tiledata;
+        public int[,] entitydata;
+    }
+
     public partial class Form_editor : Form
     {
+        public List<mapdata> terkepek = new List<mapdata>();
+
         public Form_editor()
         {
             InitializeComponent();
             seteditwinsize();
-            
+
+
             //dataGridView_mapdata.i
-            /*loadsavepoopper.mapFilePath
+            /*loadsavepoopper.mapFilePath;
             loadsavepoopper.tileFilePath;*/
-            loadMapData();
+            //loadMapData();
             drawimg();
         }
 
@@ -55,22 +65,34 @@ namespace MapeditorSpaceRevolution
             string path = loadsavepoopper.mapFilePath;
             using (StreamReader sr = new StreamReader(path))
             {
-                string line;
                 while (!sr.EndOfStream)
                 {
-                    line = sr.ReadLine();
+                    int mapindex = terkepek.Count();
+                    terkepek.Add(new mapdata());
+                    terkepek[mapindex].name = sr.ReadLine();
+                    for (int i = 0; i < 24; i++)
+                    {
+                        string[] besor = sr.ReadLine().Split(';');
+                        for (int j = 0; j < 32; j++)
+                        {
+                            terkepek[mapindex].tiledata[i, j] = int.Parse(besor[j]);
+                        }
 
-
-
-
-
-
-
-
-
-
-
-
+                    }
+                    while (true)
+                    {
+                        string sor = sr.ReadLine();
+                        int entitityindex = 0;
+                        if (sor == "--") break;
+                        else
+                        {
+                            string[] darabsor = sor.Split(';');
+                            for (int i = 0; i < 3; i++)
+                            {
+                                terkepek[mapindex].entitydata[entitityindex, i] = int.Parse(darabsor[i]);
+                            }
+                        }
+                    }
                 }
 
             }
@@ -106,7 +128,7 @@ namespace MapeditorSpaceRevolution
         }
         private void drawimg()
         {
-            System.Drawing.Image.FromFile(loadsavepoopper.tileFilePath);
+            //System.Drawing.Image.FromFile(loadsavepoopper.tileFilePath);
         }
     }
 }
