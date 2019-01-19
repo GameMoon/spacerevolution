@@ -97,6 +97,8 @@ class Game
             tileController = new TileController(&images[1]);
 
             currentMap = new Map(tileController,"maps.txt",0);
+            currentMap->getBackground()->draw(0,0,screen);
+
            /* objects.add(new Terminal(new Vector2(600,600)));
             objects.at(0)->setImage(tileController->getTile(10));*/
             objects.add(p);
@@ -115,18 +117,19 @@ class Game
             playerController->update(objects,elapsedTime);
 
             //Render
-            // screen->clearArea1(); 
-            currentMap->draw(screen);
+            // screen->clearArea1();
+            currentMap->draw(screen,p);
 
-           /* for (int k = 0; k < 16; k++)
+            /* for (int k = 0; k < 16; k++)
             {
                 tileController->getTile(k)->draw(100 + k * 48, 300, screen);
             }*/
             
             // screen->clearArea2();
-            for(int k = 0; k<objects.getSize();k++){
+            /*for(int k = 0; k<objects.getSize();k++){
                 objects.at(k)->draw(screen);
-            }
+            }*/
+            p->draw(screen);
            
         }
     } 

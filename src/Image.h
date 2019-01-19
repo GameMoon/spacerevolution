@@ -17,11 +17,14 @@ class Image{
       uint8_t getPixel(int index) { return pixels[index]; }
       int getSize() { return width * height * 4; }
 
-      void draw(int xPos, int yPos, Screen *screen)
+      void draw(int xPos, int yPos, Screen *screen, int xOffset = 0, int yOffset = 0, int oWidth = -1, int oHeight = -1)
       {
-        for (int x = 0; x < width; x += 1)
+        if (oWidth == -1) oWidth = width;
+        if (oHeight == -1) oHeight = height;
+
+        for (int x = xOffset; x < oWidth; x += 1)
         {
-          for (int y = 0; y < height; y += 1)
+          for (int y = yOffset; y < oHeight; y += 1)
           {
             int imageOffset = (x + y * width) * 4;
             screen->draw(
@@ -33,6 +36,19 @@ class Image{
                 this->getPixel(imageOffset + 3));
           }
         }
+
+        /*for(int k = 0; k< width*height; k++){
+          int x = k % width;
+          int y = k / width;
+          int offset = (x + y * width) * 4;
+          screen->draw(
+              x + xPos,
+              y + yPos,
+              this->getPixel(offset),
+              this->getPixel(offset + 1),
+              this->getPixel(offset + 2),
+              this->getPixel(offset + 3));
+        }*/
       }
      
     

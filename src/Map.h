@@ -4,6 +4,7 @@
 #include "TileController.h"
 #include "Screen.h"
 #include "Image.h"
+#include "Player.h"
 
 #define SCREEN1_W 1024
 #define SCREEN1_H 768
@@ -46,7 +47,7 @@ class Map{
 
             for (int k = 0; k < numberOfTiles; k++)
             {
-                groundTiles[k] = k;
+                groundTiles[k] = 0;
             }
             generateBackgroundImage();
         }
@@ -57,15 +58,18 @@ class Map{
             for()
         }*/
 
-        void draw(Screen * screen){
-           /* for (int k = 0; k < numberOfTiles; k++)
+        void draw(Screen * screen, Player * p){
+            /*for (int k = 0; k < numberOfTiles; k++)
             {
                 int x = k % numberOfTilesInRow * TILE_SIZE;
                 int y = k / numberOfTilesInRow * TILE_SIZE;
                 this->tileController->getTile(groundTiles[k])->draw(x,y,screen);
             }*/
-            fullMap->draw(0,0,screen);
-           
+            fullMap->draw(0, 0, screen,
+                          p->getPosition()->getX() - 10,
+                          p->getPosition()->getY() - 10,
+                          p->getPosition()->getX() + p->getWidth() + 10,
+                          p->getPosition()->getY() + p->getHeight() + 10);
         }
         Image * getBackground(){ return fullMap;}
 };
