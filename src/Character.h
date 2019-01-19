@@ -37,8 +37,8 @@ class Character : public Object
             else if(x < 0 && y < 0) sprite->setCurrentMovement(1);
             else if(x < 0 && y > 0) sprite->setCurrentMovement(2);
             else if(x > 0 && y < 0) sprite->setCurrentMovement(4);
-            else if(x == 0 && y > 0)  sprite->setCurrentMovement(6,2);
-            else if(x == 0 && y < 0)  sprite->setCurrentMovement(7,2);
+            else if(x == 0 && y > 0)  sprite->setCurrentMovement(6);
+            else if(x == 0 && y < 0)  sprite->setCurrentMovement(7);
             else if(x > 0 && y == 0) sprite->setCurrentMovement(3);
             else if(x < 0 && y == 0) sprite->setCurrentMovement(0);
 
