@@ -14,6 +14,7 @@ class Screen{
         int getWidth(){ return width;}
         int getHeight(){return height;}
         int getSize(){ return width*height*4;}
+       
 
         void setPixel(int x, int y, int r, int g, int b, int a = 255){
           

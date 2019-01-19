@@ -115,8 +115,9 @@ class Game
             playerController->update(objects,elapsedTime);
 
             //Render
-            screen->clearArea1(); 
+            // screen->clearArea1(); 
             currentMap->draw(screen);
+
            /* for (int k = 0; k < 16; k++)
             {
                 tileController->getTile(k)->draw(100 + k * 48, 300, screen);

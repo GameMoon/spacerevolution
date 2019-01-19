@@ -34,6 +34,7 @@ class Image{
           }
         }
       }
+     
     
       Image* rotate()
       {
