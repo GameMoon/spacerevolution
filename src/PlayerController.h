@@ -43,7 +43,7 @@ class PlayerController
     }
 
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
-    void update(Container& objectContainer,int elapsedTime)
+    void update(Container<Object>& objectContainer,int elapsedTime)
     {
 
         if(pressedButtons[0] == 1) speedY = -player->getSpeed();

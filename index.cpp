@@ -98,6 +98,7 @@ int main(void)
     game = new Game();
     renderSetup();
     loadImage("assets/characters/mcharanimall.png");
+    loadImage("assets/tiles.png");
 
     
     //Callback setup
@@ -106,7 +107,7 @@ int main(void)
     emscripten_set_click_callback(0,0,0,handleMouse);
 
     //Main loop handler
-    emscripten_set_main_loop(updateLoop, 0, 1);
+    emscripten_set_main_loop(updateLoop, -1, 1);
 }
 
 

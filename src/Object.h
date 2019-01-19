@@ -21,6 +21,7 @@ class Object
     int getWidth(){return width;}
     int getHeight(){return height;}
     int getID(){return id;}
+    void setImage(Image* img){ this->img = img;}
     
      bool isCollide(int newPosX = -1, int newPosY = -1, Object** objects = nullptr, int size = 0){
         if(newPosX == -1) newPosX = this->pos->getX();

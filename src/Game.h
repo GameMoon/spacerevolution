@@ -11,8 +11,10 @@
 #include "Screen.h"
 #include "Player.h"
 #include "PlayerController.h"
+#include "TileController.h"
 #include "Container.h"
 #include "Terminal.h"
+#include "Map.h"
 
 #define WIDTH 1920
 #define HEIGHT 1080
@@ -27,12 +29,14 @@ class Game
 
     PlayerController * playerController;
     Player *p;
-    Container objects;
+    Container<Object> objects;
+    TileController *tileController;
 
     struct timeval currentTimeVal;
     int lastTime;
 
     int gameState;
+    Map * currentMap;
 
     long int getTime()
     {
@@ -48,7 +52,7 @@ class Game
         gameState = 0;
         
         numberOfImages = 0;
-        imagesToLoad = 1;
+        imagesToLoad = 2;
         images = new Image[imagesToLoad];
         printf("Loading ... \n");
     }
@@ -58,7 +62,8 @@ class Game
 
     Screen* getScreen(){ return screen;}
     PlayerController* getPlayerController(){ return playerController;}
-    Container& getObjects();
+    Container<Object>& getObjects();
+
 
     void loadImage(int pointerValue, int width, int height)
     {
@@ -78,7 +83,7 @@ class Game
         else if (gameState == 1)
         {
             //Loading Objects
-            printf("Images loaded\n");
+            printf("Images loaded: %d\n",numberOfImages);
             p = new Player(new Vector2(62, 184),
                            new Sprite(
                                images[0].getPixels(),
@@ -89,10 +94,15 @@ class Game
             p->setSpeed(2);
             playerController = new PlayerController(p);
 
-            objects.add(new Terminal(new Vector2(600,600)));
+            tileController = new TileController(&images[1]);
+
+            currentMap = new Map(tileController,0);
+           /* objects.add(new Terminal(new Vector2(600,600)));
+            objects.at(0)->setImage(tileController->getTile(10));*/
             objects.add(p);
             printf("Loading finished\n");
             gameState = 2;
+           
         }
         else if (gameState == 2)
         {
@@ -105,11 +115,18 @@ class Game
             playerController->update(objects,elapsedTime);
 
             //Render
-            screen->clearArea1();
+            screen->clearArea1(); 
+            currentMap->draw(screen);
+           /* for (int k = 0; k < 16; k++)
+            {
+                tileController->getTile(k)->draw(100 + k * 48, 300, screen);
+            }*/
+            
             // screen->clearArea2();
             for(int k = 0; k<objects.getSize();k++){
                 objects.at(k)->draw(screen);
             }
+           
         }
     } 
 };

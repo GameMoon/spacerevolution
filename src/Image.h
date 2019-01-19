@@ -16,6 +16,24 @@ class Image{
       uint8_t *getPixels() { return pixels; }
       uint8_t getPixel(int index) { return pixels[index]; }
       int getSize() { return width * height * 4; }
+
+      void draw(int xPos, int yPos, Screen *screen)
+      {
+        for (int x = 0; x < width; x += 1)
+        {
+          for (int y = 0; y < height; y += 1)
+          {
+            int imageOffset = (x + y * width) * 4;
+            screen->draw(
+                x + xPos,
+                y + yPos,
+                this->getPixel(imageOffset),
+                this->getPixel(imageOffset + 1),
+                this->getPixel(imageOffset + 2),
+                this->getPixel(imageOffset + 3));
+          }
+        }
+      }
 };
 
 #endif

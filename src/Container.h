@@ -1,18 +1,18 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
 
-#include "Object.h"
-
+template <class myType>
 class Container
 {
-    Object** data;
+    myType** data;
     int size;
   public:
     Container(int size = 0): size(size){
-        data = new Object*[size];
+        data = new myType*[size];
     }
-    void add(Object * newObject){
-        Object** temp = new Object*[size+1];
+    void add(myType *newObject)
+    {
+        myType **temp = new myType *[size + 1];
         for(int k = 0; k<size;k++){
             temp[k] = data[k];
         }
@@ -21,8 +21,8 @@ class Container
         data = temp;
         size++;
     }
-    Object* at(int index){ return data[index];}
-    Object ** getAll(){ return data;}
+    myType* at(int index){ return data[index];}
+    myType ** getAll(){ return data;}
     int getSize(){ return size;}
 };
 
