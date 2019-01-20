@@ -16,6 +16,7 @@ class Map{
     int numberOfTiles;
     int numberOfTilesInRow;
     Image* fullMap;
+    Container<char> mapLines;
 
     void generateBackgroundImage(){
         uint8_t *backgroundImage = new uint8_t[SCREEN1_W * SCREEN1_H * 4];
@@ -40,36 +41,65 @@ class Map{
     }
 
     public:
-        Map(TileController * tileController,const char* file,int level) : tileController(tileController){
+        Map(TileController * tileController,char* file,int level) : tileController(tileController){
             numberOfTilesInRow = 32;
             numberOfTiles = 32*24;
             groundTiles = new int[numberOfTiles];
 
-            for (int k = 0; k < numberOfTiles; k++)
+
+            /*for (int k = 0; k < numberOfTiles; k++)
             {
-                groundTiles[k] = 0;
-            }
+                groundTiles[k] = 12;//rand() % 3468;
+            }*/
+            loadLevel(file,level);
+
             generateBackgroundImage();
         }
 
 
-        /*void loadLevel(const char* file, int level){
+        void loadLevel(char* data, int level){
+           
+            char * line = strtok(data, "\n");
+            while(line){
+                mapLines.add(line);
+                line = strtok(NULL, "\n");
+            }
+            
+            for(int k = 0; k< mapLines.getSize(); k++){
+                int mapLevel;
+                sscanf(mapLines.at(k), "Mission %d", &mapLevel);
+                if (mapLevel == level)
+                {
+                 
+                    int tileIndex = 0;
+                    for (int l = k + 1; l < k + 25; l++)
+                    {
+                        char *tileId = strtok(mapLines.at(l), ";");
+                        while (tileId)
+                        {
+                            groundTiles[tileIndex] = atoi(tileId);
+                            tileIndex++;
+                            tileId = strtok(NULL, ";");
+                        }
+                   }
+                   return;
+                }
+            }
+        }
 
-            for()
-        }*/
-
-        void draw(Screen * screen, Player * p){
-            /*for (int k = 0; k < numberOfTiles; k++)
-            {
-                int x = k % numberOfTilesInRow * TILE_SIZE;
-                int y = k / numberOfTilesInRow * TILE_SIZE;
-                this->tileController->getTile(groundTiles[k])->draw(x,y,screen);
-            }*/
-            fullMap->draw(0, 0, screen,
-                          p->getPosition()->getX() - 10,
-                          p->getPosition()->getY() - 10,
-                          p->getPosition()->getX() + p->getWidth() + 10,
-                          p->getPosition()->getY() + p->getHeight() + 10);
+        void draw(Screen * screen, Container<Object> & container){
+      
+            for(int i = 0;i < container.getSize(); i++){
+                Object * currentObject = container.at(i);
+                if(!currentObject->isValid()){
+                    fullMap->draw(0, 0, screen,
+                                  currentObject->getPosition()->getX()-10,
+                                  currentObject->getPosition()->getY()-10,
+                                  currentObject->getPosition()->getX() + currentObject->getWidth()+10,
+                                  currentObject->getPosition()->getY() + currentObject->getHeight()+10);
+                    currentObject->validate();
+                }
+            }
         }
         Image * getBackground(){ return fullMap;}
 };

@@ -36,19 +36,6 @@ class Image{
                 this->getPixel(imageOffset + 3));
           }
         }
-
-        /*for(int k = 0; k< width*height; k++){
-          int x = k % width;
-          int y = k / width;
-          int offset = (x + y * width) * 4;
-          screen->draw(
-              x + xPos,
-              y + yPos,
-              this->getPixel(offset),
-              this->getPixel(offset + 1),
-              this->getPixel(offset + 2),
-              this->getPixel(offset + 3));
-        }*/
       }
      
     

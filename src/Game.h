@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include <emscripten/html5.h>
 
@@ -24,8 +25,11 @@ class Game
   private:
     Screen *screen;
     Image *images;
+    char * mapContent;
     int imagesToLoad;
     int numberOfImages;
+    int filesToLoad;
+    int loadedFiles;
 
     PlayerController * playerController;
     Player *p;
@@ -54,6 +58,9 @@ class Game
         numberOfImages = 0;
         imagesToLoad = 2;
         images = new Image[imagesToLoad];
+
+        filesToLoad = imagesToLoad + 1; //images + map
+        loadedFiles = 0;
         printf("Loading ... \n");
     }
     ~Game(){
@@ -71,13 +78,20 @@ class Game
         images[numberOfImages].setPixels(pointer);
         images[numberOfImages].setSize(width, height);
         numberOfImages++;
+        loadedFiles++;
+    }
+    void loadMap(int pointerValue)
+    {
+        char *pointer = ((char *)(intptr_t)(pointerValue));
+        mapContent = pointer;
+        loadedFiles++;
     }
 
     void update()
     {
         if (gameState == 0)
         {
-            if (numberOfImages == imagesToLoad) gameState++;
+            if (loadedFiles == filesToLoad) gameState++;
             return;
         }
         else if (gameState == 1)
@@ -96,11 +110,10 @@ class Game
 
             tileController = new TileController(&images[1]);
 
-            currentMap = new Map(tileController,"maps.txt",0);
+            currentMap = new Map(tileController,mapContent,2);
+            //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
 
-           /* objects.add(new Terminal(new Vector2(600,600)));
-            objects.at(0)->setImage(tileController->getTile(10));*/
             objects.add(p);
             printf("Loading finished\n");
             gameState = 2;
@@ -117,19 +130,11 @@ class Game
             playerController->update(objects,elapsedTime);
 
             //Render
-            // screen->clearArea1();
-            currentMap->draw(screen,p);
-
-            /* for (int k = 0; k < 16; k++)
-            {
-                tileController->getTile(k)->draw(100 + k * 48, 300, screen);
-            }*/
+            currentMap->draw(screen,objects); //clearscreen
             
-            // screen->clearArea2();
-            /*for(int k = 0; k<objects.getSize();k++){
+            for(int k = 0; k<objects.getSize();k++){
                 objects.at(k)->draw(screen);
-            }*/
-            p->draw(screen);
+            }
            
         }
     } 
