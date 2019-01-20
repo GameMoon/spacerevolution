@@ -11,12 +11,7 @@ using System.IO;
 
 namespace MapeditorSpaceRevolution
 {
-    public class mapdata
-    {
-        public string name;
-        public int[,] tiledata;
-        public int[,] entitydata;
-    }
+   
 
     public partial class Form_editor : Form
     {
@@ -48,6 +43,7 @@ namespace MapeditorSpaceRevolution
         private void loadMapFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadsavepoopper.LoaFile();
+            loadMapData();
         }
 
         private void loadTilesetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,19 +78,20 @@ namespace MapeditorSpaceRevolution
                     while (true)
                     {
                         string sor = sr.ReadLine();
-                        int entitityindex = 0;
-                        if (sor == "--") break;
+                        int entitityindex = terkepek[mapindex].entities.Count();
+                        if (sor == "--" || sr.EndOfStream) break;
                         else
                         {
                             string[] darabsor = sor.Split(';');
-                            for (int i = 0; i < 3; i++)
-                            {
-                                terkepek[mapindex].entitydata[entitityindex, i] = int.Parse(darabsor[i]);
-                            }
+
+                            terkepek[mapindex].entities.Add(new entitydata());
+                            terkepek[mapindex].entities[entitityindex].entid = int.Parse(darabsor[0]);
+                            terkepek[mapindex].entities[entitityindex].xcoord = int.Parse(darabsor[1]);
+                            terkepek[mapindex].entities[entitityindex].ycoord = int.Parse(darabsor[2]);
                         }
                     }
                 }
-
+                sr.Close();
             }
 
         }
@@ -129,6 +126,19 @@ namespace MapeditorSpaceRevolution
         private void drawimg()
         {
             //System.Drawing.Image.FromFile(loadsavepoopper.tileFilePath);
+        }
+        public class entitydata
+        {
+            public int entid;
+            public int xcoord;
+            public int ycoord;
+        }
+
+        public class mapdata
+        {
+            public string name;
+            public int[,] tiledata = new int[24, 32];
+            public List<entitydata> entities = new List<entitydata>();
         }
     }
 }
