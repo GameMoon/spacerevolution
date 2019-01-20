@@ -18,4 +18,4 @@ D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.CoreCompileInputs.cache
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.exe
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.pdb
-D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.entitydata.resources
+D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Form_editor.resources
