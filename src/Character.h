@@ -18,7 +18,6 @@ class Character : public Object
         this->sprite = sprite;
         this->width = this->sprite->getFrameWidth();
         this->height = this->sprite->getFrameHeight();
-        
         speed = 1;
     }
     ~Character(){ delete sprite;}
@@ -43,6 +42,7 @@ class Character : public Object
             else if(x < 0 && y == 0) sprite->setCurrentMovement(0);
 
             sprite->updateFrame(elapsedTime);
+            this->invalidate();
         }
     }
 

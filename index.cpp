@@ -67,6 +67,10 @@ extern "C"
     {
        game->loadImage(pointerValue,width,height);
     }
+    EMSCRIPTEN_KEEPALIVE void addMap(int pointerValue)
+    {
+       game->loadMap(pointerValue);
+    }
 
     EM_JS(void, render, (), {
         Module.renderImageFromMemory();
@@ -78,6 +82,10 @@ extern "C"
 
     EM_JS(void, loadImage, (const char* str),{
         loadImage(UTF8ToString(str));
+    });
+
+    EM_JS(void, loadMap, (const char* str),{
+        loadMap(UTF8ToString(str));
     });
 
     EMSCRIPTEN_KEEPALIVE void startgame()
@@ -99,6 +107,7 @@ int main(void)
     renderSetup();
     loadImage("assets/characters/mcharanimall.png");
     loadImage("assets/tileset.png");
+    loadMap("maps.txt");
 
     
     //Callback setup

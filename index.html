@@ -42,6 +42,14 @@
             Module.writeArrayToMemory(imageData.data,dataPointer);
             Module._addImage(dataPointer,img.width,img.height);
         }
+        
+        async function loadMap(src) {
+            // Load image
+            const data = await fetch(src).then(resp => resp.text());
+            dataPointer = Module._malloc(data.length);
+            stringToUTF8(data,dataPointer,data.length);
+            Module._addMap(dataPointer);
+        }
 
         Module.renderImageFromMemory = function(){
             this.canvasContext.putImageData(this.imageData,0,0);

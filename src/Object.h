@@ -13,6 +13,7 @@ class Object
     int width;
     int height;
     int id;
+    bool valid;
 
   public:
     void setPosition(Vector2 * pos) {this->pos = pos; }
@@ -42,6 +43,9 @@ class Object
         }
         return false;
     }
+    bool isValid() { return valid; }
+    void validate() { valid = true; }
+    void invalidate() { valid = false; }
 };
 
 #endif
