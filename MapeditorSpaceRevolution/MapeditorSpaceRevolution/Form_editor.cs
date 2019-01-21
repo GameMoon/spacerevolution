@@ -17,9 +17,11 @@ namespace MapeditorSpaceRevolution
     {
         public List<mapdata> terkepek = new List<mapdata>();
         public int selectedlevel = 0;
+        public int selectedtileindex = 0;
         public PictureBox[,] editarea = new PictureBox[32,24];
         public List<Image> tileassets = new List<Image>();
-
+        public List<PictureBox> tileselecttiles = new List<PictureBox>();
+        
 
 
         public Form_editor()
@@ -28,6 +30,7 @@ namespace MapeditorSpaceRevolution
             initEditArea();
             seteditwinsize();
             label_levelname.Text = "";
+            splitContainer2.Panel2.AutoScroll = true;
             drawimg();
         }
 
@@ -61,6 +64,7 @@ namespace MapeditorSpaceRevolution
 
         private void loadMapData()
         {
+            terkepek.Clear();
             string path = loadsavepoopper.mapFilePath;
             using (StreamReader sr = new StreamReader(path))
             {
@@ -123,7 +127,7 @@ namespace MapeditorSpaceRevolution
                     {
                         sw.WriteLine(terkepek[i].entities[l].entid + ";" + terkepek[i].entities[l].xcoord + ";" + terkepek[i].entities[l].ycoord);
                     }
-                    sw.Write("--");
+                    sw.WriteLine("--");
                 }
                 sw.Close();
             }
@@ -131,14 +135,39 @@ namespace MapeditorSpaceRevolution
 
         private void loadTileData()
         {
+            tileassets.Clear();
             Bitmap tilefile = new Bitmap(loadsavepoopper.tileFilePath);
-            for (int i = 0; i < 24; i++)
+            for (int j = 0; j < tilefile.Height; j += 32)
             {
-                Rectangle cutframe = new Rectangle(0, 0, 32, 32);
-                tileassets.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
+                for (int i = 0; i < tilefile.Width; i+=32)
+            {
+                    Rectangle cutframe = new Rectangle(i, j, 32, 32);
+                    tileassets.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
+                }
             }
+            displayEditorBoxes();
             drawimg();
         }
+
+        private void displayEditorBoxes()
+        {
+            tileselecttiles.Clear();
+            int darab = tileassets.Count();
+            for (int i = 0; i < darab; i++)
+            {
+                PictureBox pictbox = new PictureBox();
+                pictbox.Parent = splitContainer2.Panel2;
+                pictbox.Width = 32;
+                pictbox.Height = 32;
+                pictbox.Location = new Point((i%4 * 32) + i % 4+ 1, (i/4 * 32) + i / 4  + 1);
+                pictbox.BackColor = Color.Black;
+                pictbox.Click += new EventHandler(editorwindowTileClick);
+                pictbox.Tag = i;
+                pictbox.Image = tileassets[i];
+                tileselecttiles.Add(pictbox);
+            }
+        }
+
 
         private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
         {
@@ -162,10 +191,7 @@ namespace MapeditorSpaceRevolution
 
         private void seteditwinsize()
         {
-           /* dataGridView_mapdata.Width = splitContainer1.Panel2.Width - 9;
-            dataGridView_mapdata.Height = splitContainer1.Panel2.Height - 9;
-            dataGridView_tiles.Width = splitContainer1.Panel1.Width - 9;
-            dataGridView_tiles.Height = splitContainer1.Panel1.Height - 9;*/
+            splitContainer1.SplitterDistance = 32 * 4+20;
         }
         private void initEditArea()
         {
@@ -180,6 +206,7 @@ namespace MapeditorSpaceRevolution
                     editarea[j, i].Location = new Point((j * 32) + j + 1, (i * 32) + i + 1);
                     editarea[j, i].BackColor = Color.Black;
                     editarea[j, i].Click += new EventHandler(editTileClick);
+                    editarea[j, i].Tag = i + ";" + j;
                 }
             }
         }
@@ -192,7 +219,7 @@ namespace MapeditorSpaceRevolution
                 {
                     if (tileassets.Count!=0 && terkepek.Count!=0)
                     {
-                        editarea[j, i].Image = (Image)tileassets[terkepek[selectedlevel].tiledata[i, j]];
+                        editarea[j, i].Image = (Image)tileassets[(terkepek[selectedlevel].tiledata[i, j]-1)];
                     }
                 }
             }
@@ -201,7 +228,16 @@ namespace MapeditorSpaceRevolution
         private void editTileClick(object sender, EventArgs e)
         {
             PictureBox item = (PictureBox)sender;
-            item.BackColor = Color.Aqua;
+            item.Image = (Image)tileassets[selectedtileindex];
+            string[] itemtag = item.Tag.ToString().Split(';');
+            terkepek[selectedlevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] =selectedtileindex+1;
+            drawimg();
+        }
+
+        private void editorwindowTileClick(object sender, EventArgs e)
+        {
+            PictureBox item = (PictureBox)sender;
+            selectedtileindex = int.Parse(item.Tag.ToString());
             drawimg();
         }
 
