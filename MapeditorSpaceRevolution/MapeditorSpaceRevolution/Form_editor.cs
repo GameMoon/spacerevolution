@@ -61,6 +61,7 @@ namespace MapeditorSpaceRevolution
 
         private void loadMapData()
         {
+            terkepek.Clear();
             string path = loadsavepoopper.mapFilePath;
             using (StreamReader sr = new StreamReader(path))
             {
@@ -132,10 +133,14 @@ namespace MapeditorSpaceRevolution
         private void loadTileData()
         {
             Bitmap tilefile = new Bitmap(loadsavepoopper.tileFilePath);
-            for (int i = 0; i < 24; i++)
+            for (int j = 0; j < tilefile.Height; j += 32)
             {
-                Rectangle cutframe = new Rectangle(0, 0, 32, 32);
-                tileassets.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
+                for (int i = 0; i < tilefile.Width; i+=32)
+            {
+                    Rectangle cutframe = new Rectangle(i, j, 32, 32);
+                    tileassets.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
+
+                }
             }
             drawimg();
         }
@@ -192,7 +197,7 @@ namespace MapeditorSpaceRevolution
                 {
                     if (tileassets.Count!=0 && terkepek.Count!=0)
                     {
-                        editarea[j, i].Image = (Image)tileassets[terkepek[selectedlevel].tiledata[i, j]];
+                        editarea[j, i].Image = (Image)tileassets[(terkepek[selectedlevel].tiledata[i, j]-1)];
                     }
                 }
             }

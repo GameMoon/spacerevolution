@@ -19,3 +19,13 @@ D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.exe
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.pdb
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Form_editor.resources
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.exe.config
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.exe
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.pdb
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csprojAssemblyReference.cache
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Form_editor.resources
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Properties.Resources.resources
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.GenerateResource.cache
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.CoreCompileInputs.cache
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.exe
+C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.pdb
