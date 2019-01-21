@@ -9,10 +9,10 @@ namespace MapeditorSpaceRevolution
 {
     public class loadsavepoopper
     {
-        public static string mapFilePath;
-        public static string tileFilePath;
+        public string mapFilePath;
+        public string tileFilePath;
 
-        public static void SavFileAs()
+        public void SavFileAs()
         {
             SaveFileDialog newMapFile = new SaveFileDialog();
             newMapFile.Filter = "SR Map|*.srm";
@@ -23,7 +23,7 @@ namespace MapeditorSpaceRevolution
             }
         }
 
-        public static void LoadTileDialog()
+        public void LoadTileDialog()
             {
             {
                 OpenFileDialog openTileFile = new OpenFileDialog();
@@ -36,7 +36,7 @@ namespace MapeditorSpaceRevolution
                 }
             }
         }
-            public static void LoaFile()
+            public void LoaFile()
             {
                 OpenFileDialog openMapFile = new OpenFileDialog();
                 openMapFile.Filter = "SR Map|*.srm|All Files|*.*";
@@ -49,7 +49,7 @@ namespace MapeditorSpaceRevolution
             }
 
 
-        public static void progEnd()
+        public void progEnd()
         {
             Environment.Exit(0);
         }

@@ -19,6 +19,9 @@ namespace MapeditorSpaceRevolution
         public int selectedlevel = 0;
         public int selectedtileindex = 0;
         public int selectedtiletransferindex = 0;
+        public int transformkephozza = 0;
+        public bool hortuk = false;
+        public bool vertuk = false;
         public PictureBox[,] editarea = new PictureBox[32,24];
         public List<Image> tileassets = new List<Image>();
         public List<PictureBox> tileselecttiles = new List<PictureBox>();
@@ -224,21 +227,36 @@ namespace MapeditorSpaceRevolution
                 {
                     if (tileassets.Count!=0 && terkepek.Count!=0)
                     {
-                        editarea[j, i].Image = (Image)tileassets[(terkepek[selectedlevel].tiledata[i, j]-1)];
+                        int transformid = (terkepek[selectedlevel].tiledata[i, j] % 12) - 1;
+                        int tileid = ((terkepek[selectedlevel].tiledata[i, j] - (terkepek[selectedlevel].tiledata[i, j] % 12)) / 12);
+                        editarea[j, i].Image = (Image)tileassets[tileid];
+                        editarea[j, i].Image.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+                        if (transformid == 0) editarea[j, i].Image.RotateFlip(RotateFlipType.RotateNoneFlipNone); 
+                        else if (transformid == 1) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        else if (transformid == 2) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        else if (transformid == 3) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        else if (transformid == 4) editarea[j, i].Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                        else if (transformid == 5) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate90FlipX);
+                        else if (transformid == 6) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate180FlipX);
+                        else if (transformid == 7) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate270FlipX);
+                        else if (transformid == 8) editarea[j, i].Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                        else if (transformid == 9) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                        else if (transformid == 10) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate180FlipY);
+                        else if (transformid == 11) editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate270FlipY);
+                        else MessageBox.Show("Whathappend"+transformid);
+                        editarea[j, i].Refresh();
                     }
                 }
             }
-            /*IFASSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
         }
 
         private void editTileClick(object sender, EventArgs e)
         {
             if ((terkepek.Count() != 0) && (tileassets.Count()!=0) )
             {
-                selectedtiletransferindex = selectedtileindex + 1;
                 PictureBox item = (PictureBox)sender;
-                item.Image = (Image)tileassets[selectedtileindex];
                 string[] itemtag = item.Tag.ToString().Split(';');
+                selectedtiletransferindex = (selectedtileindex*12)+1+transformkephozza;
                 terkepek[selectedlevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] = selectedtiletransferindex;
                 drawimg();
             }
@@ -248,8 +266,6 @@ namespace MapeditorSpaceRevolution
         {
             PictureBox item = (PictureBox)sender;
             selectedtileindex = int.Parse(item.Tag.ToString());
-
-            /*IFASSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
             pictureBox_selectedtiletransfer.Image = (Image)tileassets[selectedtileindex];
         }
 
@@ -334,24 +350,94 @@ namespace MapeditorSpaceRevolution
            terkepek[selectedlevel].name = textBox_levelname.Text;
         }
 
+        private void korrigaltransosszeg()
+        {
+            int offset=0;
+            if ((hortuk == false) && (vertuk == false)) offset = 4;
+            else if ((hortuk == true) && (vertuk == false)) offset = 8;
+            else if ((hortuk == false) && (vertuk == true)) offset = 12;
+
+
+
+
+            if (transformkephozza>(offset-1)) transformkephozza -= 4;
+            if (transformkephozza<(offset-4)) transformkephozza += 4;
+        }
+
+        private void transformpreview()
+        {
+            pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+            if (transformkephozza == 0) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+            else if (transformkephozza == 1) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            else if (transformkephozza == 2) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            else if (transformkephozza == 3) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            else if (transformkephozza == 4) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            else if (transformkephozza == 5) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate90FlipX);
+            else if (transformkephozza == 6) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate180FlipX);
+            else if (transformkephozza == 7) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate270FlipX);
+            else if (transformkephozza == 8) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            else if (transformkephozza == 9) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+            else if (transformkephozza == 10) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
+            else if (transformkephozza == 11) pictureBox_selectedtiletransfer.Image.RotateFlip(RotateFlipType.Rotate270FlipY);
+            else MessageBox.Show("Whathappend"+transformkephozza);
+            pictureBox_selectedtiletransfer.Refresh();
+        }
+
         private void button_rotleft_Click(object sender, EventArgs e)
         {
-
+            transformkephozza -= 1;
+            korrigaltransosszeg();
+            transformpreview();
+            MessageBox.Show(transformkephozza.ToString());
         }
 
         private void button_rotright_Click(object sender, EventArgs e)
         {
-
+            transformkephozza += 1;
+            korrigaltransosszeg();
+            transformpreview();
+            MessageBox.Show(transformkephozza.ToString());
         }
 
         private void button_vertinvert_Click(object sender, EventArgs e)
         {
-
+            if ((hortuk == false) && (vertuk == false)) vertuk=true;
+            else if ((hortuk == false) && (vertuk == true)) vertuk=false;
+            else if ((hortuk == true) && (vertuk == false))
+            {
+                hortuk = false;
+                vertuk = true;
+            }
+            else if ((hortuk == true) && (vertuk == true))
+            {
+                hortuk = false;
+                vertuk = false;
+            }
+            transformkephozza += 8;
+            korrigaltransosszeg();
+            transformpreview();
+            MessageBox.Show(transformkephozza.ToString());
         }
 
         private void button_horinvert_Click(object sender, EventArgs e)
         {
 
+            if ((vertuk == false) && (hortuk == false)) hortuk = true;
+            else if ((vertuk == false) && (hortuk == true)) hortuk = false;
+            else if ((vertuk == true) && (hortuk == false))
+            {
+                vertuk = false;
+                hortuk = true;
+            }
+            else if ((vertuk == true) && (hortuk == true))
+            {
+                vertuk = false;
+                hortuk = false;
+            }
+            transformkephozza += 4;
+            korrigaltransosszeg();
+            transformpreview();
+            MessageBox.Show(transformkephozza.ToString());
         }
     }
 }

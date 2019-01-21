@@ -1,0 +1,10 @@
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\bin\Debug\TileMapEditor.exe.config
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\bin\Debug\TileMapEditor.exe
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\bin\Debug\TileMapEditor.pdb
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.csprojAssemblyReference.cache
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.Form_editorWindow.resources
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.Properties.Resources.resources
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.csproj.GenerateResource.cache
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.csproj.CoreCompileInputs.cache
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.exe
+D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Debug\TileMapEditor.pdb
