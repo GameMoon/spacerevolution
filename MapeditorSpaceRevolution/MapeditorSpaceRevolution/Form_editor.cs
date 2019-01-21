@@ -30,7 +30,7 @@ namespace MapeditorSpaceRevolution
             initEditArea();
             seteditwinsize();
             label_levelname.Text = "";
-            splitContainer1.Panel1.AutoScroll = true;
+            splitContainer2.Panel2.AutoScroll = true;
             drawimg();
         }
 
@@ -156,7 +156,7 @@ namespace MapeditorSpaceRevolution
             for (int i = 0; i < darab; i++)
             {
                 PictureBox pictbox = new PictureBox();
-                pictbox.Parent = splitContainer1.Panel1;
+                pictbox.Parent = splitContainer2.Panel2;
                 pictbox.Width = 32;
                 pictbox.Height = 32;
                 pictbox.Location = new Point((i%4 * 32) + i % 4+ 1, (i/4 * 32) + i / 4  + 1);

@@ -42,9 +42,13 @@
             this.label_lnamedontchangethis = new System.Windows.Forms.Label();
             this.button_prev = new System.Windows.Forms.Button();
             this.label_levelname = new System.Windows.Forms.Label();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.toolStrip_editwindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip_editwindow
@@ -125,6 +129,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.splitContainer1_Panel1_SizeChanged);
             // 
             // splitContainer1.Panel2
@@ -174,6 +179,16 @@
             this.label_levelname.TabIndex = 5;
             this.label_levelname.Text = "label1";
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer2.Size = new System.Drawing.Size(143, 425);
+            this.splitContainer2.SplitterDistance = 47;
+            this.splitContainer2.TabIndex = 0;
+            // 
             // Form_editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,8 +207,11 @@
             this.Resize += new System.EventHandler(this.Form_editor_Resize);
             this.toolStrip_editwindow.ResumeLayout(false);
             this.toolStrip_editwindow.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +233,6 @@
         private System.Windows.Forms.Label label_lnamedontchangethis;
         private System.Windows.Forms.Button button_prev;
         private System.Windows.Forms.Label label_levelname;
+        private System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
