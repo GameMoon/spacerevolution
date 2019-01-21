@@ -38,17 +38,26 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.button_nextmap = new System.Windows.Forms.Button();
             this.label_lnamedontchangethis = new System.Windows.Forms.Label();
             this.button_prev = new System.Windows.Forms.Button();
-            this.label_levelname = new System.Windows.Forms.Label();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.button_addlevel = new System.Windows.Forms.Button();
+            this.textBox_levelname = new System.Windows.Forms.TextBox();
+            this.label_levelcounter = new System.Windows.Forms.Label();
+            this.pictureBox_selectedtiletransfer = new System.Windows.Forms.PictureBox();
+            this.button_rotleft = new System.Windows.Forms.Button();
+            this.button_rotright = new System.Windows.Forms.Button();
+            this.button_vertinvert = new System.Windows.Forms.Button();
+            this.button_horinvert = new System.Windows.Forms.Button();
             this.toolStrip_editwindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_selectedtiletransfer)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip_editwindow
@@ -78,45 +87,45 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save...";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // loadMapFileToolStripMenuItem
             // 
             this.loadMapFileToolStripMenuItem.Name = "loadMapFileToolStripMenuItem";
-            this.loadMapFileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.loadMapFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadMapFileToolStripMenuItem.Text = "Load Map File...";
             this.loadMapFileToolStripMenuItem.Click += new System.EventHandler(this.loadMapFileToolStripMenuItem_Click);
             // 
             // loadTilesetToolStripMenuItem
             // 
             this.loadTilesetToolStripMenuItem.Name = "loadTilesetToolStripMenuItem";
-            this.loadTilesetToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.loadTilesetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadTilesetToolStripMenuItem.Text = "Load Tileset...";
             this.loadTilesetToolStripMenuItem.Click += new System.EventHandler(this.loadTilesetToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -136,10 +145,34 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Size = new System.Drawing.Size(800, 425);
-            this.splitContainer1.SplitterDistance = 143;
+            this.splitContainer1.SplitterDistance = 148;
             this.splitContainer1.TabIndex = 1;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
-            this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.splitContainer2.Panel1.Controls.Add(this.button_horinvert);
+            this.splitContainer2.Panel1.Controls.Add(this.button_vertinvert);
+            this.splitContainer2.Panel1.Controls.Add(this.button_rotright);
+            this.splitContainer2.Panel1.Controls.Add(this.button_rotleft);
+            this.splitContainer2.Panel1.Controls.Add(this.pictureBox_selectedtiletransfer);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.splitContainer2.Size = new System.Drawing.Size(148, 425);
+            this.splitContainer2.SplitterDistance = 100;
+            this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
             // 
             // button_nextmap
             // 
@@ -154,7 +187,7 @@
             // label_lnamedontchangethis
             // 
             this.label_lnamedontchangethis.AutoSize = true;
-            this.label_lnamedontchangethis.Location = new System.Drawing.Point(403, 5);
+            this.label_lnamedontchangethis.Location = new System.Drawing.Point(147, 6);
             this.label_lnamedontchangethis.Name = "label_lnamedontchangethis";
             this.label_lnamedontchangethis.Size = new System.Drawing.Size(36, 13);
             this.label_lnamedontchangethis.TabIndex = 3;
@@ -170,31 +203,90 @@
             this.button_prev.UseVisualStyleBackColor = true;
             this.button_prev.Click += new System.EventHandler(this.button_prev_Click);
             // 
-            // label_levelname
+            // button_addlevel
             // 
-            this.label_levelname.AutoSize = true;
-            this.label_levelname.Location = new System.Drawing.Point(446, 6);
-            this.label_levelname.Name = "label_levelname";
-            this.label_levelname.Size = new System.Drawing.Size(35, 13);
-            this.label_levelname.TabIndex = 5;
-            this.label_levelname.Text = "label1";
+            this.button_addlevel.Location = new System.Drawing.Point(558, 0);
+            this.button_addlevel.Name = "button_addlevel";
+            this.button_addlevel.Size = new System.Drawing.Size(77, 23);
+            this.button_addlevel.TabIndex = 6;
+            this.button_addlevel.Text = "Add Level..";
+            this.button_addlevel.UseVisualStyleBackColor = true;
+            this.button_addlevel.Click += new System.EventHandler(this.button_addlevel_Click);
             // 
-            // splitContainer2
+            // textBox_levelname
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitContainer2.Size = new System.Drawing.Size(143, 425);
-            this.splitContainer2.SplitterDistance = 47;
-            this.splitContainer2.TabIndex = 0;
+            this.textBox_levelname.Location = new System.Drawing.Point(204, 3);
+            this.textBox_levelname.Name = "textBox_levelname";
+            this.textBox_levelname.Size = new System.Drawing.Size(348, 20);
+            this.textBox_levelname.TabIndex = 7;
+            this.textBox_levelname.TextChanged += new System.EventHandler(this.textBox_levelname_TextChanged);
+            // 
+            // label_levelcounter
+            // 
+            this.label_levelcounter.AutoSize = true;
+            this.label_levelcounter.Location = new System.Drawing.Point(189, 6);
+            this.label_levelcounter.Name = "label_levelcounter";
+            this.label_levelcounter.Size = new System.Drawing.Size(9, 13);
+            this.label_levelcounter.TabIndex = 8;
+            this.label_levelcounter.Text = "l";
+            // 
+            // pictureBox_selectedtiletransfer
+            // 
+            this.pictureBox_selectedtiletransfer.BackColor = System.Drawing.Color.Black;
+            this.pictureBox_selectedtiletransfer.Location = new System.Drawing.Point(58, 34);
+            this.pictureBox_selectedtiletransfer.Name = "pictureBox_selectedtiletransfer";
+            this.pictureBox_selectedtiletransfer.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_selectedtiletransfer.TabIndex = 0;
+            this.pictureBox_selectedtiletransfer.TabStop = false;
+            // 
+            // button_rotleft
+            // 
+            this.button_rotleft.Location = new System.Drawing.Point(3, 3);
+            this.button_rotleft.Name = "button_rotleft";
+            this.button_rotleft.Size = new System.Drawing.Size(59, 23);
+            this.button_rotleft.TabIndex = 1;
+            this.button_rotleft.Text = "<- Rotate";
+            this.button_rotleft.UseVisualStyleBackColor = true;
+            this.button_rotleft.Click += new System.EventHandler(this.button_rotleft_Click);
+            // 
+            // button_rotright
+            // 
+            this.button_rotright.Location = new System.Drawing.Point(88, 3);
+            this.button_rotright.Name = "button_rotright";
+            this.button_rotright.Size = new System.Drawing.Size(56, 23);
+            this.button_rotright.TabIndex = 2;
+            this.button_rotright.Text = "Rotate->";
+            this.button_rotright.UseVisualStyleBackColor = true;
+            this.button_rotright.Click += new System.EventHandler(this.button_rotright_Click);
+            // 
+            // button_vertinvert
+            // 
+            this.button_vertinvert.Location = new System.Drawing.Point(3, 33);
+            this.button_vertinvert.Name = "button_vertinvert";
+            this.button_vertinvert.Size = new System.Drawing.Size(49, 43);
+            this.button_vertinvert.TabIndex = 3;
+            this.button_vertinvert.Text = "Vert. Mirror";
+            this.button_vertinvert.UseVisualStyleBackColor = true;
+            this.button_vertinvert.Click += new System.EventHandler(this.button_vertinvert_Click);
+            // 
+            // button_horinvert
+            // 
+            this.button_horinvert.Location = new System.Drawing.Point(96, 32);
+            this.button_horinvert.Name = "button_horinvert";
+            this.button_horinvert.Size = new System.Drawing.Size(47, 44);
+            this.button_horinvert.TabIndex = 4;
+            this.button_horinvert.Text = "Horiz. Mirror";
+            this.button_horinvert.UseVisualStyleBackColor = true;
+            this.button_horinvert.Click += new System.EventHandler(this.button_horinvert_Click);
             // 
             // Form_editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label_levelname);
+            this.Controls.Add(this.label_levelcounter);
+            this.Controls.Add(this.textBox_levelname);
+            this.Controls.Add(this.button_addlevel);
             this.Controls.Add(this.button_prev);
             this.Controls.Add(this.label_lnamedontchangethis);
             this.Controls.Add(this.button_nextmap);
@@ -210,8 +302,10 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_selectedtiletransfer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,7 +326,14 @@
         private System.Windows.Forms.Button button_nextmap;
         private System.Windows.Forms.Label label_lnamedontchangethis;
         private System.Windows.Forms.Button button_prev;
-        private System.Windows.Forms.Label label_levelname;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Button button_addlevel;
+        private System.Windows.Forms.TextBox textBox_levelname;
+        private System.Windows.Forms.Label label_levelcounter;
+        private System.Windows.Forms.PictureBox pictureBox_selectedtiletransfer;
+        private System.Windows.Forms.Button button_rotright;
+        private System.Windows.Forms.Button button_rotleft;
+        private System.Windows.Forms.Button button_horinvert;
+        private System.Windows.Forms.Button button_vertinvert;
     }
 }

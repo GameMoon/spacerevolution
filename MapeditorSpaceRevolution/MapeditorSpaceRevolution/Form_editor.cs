@@ -18,6 +18,7 @@ namespace MapeditorSpaceRevolution
         public List<mapdata> terkepek = new List<mapdata>();
         public int selectedlevel = 0;
         public int selectedtileindex = 0;
+        public int selectedtiletransferindex = 0;
         public PictureBox[,] editarea = new PictureBox[32,24];
         public List<Image> tileassets = new List<Image>();
         public List<PictureBox> tileselecttiles = new List<PictureBox>();
@@ -29,7 +30,8 @@ namespace MapeditorSpaceRevolution
             InitializeComponent();
             initEditArea();
             seteditwinsize();
-            label_levelname.Text = "";
+            textBox_levelname.Text = "";
+            label_levelcounter.Text = "";
             splitContainer2.Panel2.AutoScroll = true;
             drawimg();
         }
@@ -99,7 +101,8 @@ namespace MapeditorSpaceRevolution
                     }
                 }
                 sr.Close();
-                label_levelname.Text = (selectedlevel + 1) + ". Level: " + terkepek[selectedlevel].name;
+                textBox_levelname.Text = terkepek[selectedlevel].name;
+                label_levelcounter.Text = (selectedlevel + 1).ToString();
                 drawimg();
             }
 
@@ -135,18 +138,22 @@ namespace MapeditorSpaceRevolution
 
         private void loadTileData()
         {
-            tileassets.Clear();
             Bitmap tilefile = new Bitmap(loadsavepoopper.tileFilePath);
-            for (int j = 0; j < tilefile.Height; j += 32)
+            if ((tilefile.Width % 32 == 0) && (tilefile.Height % 32 == 0))
             {
-                for (int i = 0; i < tilefile.Width; i+=32)
-            {
-                    Rectangle cutframe = new Rectangle(i, j, 32, 32);
-                    tileassets.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
+                tileassets.Clear();
+                for (int j = 0; j < tilefile.Height; j += 32)
+                {
+                    for (int i = 0; i < tilefile.Width; i += 32)
+                    {
+                        Rectangle cutframe = new Rectangle(i, j, 32, 32);
+                        tileassets.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
+                    }
                 }
+                displayEditorBoxes();
+                drawimg();
             }
-            displayEditorBoxes();
-            drawimg();
+            else MessageBox.Show("Bad Tilesize");
         }
 
         private void displayEditorBoxes()
@@ -178,20 +185,18 @@ namespace MapeditorSpaceRevolution
         {
             seteditwinsize();
         }
-
-        private void splitContainer1_SizeChanged(object sender, EventArgs e)
-        {
-            seteditwinsize();
-        }
+        
 
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             seteditwinsize();
         }
+  
 
         private void seteditwinsize()
         {
-            splitContainer1.SplitterDistance = 32 * 4+20;
+            splitContainer1.SplitterDistance = 148;
+            splitContainer2.SplitterDistance = 100;
         }
         private void initEditArea()
         {
@@ -223,22 +228,29 @@ namespace MapeditorSpaceRevolution
                     }
                 }
             }
+            /*IFASSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
         }
 
         private void editTileClick(object sender, EventArgs e)
         {
-            PictureBox item = (PictureBox)sender;
-            item.Image = (Image)tileassets[selectedtileindex];
-            string[] itemtag = item.Tag.ToString().Split(';');
-            terkepek[selectedlevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] =selectedtileindex+1;
-            drawimg();
+            if ((terkepek.Count() != 0) && (tileassets.Count()!=0) )
+            {
+                selectedtiletransferindex = selectedtileindex + 1;
+                PictureBox item = (PictureBox)sender;
+                item.Image = (Image)tileassets[selectedtileindex];
+                string[] itemtag = item.Tag.ToString().Split(';');
+                terkepek[selectedlevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] = selectedtiletransferindex;
+                drawimg();
+            }
         }
 
         private void editorwindowTileClick(object sender, EventArgs e)
         {
             PictureBox item = (PictureBox)sender;
             selectedtileindex = int.Parse(item.Tag.ToString());
-            drawimg();
+
+            /*IFASSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
+            pictureBox_selectedtiletransfer.Image = (Image)tileassets[selectedtileindex];
         }
 
         public class entitydata
@@ -266,7 +278,8 @@ namespace MapeditorSpaceRevolution
             if (terkepek.Count != 0)
             {
                 if (selectedlevel > 0) selectedlevel--;
-                label_levelname.Text = (selectedlevel + 1) + ". Level: " + terkepek[selectedlevel].name;
+                textBox_levelname.Text =terkepek[selectedlevel].name;
+                label_levelcounter.Text = (selectedlevel + 1).ToString();
             }
             drawimg();
         }
@@ -276,9 +289,69 @@ namespace MapeditorSpaceRevolution
             if (terkepek.Count != 0)
             {
                 if (selectedlevel < terkepek.Count()-1) selectedlevel++;
-                label_levelname.Text = (selectedlevel + 1) + ". Level: " + terkepek[selectedlevel].name;
+                textBox_levelname.Text =terkepek[selectedlevel].name;
+                label_levelcounter.Text = (selectedlevel+1).ToString();
             }
             drawimg();
+        }
+
+        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            seteditwinsize();
+        }
+
+        private void button_addlevel_Click(object sender, EventArgs e)
+        {
+            if (terkepek.Count() == 0)
+            {
+                loadsavepoopper.SavFileAs();
+            }
+            {
+                int mapindex = terkepek.Count();
+                terkepek.Add(new mapdata());
+                terkepek[mapindex].name = "newlevel"+textBox_levelname.Text;
+                for (int i = 0; i < 24; i++)
+                {
+                    for (int j = 0; j < 32; j++)
+                    {
+                        terkepek[mapindex].tiledata[i, j] = 1;
+                    }
+
+                }
+                if (terkepek.Count != 0)
+                {
+                    if (selectedlevel < terkepek.Count() - 1) selectedlevel++;
+                    textBox_levelname.Text = terkepek[selectedlevel].name;
+                    label_levelcounter.Text = (selectedlevel + 1).ToString();
+                }
+                drawimg();
+            }
+            saveMapData();
+        }
+
+        private void textBox_levelname_TextChanged(object sender, EventArgs e)
+        {
+           terkepek[selectedlevel].name = textBox_levelname.Text;
+        }
+
+        private void button_rotleft_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_rotright_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_vertinvert_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_horinvert_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
