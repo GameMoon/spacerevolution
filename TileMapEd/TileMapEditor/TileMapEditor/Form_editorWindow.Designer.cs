@@ -42,6 +42,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer_Main = new System.Windows.Forms.SplitContainer();
             this.splitContainer_TileSelector = new System.Windows.Forms.SplitContainer();
+            this.label_rotateLabel = new System.Windows.Forms.Label();
             this.button_horizontalMirror = new System.Windows.Forms.Button();
             this.button_verticalMirror = new System.Windows.Forms.Button();
             this.button_rotateRight = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@
             this.button_nextLevel = new System.Windows.Forms.Button();
             this.button_deleteLevel = new System.Windows.Forms.Button();
             this.button_addLevel = new System.Windows.Forms.Button();
-            this.label_rotateLabel = new System.Windows.Forms.Label();
             this.toolStrip_MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
             this.splitContainer_Main.Panel1.SuspendLayout();
@@ -168,7 +168,7 @@
             // 
             this.splitContainer_Main.Panel2.AutoScroll = true;
             this.splitContainer_Main.Size = new System.Drawing.Size(800, 425);
-            this.splitContainer_Main.SplitterDistance = 148;
+            this.splitContainer_Main.SplitterDistance = 151;
             this.splitContainer_Main.TabIndex = 1;
             // 
             // splitContainer_TileSelector
@@ -193,14 +193,23 @@
             // splitContainer_TileSelector.Panel2
             // 
             this.splitContainer_TileSelector.Panel2.AutoScroll = true;
-            this.splitContainer_TileSelector.Size = new System.Drawing.Size(148, 425);
+            this.splitContainer_TileSelector.Size = new System.Drawing.Size(151, 425);
             this.splitContainer_TileSelector.SplitterDistance = 100;
             this.splitContainer_TileSelector.TabIndex = 0;
+            // 
+            // label_rotateLabel
+            // 
+            this.label_rotateLabel.AutoSize = true;
+            this.label_rotateLabel.Location = new System.Drawing.Point(55, 12);
+            this.label_rotateLabel.Name = "label_rotateLabel";
+            this.label_rotateLabel.Size = new System.Drawing.Size(39, 13);
+            this.label_rotateLabel.TabIndex = 5;
+            this.label_rotateLabel.Text = "Rotate";
             // 
             // button_horizontalMirror
             // 
             this.button_horizontalMirror.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_horizontalMirror.Location = new System.Drawing.Point(92, 55);
+            this.button_horizontalMirror.Location = new System.Drawing.Point(94, 54);
             this.button_horizontalMirror.Name = "button_horizontalMirror";
             this.button_horizontalMirror.Size = new System.Drawing.Size(55, 40);
             this.button_horizontalMirror.TabIndex = 4;
@@ -211,7 +220,7 @@
             // button_verticalMirror
             // 
             this.button_verticalMirror.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_verticalMirror.Location = new System.Drawing.Point(-1, 55);
+            this.button_verticalMirror.Location = new System.Drawing.Point(0, 55);
             this.button_verticalMirror.Name = "button_verticalMirror";
             this.button_verticalMirror.Size = new System.Drawing.Size(55, 40);
             this.button_verticalMirror.TabIndex = 3;
@@ -222,7 +231,7 @@
             // button_rotateRight
             // 
             this.button_rotateRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_rotateRight.Location = new System.Drawing.Point(113, 3);
+            this.button_rotateRight.Location = new System.Drawing.Point(116, 3);
             this.button_rotateRight.Name = "button_rotateRight";
             this.button_rotateRight.Size = new System.Drawing.Size(30, 30);
             this.button_rotateRight.TabIndex = 2;
@@ -247,9 +256,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_previewTile.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pictureBox_previewTile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_previewTile.Location = new System.Drawing.Point(58, 34);
+            this.pictureBox_previewTile.Location = new System.Drawing.Point(57, 34);
             this.pictureBox_previewTile.Name = "pictureBox_previewTile";
-            this.pictureBox_previewTile.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_previewTile.Size = new System.Drawing.Size(35, 32);
             this.pictureBox_previewTile.TabIndex = 0;
             this.pictureBox_previewTile.TabStop = false;
             // 
@@ -318,15 +327,6 @@
             this.button_addLevel.Text = "Add Level";
             this.button_addLevel.UseVisualStyleBackColor = true;
             this.button_addLevel.Click += new System.EventHandler(this.button_addLevel_Click);
-            // 
-            // label_rotateLabel
-            // 
-            this.label_rotateLabel.AutoSize = true;
-            this.label_rotateLabel.Location = new System.Drawing.Point(55, 12);
-            this.label_rotateLabel.Name = "label_rotateLabel";
-            this.label_rotateLabel.Size = new System.Drawing.Size(39, 13);
-            this.label_rotateLabel.TabIndex = 5;
-            this.label_rotateLabel.Text = "Rotate";
             // 
             // Form_editorWindow
             // 

@@ -109,6 +109,7 @@ namespace TileMapEditor
                     }
                     displayTileselectBoxes();
                     pictureBox_previewTile.Image = TileData.tileSetTiles[selectedtileindex];
+                    picboxImage = TileData.tileSetTiles[selectedtileindex];
                 }
                 else MessageBox.Show("Bad Tilesize");
             }
