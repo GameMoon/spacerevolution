@@ -30,10 +30,15 @@ class Map{
                     int offset = (x+xOffset + (y+yOffset) * SCREEN1_W) *4;
                     int tileoffset = (x+y*tile->getWidth())*4;
 
-                    backgroundImage[offset] = tile->getPixel(tileoffset);
-                    backgroundImage[offset+1] = tile->getPixel(tileoffset+1);
-                    backgroundImage[offset+2] = tile->getPixel(tileoffset+2);
-                    backgroundImage[offset+3] = tile->getPixel(tileoffset+3);
+                    int r = tile->getPixel(tileoffset);
+                    int g = tile->getPixel(tileoffset + 1);
+                    int b = tile->getPixel(tileoffset + 2);
+                    int a = tile->getPixel(tileoffset + 3);
+                    if(a != 255) r = g = b = 0;
+                    backgroundImage[offset] = r;
+                    backgroundImage[offset+1] = g;
+                    backgroundImage[offset+2] = b;
+                    backgroundImage[offset+3] = 255;
                 }
             }
         }

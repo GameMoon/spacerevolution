@@ -110,7 +110,7 @@ class Game
 
             tileController = new TileController(&images[1]);
 
-            currentMap = new Map(tileController,mapContent,2);
+            currentMap = new Map(tileController,mapContent,1);
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
 
