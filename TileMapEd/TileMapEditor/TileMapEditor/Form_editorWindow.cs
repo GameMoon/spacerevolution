@@ -135,6 +135,7 @@ namespace TileMapEditor
 
         private void reloadView()
         {
+            this.Text = "TileMapEditor " + loadSavePopper.mapFilePath;
             if((MapData.LevelList.Count()>0) &&(MapData.LevelList.Count()>loadedLevel))
             {
                 label_levelCountNumber.Text = (loadedLevel + 1).ToString();
