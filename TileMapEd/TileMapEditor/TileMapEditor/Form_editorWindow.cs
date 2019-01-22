@@ -254,7 +254,7 @@ namespace TileMapEditor
             refPreview();
         }
 
-        private void button_verticalMirror_Click(object sender, EventArgs e)
+        private void button_horizontalMirror_Click(object sender, EventArgs e)
         {
             if ((HorMir == false) && (vertMir == false))
             {
@@ -276,7 +276,7 @@ namespace TileMapEditor
             refPreview();
         }
 
-        private void button_horizontalMirror_Click(object sender, EventArgs e)
+        private void button_verticalMirror_Click(object sender, EventArgs e)
         {
             if ((vertMir == false) && (HorMir == false))
             {
@@ -373,7 +373,7 @@ namespace TileMapEditor
             {
                 for (int j = 0; j < tileGridHeigth; j++)
                 {
-                    MapData.LevelList[levelCount].tiledata[i, j] = 1;
+                    MapData.LevelList[levelCount].tiledata[i, j] = 3337;
                 }
             }
             loadedLevel = levelCount;
