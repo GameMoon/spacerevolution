@@ -11,11 +11,12 @@ namespace TileMapEditor
 {
     public class FileIO
     {
-        public static void ReadMapFile()
+        public static bool ReadMapFile()
         {
             if (loadSavePopper.mapFilePath=="")
             {
-                MessageBox.Show("Cannot save to path: " + loadSavePopper.mapFilePath);
+                MessageBox.Show("Cannot Read from path: " + loadSavePopper.mapFilePath);
+                return false;
             }
             else
             {
@@ -54,42 +55,47 @@ namespace TileMapEditor
                         }
                     }
                     sr.Close();
+                    return true;
                 }
 
             }
         }
-        public static void WriteFile()
+        public static bool WriteFile()
         {
-
             string path = loadSavePopper.mapFilePath;
-            if (File.Exists(path)) File.Delete(path);
-            using (StreamWriter sw = new StreamWriter(path))
+            if (path == "")
             {
-                for (int i = 0; i < MapData.LevelList.Count(); i++)
+                MessageBox.Show("Cannot save to path: " + loadSavePopper.mapFilePath);
+                return false;
+            }
+            else
+            {
+                if (File.Exists(path)) File.Delete(path);
+                using (StreamWriter sw = new StreamWriter(path))
                 {
-                    sw.WriteLine(MapData.LevelList[i].name);
-                    for (int j = 0; j < 24; j++)
+                    for (int i = 0; i < MapData.LevelList.Count(); i++)
                     {
-                        for (int k = 0; k < 32; k++)
+                        sw.WriteLine(MapData.LevelList[i].name);
+                        for (int j = 0; j < 24; j++)
                         {
-                            sw.Write(MapData.LevelList[i].tiledata[k, j]+1);
-                            if (k != 31) sw.Write(";");
-                            if (k == 31) sw.WriteLine();
+                            for (int k = 0; k < 32; k++)
+                            {
+                                sw.Write(MapData.LevelList[i].tiledata[k, j] + 1);
+                                if (k != 31) sw.Write(";");
+                                if (k == 31) sw.WriteLine();
+                            }
                         }
+                        for (int l = 0; l < MapData.LevelList[i].entities.Count(); l++)
+                        {
+                            sw.WriteLine(MapData.LevelList[i].entities[l].entid + ";" + MapData.LevelList[i].entities[l].xcoord + ";" + MapData.LevelList[i].entities[l].ycoord);
+                        }
+                        sw.WriteLine("--");
                     }
-                    for (int l = 0; l < MapData.LevelList[i].entities.Count(); l++)
-                    {
-                        sw.WriteLine(MapData.LevelList[i].entities[l].entid + ";" + MapData.LevelList[i].entities[l].xcoord + ";" + MapData.LevelList[i].entities[l].ycoord);
-                    }
-                    sw.WriteLine("--");
+                    sw.Close();
                 }
-                sw.Close();
+                return true;
             }
         }
-
-
-
-
 
     }
 }

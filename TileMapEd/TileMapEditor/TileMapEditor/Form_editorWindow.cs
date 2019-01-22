@@ -69,7 +69,7 @@ namespace TileMapEditor
 
         private void saveMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileIO.WriteFile();
+            if(FileIO.WriteFile()) loadSavePopper.savedSinceLastedit=true;
         }
 
         private void saveMapAsToolStripMenuItem_Click(object sender, EventArgs e)
