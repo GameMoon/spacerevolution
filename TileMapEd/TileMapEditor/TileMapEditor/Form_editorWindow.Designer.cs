@@ -55,6 +55,8 @@
             this.button_nextLevel = new System.Windows.Forms.Button();
             this.button_deleteLevel = new System.Windows.Forms.Button();
             this.button_addLevel = new System.Windows.Forms.Button();
+            this.button_addEntity = new System.Windows.Forms.Button();
+            this.button_removeentity = new System.Windows.Forms.Button();
             this.toolStrip_MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
             this.splitContainer_Main.Panel1.SuspendLayout();
@@ -328,11 +330,33 @@
             this.button_addLevel.UseVisualStyleBackColor = true;
             this.button_addLevel.Click += new System.EventHandler(this.button_addLevel_Click);
             // 
+            // button_addEntity
+            // 
+            this.button_addEntity.Location = new System.Drawing.Point(454, 1);
+            this.button_addEntity.Name = "button_addEntity";
+            this.button_addEntity.Size = new System.Drawing.Size(75, 23);
+            this.button_addEntity.TabIndex = 9;
+            this.button_addEntity.Text = "Add Entity..";
+            this.button_addEntity.UseVisualStyleBackColor = true;
+            this.button_addEntity.Click += new System.EventHandler(this.button_addEntity_Click);
+            // 
+            // button_removeentity
+            // 
+            this.button_removeentity.Location = new System.Drawing.Point(535, 1);
+            this.button_removeentity.Name = "button_removeentity";
+            this.button_removeentity.Size = new System.Drawing.Size(91, 23);
+            this.button_removeentity.TabIndex = 10;
+            this.button_removeentity.Text = "Remove Entity..";
+            this.button_removeentity.UseVisualStyleBackColor = true;
+            this.button_removeentity.Click += new System.EventHandler(this.button_removeentity_Click);
+            // 
             // Form_editorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_removeentity);
+            this.Controls.Add(this.button_addEntity);
             this.Controls.Add(this.button_addLevel);
             this.Controls.Add(this.button_deleteLevel);
             this.Controls.Add(this.button_nextLevel);
@@ -390,6 +414,8 @@
         private System.Windows.Forms.Button button_deleteLevel;
         private System.Windows.Forms.Button button_addLevel;
         private System.Windows.Forms.Label label_rotateLabel;
+        private System.Windows.Forms.Button button_addEntity;
+        private System.Windows.Forms.Button button_removeentity;
     }
 }
 

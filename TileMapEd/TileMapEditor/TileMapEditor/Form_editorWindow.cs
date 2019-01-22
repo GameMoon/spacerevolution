@@ -18,6 +18,7 @@ namespace TileMapEditor
 
         public bool vertMir = false;
         public bool HorMir = false;
+        public bool removemode = false;
         public static int loadedLevel = 0;
         public static int selectedtileindex = 0;
         public static int selectedtilemodifier = 0;
@@ -58,11 +59,19 @@ namespace TileMapEditor
                     InterFaceElements.editarea[i, j].BackColor = Color.Black;
                     InterFaceElements.editarea[i, j].Click += new EventHandler(MapSelectClick);
                     InterFaceElements.editarea[i, j].Tag = i + ";" + j;
+                    InterFaceElements.editAreaLabels[i, j] = new Label();
+                    InterFaceElements.editAreaLabels[i, j].Parent = InterFaceElements.editarea[i, j];
+                    InterFaceElements.editAreaLabels[i, j].Width = tileSizeInPixels;
+                    InterFaceElements.editAreaLabels[i, j].Height = tileSizeInPixels;
+                    InterFaceElements.editAreaLabels[i, j].Text = "";
+                    InterFaceElements.editAreaLabels[i, j].BackColor = Color.Transparent;
+                    InterFaceElements.editAreaLabels[i, j].ForeColor = Color.OrangeRed;
+                    InterFaceElements.editAreaLabels[i, j].Click += new EventHandler(MapSelectClickLabel);
+                    InterFaceElements.editAreaLabels[i, j].Tag = i + ";" + j;
                 }
             }
         }
-
-
+        
         private void newMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(loadSavePopper.SaveFileAsDialog()) FileIO.WriteFile();
@@ -148,9 +157,17 @@ namespace TileMapEditor
                     {
                         if (TileData.tileSetTiles.Count() != 0)
                         {
-                            /*FURCSA FOS*/
                             Image koztes = TileData.tileSetTiles[MapData.LevelList[loadedLevel].tiledata[j, i] / 12];
                             InterFaceElements.editarea[j, i].Image = (Image)koztes.Clone();
+                            InterFaceElements.editAreaLabels[j, i].Text = "";
+                            for (int k = 0; k < MapData.LevelList[loadedLevel].entities.Count(); k++)
+                            {
+                                if ((MapData.LevelList[loadedLevel].entities[k].xcoord == j) && (MapData.LevelList[loadedLevel].entities[k].ycoord == i))
+                                {
+                                    InterFaceElements.editAreaLabels[j, i].Text = "Id:" + MapData.LevelList[loadedLevel].entities[k].entid.ToString() + "\nx" + (MapData.LevelList[loadedLevel].entities[k].xcoord + 1).ToString() + "y" + (MapData.LevelList[loadedLevel].entities[k].ycoord + 1).ToString();
+                                }
+                            }
+
                             int transformid= MapData.LevelList[loadedLevel].tiledata[j, i] % 12;
                             int sanitycheck = transformid;
                             if (sanitycheck < 4)
@@ -195,16 +212,50 @@ namespace TileMapEditor
             selectedtileindex=int.Parse(item.Tag.ToString());
             pictureBox_previewTile.Image = TileData.tileSetTiles[selectedtileindex];
             picboxImage= TileData.tileSetTiles[selectedtileindex];
-            /*IDE IS KELL*/
-
         }
 
         private void MapSelectClick(object sender, EventArgs e)
         {
             PictureBox item = (PictureBox)sender;
             string[] itemtag = item.Tag.ToString().Split(';');
-            InterFaceElements.editarea[int.Parse(itemtag[0]), int.Parse(itemtag[1])].Image=pictureBox_previewTile.Image;
-            MapData.LevelList[loadedLevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] = selectedtileindex * 12 + selectedtilemodifier;
+            doTheSwap(itemtag);
+        }
+
+        private void MapSelectClickLabel(object sender, EventArgs e)
+        {
+            Label item = (Label)sender;
+            string[] itemtag = item.Tag.ToString().Split(';');
+            doTheSwap(itemtag);
+        }
+
+        private void doTheSwap(string[] itemtag)
+        {
+            if (removemode)
+            {
+                removeEntity(itemtag);
+                removemode = false;
+            }
+            else
+            {
+                InterFaceElements.editarea[int.Parse(itemtag[0]), int.Parse(itemtag[1])].Image = pictureBox_previewTile.Image;
+                MapData.LevelList[loadedLevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] = selectedtileindex * 12 + selectedtilemodifier;
+                loadSavePopper.savedSinceLastedit = false;
+            }
+
+        }
+        
+        private void removeEntity(string[] itemtag)
+        {
+            //itemtag[0] xcoord
+            //itemtag[1] ycoord
+            for (int i = 0; i < MapData.LevelList[loadedLevel].entities.Count(); i++)
+            {
+                if((MapData.LevelList[loadedLevel].entities[i].xcoord==int.Parse(itemtag[0])) && (MapData.LevelList[loadedLevel].entities[i].xcoord == int.Parse(itemtag[1])))
+                {
+                    MapData.LevelList[loadedLevel].entities.RemoveAt(i);
+                }
+            }
+            reloadView();
             loadSavePopper.savedSinceLastedit = false;
         }
 
@@ -407,5 +458,67 @@ namespace TileMapEditor
             e.Cancel= !loadSavePopper.progEnd();
         }
 
+        private void button_addEntity_Click(object sender, EventArgs e)
+        {
+            string inputValue="";
+
+            if(loadSavePopper.InputBox("Entity Id", "Entity id:", ref inputValue) == DialogResult.OK)
+            {
+                int addentid = 0;
+                int addentXcoord = 0;
+                int addentYcoord = 0;
+                if (szamEVagyNem(inputValue))
+                {
+                    addentid = int.Parse(inputValue);
+                    inputValue = "";
+                    if (loadSavePopper.InputBox("Entity X Coordinate", "Entity X Coordinate:", ref inputValue) == DialogResult.OK)
+                    {
+                        if (szamEVagyNem(inputValue))
+                        {
+                            addentXcoord = int.Parse(inputValue);
+                            inputValue = "";
+                            if (loadSavePopper.InputBox("Entity Y Coordinate", "Entity Y Coordinate:", ref inputValue) == DialogResult.OK)
+                            {
+                                if (szamEVagyNem(inputValue))
+                                {
+                                    addentYcoord = int.Parse(inputValue);
+                                    EntityData attolt = new EntityData();
+                                    attolt.entid = addentid;
+                                    attolt.xcoord = addentXcoord-1;
+                                    attolt.ycoord = addentYcoord-1;
+                                    MapData.LevelList[loadedLevel].entities.Add(attolt);
+                                    reloadView();
+                                    loadSavePopper.savedSinceLastedit = false;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Input data is incorrect");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Input data is incorrect");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Input data is incorrect");
+                }
+            }
+        }
+
+        private bool szamEVagyNem(string inString)
+        {
+            int i = 0;
+            bool result = int.TryParse(inString, out i);
+            return result;
+        }
+
+        private void button_removeentity_Click(object sender, EventArgs e)
+        {
+            removemode = true;
+        }
     }
 }

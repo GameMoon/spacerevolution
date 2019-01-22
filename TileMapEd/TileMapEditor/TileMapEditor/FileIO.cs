@@ -87,7 +87,7 @@ namespace TileMapEditor
                         }
                         for (int l = 0; l < MapData.LevelList[i].entities.Count(); l++)
                         {
-                            sw.WriteLine(MapData.LevelList[i].entities[l].entid + ";" + MapData.LevelList[i].entities[l].xcoord + ";" + MapData.LevelList[i].entities[l].ycoord);
+                            sw.WriteLine(MapData.LevelList[i].entities[l].entid + ";" + (MapData.LevelList[i].entities[l].xcoord+1) + ";" + (MapData.LevelList[i].entities[l].ycoord+1));
                         }
                         sw.WriteLine("--");
                     }

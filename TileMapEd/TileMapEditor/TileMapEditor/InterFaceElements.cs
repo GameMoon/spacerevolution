@@ -10,6 +10,7 @@ namespace TileMapEditor
     public class InterFaceElements
     {
         public static PictureBox[,] editarea = new PictureBox[Form_editorWindow.tileGridWidth, Form_editorWindow.tileGridHeigth];
+        public static Label[,] editAreaLabels = new Label[Form_editorWindow.tileGridWidth, Form_editorWindow.tileGridHeigth];
         public static List<PictureBox> tileSelectTiles = new List<PictureBox>();
     }
 }
