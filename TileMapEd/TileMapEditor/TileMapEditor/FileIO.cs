@@ -33,7 +33,7 @@ namespace TileMapEditor
                             string[] besor = sr.ReadLine().Split(';');
                             for (int j = 0; j < Form_editorWindow.tileGridWidth; j++)
                             {
-                                MapData.LevelList[mapindex].tiledata[j, i] = int.Parse(besor[j]);
+                                MapData.LevelList[mapindex].tiledata[j, i] = int.Parse(besor[j])-1;
                             }
 
                         }
@@ -48,8 +48,8 @@ namespace TileMapEditor
 
                                 MapData.LevelList[mapindex].entities.Add(new EntityData());
                                 MapData.LevelList[mapindex].entities[entitityindex].entid = int.Parse(darabsor[0]);
-                                MapData.LevelList[mapindex].entities[entitityindex].xcoord = int.Parse(darabsor[1]);
-                                MapData.LevelList[mapindex].entities[entitityindex].ycoord = int.Parse(darabsor[2]);
+                                MapData.LevelList[mapindex].entities[entitityindex].xcoord = int.Parse(darabsor[1])-1;
+                                MapData.LevelList[mapindex].entities[entitityindex].ycoord = int.Parse(darabsor[2])-1;
                             }
                         }
                     }
@@ -72,7 +72,7 @@ namespace TileMapEditor
                     {
                         for (int k = 0; k < 32; k++)
                         {
-                            sw.Write(MapData.LevelList[i].tiledata[k, j]);
+                            sw.Write(MapData.LevelList[i].tiledata[k, j]+1);
                             if (k != 31) sw.Write(";");
                             if (k == 31) sw.WriteLine();
                         }

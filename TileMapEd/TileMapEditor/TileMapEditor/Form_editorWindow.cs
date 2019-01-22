@@ -15,9 +15,12 @@ namespace TileMapEditor
         public static int tileGridWidth = 32;
         public static int tileGridHeigth = 24;
 
+        public bool vertMir = false;
+        public bool HorMir = false;
         public static int loadedLevel = 0;
         public static int selectedtileindex = 0;
         public static int selectedtilemodifier = 0;
+        public static Image picboxImage;
 
         public Form_editorWindow()
         {
@@ -132,7 +135,7 @@ namespace TileMapEditor
 
         private void reloadView()
         {
-            if((MapData.LevelList.Count()>0) &&(MapData.LevelList.Count()>selectedtileindex))
+            if((MapData.LevelList.Count()>0) &&(MapData.LevelList.Count()>loadedLevel))
             {
                 label_levelCountNumber.Text = (loadedLevel + 1).ToString();
                 textBox_LevelName.Text = MapData.LevelList[loadedLevel].name;
@@ -143,7 +146,8 @@ namespace TileMapEditor
                         if (TileData.tileSetTiles.Count() != 0)
                         {
                             /*FURCSA FOS*/
-                            InterFaceElements.editarea[j, i].Image = TileData.tileSetTiles[(MapData.LevelList[loadedLevel].tiledata[j, i]) / 12];
+                            Image koztes = TileData.tileSetTiles[MapData.LevelList[loadedLevel].tiledata[j, i] / 12];
+                            InterFaceElements.editarea[j, i].Image = (Image)koztes.Clone();
                             int transformid= MapData.LevelList[loadedLevel].tiledata[j, i] % 12;
                             int sanitycheck = transformid;
                             if (sanitycheck < 4)
@@ -153,7 +157,7 @@ namespace TileMapEditor
                                     InterFaceElements.editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                                 }
                             }
-                            else if ((sanitycheck >= 4) && (transformid < 8))
+                            else if ((sanitycheck >= 4) && (sanitycheck < 8))
                             {
                                 transformid -= 4;
                                 InterFaceElements.editarea[j, i].Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
@@ -162,7 +166,7 @@ namespace TileMapEditor
                                     InterFaceElements.editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                                 }
                             }
-                            else if ((sanitycheck >= 8) && (transformid < 12))
+                            else if ((sanitycheck >= 8) && (sanitycheck < 12))
                             {
                                 transformid -= 8;
                                 InterFaceElements.editarea[j, i].Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -182,18 +186,20 @@ namespace TileMapEditor
         private void SelectTileClick(object sender, EventArgs e)
         {
             selectedtilemodifier = 0;
+            HorMir = false;
+            vertMir = false;
             PictureBox item = (PictureBox)sender;
             selectedtileindex=int.Parse(item.Tag.ToString());
             pictureBox_previewTile.Image = TileData.tileSetTiles[selectedtileindex];
+            picboxImage= TileData.tileSetTiles[selectedtileindex];
             /*IDE IS KELL*/
-            
+
         }
 
         private void MapSelectClick(object sender, EventArgs e)
         {
             PictureBox item = (PictureBox)sender;
             string[] itemtag = item.Tag.ToString().Split(';');
-            //MessageBox.Show(itemtag[0].ToString() + itemtag[1].ToString());
             InterFaceElements.editarea[int.Parse(itemtag[0]), int.Parse(itemtag[1])].Image=pictureBox_previewTile.Image;
             MapData.LevelList[loadedLevel].tiledata[int.Parse(itemtag[0]), int.Parse(itemtag[1])] = selectedtileindex * 12 + selectedtilemodifier;
             loadSavePopper.savedSinceLastedit = false;
@@ -206,12 +212,97 @@ namespace TileMapEditor
 
         private void button_rotateLeft_Click(object sender, EventArgs e)
         {
-            //dgsgsdgsd
+            int lowlimit=0;
+            if (selectedtilemodifier < 4)
+            {
+                lowlimit = 0;
+            }
+            else if ((selectedtilemodifier >= 4) && (selectedtilemodifier < 8))
+            {
+                lowlimit = 4;
+            }
+            else if ((selectedtilemodifier >= 8) && (selectedtilemodifier < 12))
+            {
+                lowlimit = 8;
+            }
+            else MessageBox.Show("Error? TransformId: " + selectedtilemodifier);
+
+            selectedtilemodifier--;
+            if (selectedtilemodifier < lowlimit) selectedtilemodifier += 4;
             refPreview();
         }
+
+        private void button_rotateRight_Click(object sender, EventArgs e)
+        {
+            int highlimit = 0;
+            if (selectedtilemodifier < 4)
+            {
+                highlimit = 3;
+            }
+            else if ((selectedtilemodifier >= 4) && (selectedtilemodifier < 8))
+            {
+                highlimit = 7;
+            }
+            else if ((selectedtilemodifier >= 8) && (selectedtilemodifier < 12))
+            {
+                highlimit = 11;
+            }
+            else MessageBox.Show("Error? TransformId: " + selectedtilemodifier);
+
+            selectedtilemodifier++;
+            if (selectedtilemodifier > highlimit) selectedtilemodifier -= 4;
+            refPreview();
+        }
+
+        private void button_verticalMirror_Click(object sender, EventArgs e)
+        {
+            if ((HorMir == false) && (vertMir == false))
+            {
+                vertMir = true;
+                selectedtilemodifier += 8;
+            }
+            else if ((HorMir == false) && (vertMir == true))
+            {
+                vertMir = false;
+                selectedtilemodifier -= 8;
+            }
+            else if ((HorMir == true) && (vertMir == false))
+            {
+                HorMir = false;
+                vertMir = true;
+                selectedtilemodifier -= 4;
+                selectedtilemodifier += 8;
+            }
+            refPreview();
+        }
+
+        private void button_horizontalMirror_Click(object sender, EventArgs e)
+        {
+            if ((vertMir == false) && (HorMir == false))
+            {
+                HorMir = true;
+                selectedtilemodifier += 4;
+            }
+            else if ((vertMir == false) && (HorMir == true))
+            {
+                HorMir = false;
+                selectedtilemodifier -= 4;
+            }
+            else if ((vertMir == true) && (HorMir == false))
+            {
+                vertMir = false;
+                HorMir = true;
+                selectedtilemodifier -= 8;
+                selectedtilemodifier += 4;
+            }
+            refPreview();
+        }
+
         private void refPreview()
         {
             int transformid = selectedtilemodifier;
+            Image koztes = picboxImage;
+            pictureBox_previewTile.Image = (Image)koztes.Clone();
             int sanitycheck = transformid;
             if (sanitycheck < 4)
             {
@@ -220,7 +311,7 @@ namespace TileMapEditor
                     pictureBox_previewTile.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
             }
-            else if ((sanitycheck >= 4) && (transformid < 8))
+            else if ((sanitycheck >= 4) && (sanitycheck < 8))
             {
                 transformid -= 4;
                 pictureBox_previewTile.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
@@ -229,7 +320,7 @@ namespace TileMapEditor
                     pictureBox_previewTile.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
             }
-            else if ((sanitycheck >= 8) && (transformid < 12))
+            else if ((sanitycheck >= 8) && (sanitycheck < 12))
             {
                 transformid -= 8;
                 pictureBox_previewTile.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -240,26 +331,6 @@ namespace TileMapEditor
             }
             else MessageBox.Show("Error? TransformId: " + transformid);
             pictureBox_previewTile.Refresh();
-        }
-
-        private void button_rotateRight_Click(object sender, EventArgs e)
-        {
-            //dgsgsdgsdsel
-            selectedtilemodifier++;
-            if (selectedtilemodifier < 3) selectedtilemodifier -= 4;
-            refPreview();
-        }
-
-        private void button_verticalMirror_Click(object sender, EventArgs e)
-        {
-            //dgsgsdgsd
-            refPreview();
-        }
-
-        private void button_horizontalMirror_Click(object sender, EventArgs e)
-        {
-            //dgsgsdgsd
-            refPreview();
         }
 
         private void button_nextLevel_Click(object sender, EventArgs e)
