@@ -14,6 +14,7 @@ namespace TileMapEditor
     {
         public static int tileGridWidth = 32;
         public static int tileGridHeigth = 24;
+        public static int tileSizeInPixels = 32;
 
         public bool vertMir = false;
         public bool HorMir = false;
@@ -51,9 +52,9 @@ namespace TileMapEditor
                 {
                     InterFaceElements.editarea[i, j] = new PictureBox();
                     InterFaceElements.editarea[i, j].Parent = splitContainer_Main.Panel2;
-                    InterFaceElements.editarea[i, j].Width = 32;
-                    InterFaceElements.editarea[i, j].Height = 32;
-                    InterFaceElements.editarea[i, j].Location = new Point((i * 32) + i + 1, (j * 32) + j + 1);
+                    InterFaceElements.editarea[i, j].Width = tileSizeInPixels;
+                    InterFaceElements.editarea[i, j].Height = tileSizeInPixels;
+                    InterFaceElements.editarea[i, j].Location = new Point((i * tileSizeInPixels) + i + 1, (j * tileSizeInPixels) + j + 1);
                     InterFaceElements.editarea[i, j].BackColor = Color.Black;
                     InterFaceElements.editarea[i, j].Click += new EventHandler(MapSelectClick);
                     InterFaceElements.editarea[i, j].Tag = i + ";" + j;
@@ -95,14 +96,14 @@ namespace TileMapEditor
             {
                 selectedtileindex = 0;
                 Bitmap tilefile = new Bitmap(loadSavePopper.tileFilePath);
-                if ((tilefile.Width % 32 == 0) && (tilefile.Height % 32 == 0))
+                if ((tilefile.Width % tileSizeInPixels == 0) && (tilefile.Height % tileSizeInPixels == 0))
                 {
                     TileData.tileSetTiles.Clear();
-                    for (int j = 0; j < tilefile.Height; j += 32)
+                    for (int j = 0; j < tilefile.Height; j += tileSizeInPixels)
                     {
-                        for (int i = 0; i < tilefile.Width; i += 32)
+                        for (int i = 0; i < tilefile.Width; i += tileSizeInPixels)
                         {
-                            Rectangle cutframe = new Rectangle(i, j, 32, 32);
+                            Rectangle cutframe = new Rectangle(i, j, tileSizeInPixels, tileSizeInPixels);
                             TileData.tileSetTiles.Add((Bitmap)tilefile.Clone(cutframe, tilefile.PixelFormat));
                         }
                     }
@@ -121,9 +122,9 @@ namespace TileMapEditor
             {
                 PictureBox pictbox = new PictureBox();
                 pictbox.Parent = splitContainer_TileSelector.Panel2;
-                pictbox.Width = 32;
-                pictbox.Height = 32;
-                pictbox.Location = new Point((i % 4 * 32) + i % 4 + 1, (i / 4 * 32) + i / 4 + 1);
+                pictbox.Width = tileSizeInPixels;
+                pictbox.Height = tileSizeInPixels;
+                pictbox.Location = new Point((i % 4 * tileSizeInPixels) + i % 4 + 1, (i / 4 * tileSizeInPixels) + i / 4 + 1);
                 pictbox.BackColor = Color.Black;
                 pictbox.Click += new EventHandler(SelectTileClick);
                 pictbox.Tag = i;
@@ -374,7 +375,7 @@ namespace TileMapEditor
             {
                 for (int j = 0; j < tileGridHeigth; j++)
                 {
-                    MapData.LevelList[levelCount].tiledata[i, j] = 3337;
+                    MapData.LevelList[levelCount].tiledata[i, j] = 1;
                 }
             }
             loadedLevel = levelCount;

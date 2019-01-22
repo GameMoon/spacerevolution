@@ -76,9 +76,9 @@ namespace TileMapEditor
                     for (int i = 0; i < MapData.LevelList.Count(); i++)
                     {
                         sw.WriteLine(MapData.LevelList[i].name);
-                        for (int j = 0; j < 24; j++)
+                        for (int j = 0; j < Form_editorWindow.tileGridHeigth; j++)
                         {
-                            for (int k = 0; k < 32; k++)
+                            for (int k = 0; k < Form_editorWindow.tileGridWidth; k++)
                             {
                                 sw.Write(MapData.LevelList[i].tiledata[k, j] + 1);
                                 if (k != 31) sw.Write(";");
