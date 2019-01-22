@@ -11,5 +11,6 @@ namespace TileMapEditor
         public int entid;
         public int xcoord;
         public int ycoord;
+        public string speechtext;
     }
 }

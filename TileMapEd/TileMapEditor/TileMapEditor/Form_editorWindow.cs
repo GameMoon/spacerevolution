@@ -58,7 +58,6 @@ namespace TileMapEditor
                     InterFaceElements.editarea[i, j].Height = tileSizeInPixels;
                     InterFaceElements.editarea[i, j].Location = new Point((i * tileSizeInPixels) + i + 1, (j * tileSizeInPixels) + j + 1);
                     InterFaceElements.editarea[i, j].BackColor = Color.Black;
-                    InterFaceElements.editarea[i, j].Click += new EventHandler(MapSelectClick);
                     InterFaceElements.editarea[i, j].Tag = i + ";" + j;
                     InterFaceElements.editAreaLabels[i, j] = new Label();
                     InterFaceElements.editAreaLabels[i, j].Parent = InterFaceElements.editarea[i, j];
@@ -215,18 +214,35 @@ namespace TileMapEditor
             picboxImage= TileData.tileSetTiles[selectedtileindex];
         }
 
-        private void MapSelectClick(object sender, EventArgs e)
-        {
-            PictureBox item = (PictureBox)sender;
-            string[] itemtag = item.Tag.ToString().Split(';');
-            doTheSwap(itemtag);
-        }
-
         private void MapSelectClickLabel(object sender, EventArgs e)
         {
             Label item = (Label)sender;
             string[] itemtag = item.Tag.ToString().Split(';');
-            doTheSwap(itemtag);
+            MouseEventArgs myArgs = (MouseEventArgs)e;
+            if (myArgs.Button == MouseButtons.Right)
+            {
+                editEntitySpeechText(itemtag);
+            }
+            else doTheSwap(itemtag);
+        }
+        private void editEntitySpeechText(string[] itemtag)
+        {
+            //itemtag[0] xcoord
+            //itemtag[1] ycoord
+            for (int i = 0; i < MapData.LevelList[loadedLevel].entities.Count(); i++)
+            {
+                if ((MapData.LevelList[loadedLevel].entities[i].xcoord == int.Parse(itemtag[0])) && (MapData.LevelList[loadedLevel].entities[i].ycoord == int.Parse(itemtag[1])))
+                {
+                    string inputValue = MapData.LevelList[loadedLevel].entities[i].speechtext;
+                    //---------------------------------------------------------------------------------------------
+                    if (loadSavePopper.InputBox("Entity SpeechText", "Entity SpeechTex:", ref inputValue) == DialogResult.OK)
+                    {
+                        MapData.LevelList[loadedLevel].entities[i].speechtext = inputValue;
+                        loadSavePopper.savedSinceLastedit = false;
+                    }
+                }
+            }
+            reloadView();
         }
 
         private void doTheSwap(string[] itemtag)
@@ -280,6 +296,9 @@ namespace TileMapEditor
                     attolt.xcoord = int.Parse(itemtag[0]);
                     attolt.ycoord = int.Parse(itemtag[1]);
                     attolt.entid = int.Parse(inputValue);
+                    inputValue = "";
+                    loadSavePopper.InputBox("Entity SpeechText", "Entity SpeechTex:", ref inputValue);
+                    attolt.speechtext = inputValue;
                     MapData.LevelList[loadedLevel].entities.Add(attolt);
                     loadSavePopper.savedSinceLastedit = false;
                 }
