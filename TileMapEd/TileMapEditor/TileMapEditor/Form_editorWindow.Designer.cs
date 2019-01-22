@@ -169,6 +169,7 @@
             // splitContainer_Main.Panel2
             // 
             this.splitContainer_Main.Panel2.AutoScroll = true;
+            this.splitContainer_Main.Panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.splitContainer_Main.Size = new System.Drawing.Size(800, 425);
             this.splitContainer_Main.SplitterDistance = 151;
             this.splitContainer_Main.TabIndex = 1;
@@ -195,6 +196,7 @@
             // splitContainer_TileSelector.Panel2
             // 
             this.splitContainer_TileSelector.Panel2.AutoScroll = true;
+            this.splitContainer_TileSelector.Panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.splitContainer_TileSelector.Size = new System.Drawing.Size(151, 425);
             this.splitContainer_TileSelector.SplitterDistance = 100;
             this.splitContainer_TileSelector.TabIndex = 0;
