@@ -19,6 +19,7 @@ namespace TileMapEditor
         public bool vertMir = false;
         public bool HorMir = false;
         public bool removemode = false;
+        public bool addmode = false;
         public static int loadedLevel = 0;
         public static int selectedtileindex = 0;
         public static int selectedtilemodifier = 0;
@@ -230,10 +231,17 @@ namespace TileMapEditor
 
         private void doTheSwap(string[] itemtag)
         {
-            if (removemode)
+            if (addmode)
             {
-                removeEntity(itemtag);
-                removemode = false;
+                if (removemode)
+                {
+                    removeEntity(itemtag);
+                }
+                else
+                {
+                    addEntity(itemtag);
+                }
+                addmode = false;
             }
             else
             {
@@ -243,20 +251,41 @@ namespace TileMapEditor
             }
 
         }
-        
+
         private void removeEntity(string[] itemtag)
         {
             //itemtag[0] xcoord
             //itemtag[1] ycoord
             for (int i = 0; i < MapData.LevelList[loadedLevel].entities.Count(); i++)
             {
-                if((MapData.LevelList[loadedLevel].entities[i].xcoord==int.Parse(itemtag[0])) && (MapData.LevelList[loadedLevel].entities[i].xcoord == int.Parse(itemtag[1])))
+                if ((MapData.LevelList[loadedLevel].entities[i].xcoord == int.Parse(itemtag[0])) && (MapData.LevelList[loadedLevel].entities[i].ycoord == int.Parse(itemtag[1])))
                 {
                     MapData.LevelList[loadedLevel].entities.RemoveAt(i);
                 }
             }
-            reloadView();
             loadSavePopper.savedSinceLastedit = false;
+            reloadView();
+        }
+
+        private void addEntity(string[] itemtag)
+        {
+            //itemtag[0] xcoord
+            //itemtag[1] ycoord
+            string inputValue = "";
+            if (loadSavePopper.InputBox("Entity Id", "Enter Entity ID:", ref inputValue) == DialogResult.OK)
+            {
+                if (szamEVagyNem(inputValue))
+                {
+                    EntityData attolt = new EntityData();
+                    attolt.xcoord = int.Parse(itemtag[0]);
+                    attolt.ycoord = int.Parse(itemtag[1]);
+                    attolt.entid = int.Parse(inputValue);
+                    MapData.LevelList[loadedLevel].entities.Add(attolt);
+                    loadSavePopper.savedSinceLastedit = false;
+                }
+                else MessageBox.Show("Input data is incorrect");
+            }
+            reloadView();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -427,7 +456,7 @@ namespace TileMapEditor
             {
                 for (int j = 0; j < tileGridHeigth; j++)
                 {
-                    MapData.LevelList[levelCount].tiledata[i, j] = 1;
+                    MapData.LevelList[levelCount].tiledata[i, j] = 0;
                 }
             }
             loadedLevel = levelCount;
@@ -460,53 +489,9 @@ namespace TileMapEditor
 
         private void button_addEntity_Click(object sender, EventArgs e)
         {
-            string inputValue="";
 
-            if(loadSavePopper.InputBox("Entity Id", "Entity id:", ref inputValue) == DialogResult.OK)
-            {
-                int addentid = 0;
-                int addentXcoord = 0;
-                int addentYcoord = 0;
-                if (szamEVagyNem(inputValue))
-                {
-                    addentid = int.Parse(inputValue);
-                    inputValue = "";
-                    if (loadSavePopper.InputBox("Entity X Coordinate", "Entity X Coordinate:", ref inputValue) == DialogResult.OK)
-                    {
-                        if (szamEVagyNem(inputValue))
-                        {
-                            addentXcoord = int.Parse(inputValue);
-                            inputValue = "";
-                            if (loadSavePopper.InputBox("Entity Y Coordinate", "Entity Y Coordinate:", ref inputValue) == DialogResult.OK)
-                            {
-                                if (szamEVagyNem(inputValue))
-                                {
-                                    addentYcoord = int.Parse(inputValue);
-                                    EntityData attolt = new EntityData();
-                                    attolt.entid = addentid;
-                                    attolt.xcoord = addentXcoord-1;
-                                    attolt.ycoord = addentYcoord-1;
-                                    MapData.LevelList[loadedLevel].entities.Add(attolt);
-                                    reloadView();
-                                    loadSavePopper.savedSinceLastedit = false;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Input data is incorrect");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Input data is incorrect");
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Input data is incorrect");
-                }
-            }
+            addmode = true;
+            removemode = false;
         }
 
         private bool szamEVagyNem(string inString)
@@ -518,6 +503,7 @@ namespace TileMapEditor
 
         private void button_removeentity_Click(object sender, EventArgs e)
         {
+            addmode = true;
             removemode = true;
         }
     }
