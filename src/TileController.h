@@ -66,7 +66,7 @@ class TileController{
             generateTiles();
             printf("Loaded Tiles: %d\n",tiles.getSize());
         }
-        Image* getTile(int index){ return tiles.at(index);}
+        Image* getTile(int index){ return tiles.at(index-1);}
 
 };
 #endif
