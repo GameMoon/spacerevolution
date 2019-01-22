@@ -27,7 +27,7 @@ namespace MapeditorSpaceRevolution
             {
             {
                 OpenFileDialog openTileFile = new OpenFileDialog();
-                openTileFile.Filter = "PNG Image|*.png|All Files|*.*";
+                openTileFile.Filter = "All Files|*.*";
                 openTileFile.Title = "Select a Tileset File";
 
                 if (openTileFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)

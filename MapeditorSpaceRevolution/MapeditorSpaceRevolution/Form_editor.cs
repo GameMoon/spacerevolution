@@ -21,6 +21,7 @@ namespace MapeditorSpaceRevolution
     public partial class Form_editor : Form
     {
         public List<mapdata> terkepek = new List<mapdata>();
+<<<<<<< HEAD
         public int selectedlevel = 0;
         public int selectedtileindex = 0;
         public int selectedtiletransferindex = 0;
@@ -32,15 +33,25 @@ namespace MapeditorSpaceRevolution
         public List<PictureBox> tileselecttiles = new List<PictureBox>();
         
 
+=======
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
 
         public Form_editor()
         {
             InitializeComponent();
-            initEditArea();
             seteditwinsize();
+<<<<<<< HEAD
             textBox_levelname.Text = "";
             label_levelcounter.Text = "";
             splitContainer2.Panel2.AutoScroll = true;
+=======
+
+
+            //dataGridView_mapdata.i
+            /*loadsavepoopper.mapFilePath;
+            loadsavepoopper.tileFilePath;*/
+            //loadMapData();
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             drawimg();
         }
 
@@ -52,7 +63,6 @@ namespace MapeditorSpaceRevolution
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadsavepoopper.SavFileAs();
-            saveMapData();
         }
 
         private void loadMapFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,7 +73,6 @@ namespace MapeditorSpaceRevolution
         private void loadTilesetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadsavepoopper.LoadTileDialog();
-            loadTileData();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,16 +117,20 @@ namespace MapeditorSpaceRevolution
                 }
 <<<<<<< HEAD
                 sr.Close();
+<<<<<<< HEAD
                 textBox_levelname.Text = terkepek[selectedlevel].name;
                 label_levelcounter.Text = (selectedlevel + 1).ToString();
                 drawimg();
 =======
 
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             }
 
         }
 
+<<<<<<< HEAD
         private void saveMapData()
         {
             string path = loadsavepoopper.mapFilePath;
@@ -167,6 +180,9 @@ namespace MapeditorSpaceRevolution
         }
 
         private void displayEditorBoxes()
+=======
+        private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
         {
             tileselecttiles.Clear();
             int darab = tileassets.Count();
@@ -208,6 +224,7 @@ namespace MapeditorSpaceRevolution
             splitContainer1.SplitterDistance = 148;
             splitContainer2.SplitterDistance = 100;
         }
+<<<<<<< HEAD
         private void initEditArea()
         {
             for (int i = 0; i < 24; i++)
@@ -275,8 +292,12 @@ namespace MapeditorSpaceRevolution
             PictureBox item = (PictureBox)sender;
             selectedtileindex = int.Parse(item.Tag.ToString());
             pictureBox_selectedtiletransfer.Image = (Image)tileassets[selectedtileindex];
+=======
+        private void drawimg()
+        {
+            //System.Drawing.Image.FromFile(loadsavepoopper.tileFilePath);
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
         }
-
         public class entitydata
         {
             public int entid;
@@ -290,6 +311,7 @@ namespace MapeditorSpaceRevolution
             public int[,] tiledata = new int[24, 32];
             public List<entitydata> entities = new List<entitydata>();
         }
+<<<<<<< HEAD
         
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -449,5 +471,7 @@ namespace MapeditorSpaceRevolution
         }
 =======
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
     }
 }

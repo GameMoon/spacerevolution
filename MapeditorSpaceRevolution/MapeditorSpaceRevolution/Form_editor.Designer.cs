@@ -39,6 +39,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.button_nextmap = new System.Windows.Forms.Button();
             this.label_lnamedontchangethis = new System.Windows.Forms.Label();
@@ -64,6 +65,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStrip_editwindow.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             this.SuspendLayout();
             // 
             // toolStrip_editwindow
@@ -95,7 +104,6 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save...";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -150,10 +158,15 @@
             // splitContainer1.Panel2
             // 
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
 =======
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             this.splitContainer1.Size = new System.Drawing.Size(800, 425);
             this.splitContainer1.SplitterDistance = 148;
             this.splitContainer1.TabIndex = 1;
@@ -185,8 +198,9 @@
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
             // 
-            // button_nextmap
+            // pictureBox1
             // 
+<<<<<<< HEAD
             this.button_nextmap.Location = new System.Drawing.Point(725, 0);
             this.button_nextmap.Name = "button_nextmap";
             this.button_nextmap.Size = new System.Drawing.Size(75, 23);
@@ -292,17 +306,28 @@
             // 
 =======
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 33);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             // Form_editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+<<<<<<< HEAD
             this.Controls.Add(this.label_levelcounter);
             this.Controls.Add(this.textBox_levelname);
             this.Controls.Add(this.button_addlevel);
             this.Controls.Add(this.button_prev);
             this.Controls.Add(this.label_lnamedontchangethis);
             this.Controls.Add(this.button_nextmap);
+=======
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip_editwindow);
             this.Name = "Form_editor";
@@ -312,6 +337,7 @@
             this.Resize += new System.EventHandler(this.Form_editor_Resize);
             this.toolStrip_editwindow.ResumeLayout(false);
             this.toolStrip_editwindow.PerformLayout();
+<<<<<<< HEAD
 <<<<<<< HEAD
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -324,6 +350,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,6 +374,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 <<<<<<< HEAD
+<<<<<<< HEAD
         private System.Windows.Forms.Button button_nextmap;
         private System.Windows.Forms.Label label_lnamedontchangethis;
         private System.Windows.Forms.Button button_prev;
@@ -356,5 +389,8 @@
         private System.Windows.Forms.Button button_vertinvert;
 =======
 >>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
+=======
+        private System.Windows.Forms.PictureBox pictureBox1;
+>>>>>>> parent of 3a0e0b1... Map editor tile slicing added
     }
 }
