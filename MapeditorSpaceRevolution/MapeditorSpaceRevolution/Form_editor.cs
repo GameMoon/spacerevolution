@@ -11,7 +11,12 @@ using System.IO;
 
 namespace MapeditorSpaceRevolution
 {
-   
+    public class mapdata
+    {
+        public string name;
+        public int[,] tiledata;
+        public int[,] entitydata;
+    }
 
     public partial class Form_editor : Form
     {
@@ -53,7 +58,6 @@ namespace MapeditorSpaceRevolution
         private void loadMapFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadsavepoopper.LoaFile();
-            loadMapData();
         }
 
         private void loadTilesetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,23 +94,26 @@ namespace MapeditorSpaceRevolution
                     while (true)
                     {
                         string sor = sr.ReadLine();
-                        int entitityindex = terkepek[mapindex].entities.Count();
-                        if (sor == "--" || sr.EndOfStream) break;
+                        int entitityindex = 0;
+                        if (sor == "--") break;
                         else
                         {
                             string[] darabsor = sor.Split(';');
-
-                            terkepek[mapindex].entities.Add(new entitydata());
-                            terkepek[mapindex].entities[entitityindex].entid = int.Parse(darabsor[0]);
-                            terkepek[mapindex].entities[entitityindex].xcoord = int.Parse(darabsor[1]);
-                            terkepek[mapindex].entities[entitityindex].ycoord = int.Parse(darabsor[2]);
+                            for (int i = 0; i < 3; i++)
+                            {
+                                terkepek[mapindex].entitydata[entitityindex, i] = int.Parse(darabsor[i]);
+                            }
                         }
                     }
                 }
+<<<<<<< HEAD
                 sr.Close();
                 textBox_levelname.Text = terkepek[selectedlevel].name;
                 label_levelcounter.Text = (selectedlevel + 1).ToString();
                 drawimg();
+=======
+
+>>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
             }
 
         }
@@ -249,6 +256,7 @@ namespace MapeditorSpaceRevolution
                 }
             }
         }
+<<<<<<< HEAD
 
         private void editTileClick(object sender, EventArgs e)
         {
@@ -439,5 +447,7 @@ namespace MapeditorSpaceRevolution
             transformpreview();
             MessageBox.Show(transformkephozza.ToString());
         }
+=======
+>>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
     }
 }

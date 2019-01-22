@@ -18,6 +18,7 @@ D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.CoreCompileInputs.cache
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.exe
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.pdb
+<<<<<<< HEAD
 D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.Form_editor.resources
 C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.exe.config
 C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\bin\Debug\MapeditorSpaceRevolution.exe
@@ -29,3 +30,6 @@ C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\Mapedi
 C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.csproj.CoreCompileInputs.cache
 C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.exe
 C:\Users\mikaczo.david\Downloads\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.pdb
+=======
+D:\GitHub\spacerevolution\MapeditorSpaceRevolution\MapeditorSpaceRevolution\obj\Debug\MapeditorSpaceRevolution.mapdata.resources
+>>>>>>> parent of eed9584... Merge branch 'developement' of https://github.com/GameMoon/spacerevolution into developement
