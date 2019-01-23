@@ -129,6 +129,7 @@ namespace TileMapEditor
             {
                 listBox.Items.Add("Id: "+EntityMenmonics.EnMenmoList[i].id.ToString()+" "+ EntityMenmonics.EnMenmoList[i].name+ " "+ EntityMenmonics.EnMenmoList[i].defaultText);
             }
+            listBox.Items.Add("Add a NEW entity...");
             listBox.SelectedIndex = 0;
             DialogResult dialogResult = form.ShowDialog();
             entid = listBox.SelectedIndex;

@@ -284,42 +284,51 @@ namespace TileMapEditor
             reloadView();
         }
 
+        private void newEntityAdd(string[] itemtag)
+        {
+            string inputValue = "";
+            if (loadSavePopper.InputBox("Entity Id", "Enter Entity ID:", ref inputValue) == DialogResult.OK)
+            {
+                if (szamEVagyNem(inputValue))
+                {
+                    EntityData attolt = new EntityData();
+                    attolt.xcoord = int.Parse(itemtag[0]);
+                    attolt.ycoord = int.Parse(itemtag[1]);
+                    attolt.entid = int.Parse(inputValue);
+                    inputValue = "";
+                    loadSavePopper.InputBox("Entity SpeechText", "Entity SpeechTex:", ref inputValue);
+                    attolt.speechtext = inputValue;
+                    MapData.LevelList[loadedLevel].entities.Add(attolt);
+                    loadSavePopper.savedSinceLastedit = false;
+                }
+                else MessageBox.Show("Input data is incorrect");
+            }
+        }
+
         private void addEntity(string[] itemtag)
         {
             //itemtag[0] xcoord
             //itemtag[1] ycoord
             if (EntityMenmonics.EnMenmoList.Count() == 0)
             {
-                string inputValue = "";
-                if (loadSavePopper.InputBox("Entity Id", "Enter Entity ID:", ref inputValue) == DialogResult.OK)
-                {
-                    if (szamEVagyNem(inputValue))
-                    {
-                        EntityData attolt = new EntityData();
-                        attolt.xcoord = int.Parse(itemtag[0]);
-                        attolt.ycoord = int.Parse(itemtag[1]);
-                        attolt.entid = int.Parse(inputValue);
-                        inputValue = "";
-                        loadSavePopper.InputBox("Entity SpeechText", "Entity SpeechTex:", ref inputValue);
-                        attolt.speechtext = inputValue;
-                        MapData.LevelList[loadedLevel].entities.Add(attolt);
-                        loadSavePopper.savedSinceLastedit = false;
-                    }
-                    else MessageBox.Show("Input data is incorrect");
-                }
+                newEntityAdd(itemtag);
             }
             else
             {
                 int entid = 0;
                 if (loadSavePopper.enMnemoSelectorWindow(ref entid) == DialogResult.OK)
                 {
-                    EntityData attolt = new EntityData();
-                    attolt.xcoord = int.Parse(itemtag[0]);
-                    attolt.ycoord = int.Parse(itemtag[1]);
-                    attolt.entid = EntityMenmonics.EnMenmoList[entid].id;
-                    attolt.speechtext = EntityMenmonics.EnMenmoList[entid].defaultText;
-                    MapData.LevelList[loadedLevel].entities.Add(attolt);
-                    loadSavePopper.savedSinceLastedit = false;
+                    if (entid<(EntityMenmonics.EnMenmoList.Count()))
+                    {
+                        EntityData attolt = new EntityData();
+                        attolt.xcoord = int.Parse(itemtag[0]);
+                        attolt.ycoord = int.Parse(itemtag[1]);
+                        attolt.entid = EntityMenmonics.EnMenmoList[entid].id;
+                        attolt.speechtext = EntityMenmonics.EnMenmoList[entid].defaultText;
+                        MapData.LevelList[loadedLevel].entities.Add(attolt);
+                        loadSavePopper.savedSinceLastedit = false;
+                    }
+                    else newEntityAdd(itemtag);
                 }
             }
             this.Cursor = Cursors.Default;
