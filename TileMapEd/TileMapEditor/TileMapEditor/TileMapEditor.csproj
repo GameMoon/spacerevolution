@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityData.cs" />
+    <Compile Include="EntityMenmonics.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="Form_editorWindow.cs">
       <SubType>Form</SubType>

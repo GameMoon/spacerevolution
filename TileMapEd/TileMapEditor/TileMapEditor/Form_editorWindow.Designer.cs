@@ -57,6 +57,8 @@
             this.button_addLevel = new System.Windows.Forms.Button();
             this.button_addEntity = new System.Windows.Forms.Button();
             this.button_removeentity = new System.Windows.Forms.Button();
+            this.toolStripMenuItem_loadentMnemo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip_MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
             this.splitContainer_Main.Panel1.SuspendLayout();
@@ -88,6 +90,8 @@
             this.toolStripSeparator1,
             this.loadMapFileToolStripMenuItem,
             this.loadTilesetFileToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.toolStripMenuItem_loadentMnemo,
             this.toolStripSeparator3,
             this.exitToolStripMenuItem});
             this.toolStripDropDownButton_FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -99,57 +103,57 @@
             // newMapToolStripMenuItem
             // 
             this.newMapToolStripMenuItem.Name = "newMapToolStripMenuItem";
-            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.newMapToolStripMenuItem.Text = "New Map..";
             this.newMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(197, 6);
             // 
             // saveMapToolStripMenuItem
             // 
             this.saveMapToolStripMenuItem.Name = "saveMapToolStripMenuItem";
-            this.saveMapToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.saveMapToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.saveMapToolStripMenuItem.Text = "Save Map..";
             this.saveMapToolStripMenuItem.Click += new System.EventHandler(this.saveMapToolStripMenuItem_Click);
             // 
             // saveMapAsToolStripMenuItem
             // 
             this.saveMapAsToolStripMenuItem.Name = "saveMapAsToolStripMenuItem";
-            this.saveMapAsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.saveMapAsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.saveMapAsToolStripMenuItem.Text = "Save Map As..";
             this.saveMapAsToolStripMenuItem.Click += new System.EventHandler(this.saveMapAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(197, 6);
             // 
             // loadMapFileToolStripMenuItem
             // 
             this.loadMapFileToolStripMenuItem.Name = "loadMapFileToolStripMenuItem";
-            this.loadMapFileToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.loadMapFileToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.loadMapFileToolStripMenuItem.Text = "Load Map File..";
             this.loadMapFileToolStripMenuItem.Click += new System.EventHandler(this.loadMapFileToolStripMenuItem_Click);
             // 
             // loadTilesetFileToolStripMenuItem
             // 
             this.loadTilesetFileToolStripMenuItem.Name = "loadTilesetFileToolStripMenuItem";
-            this.loadTilesetFileToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.loadTilesetFileToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.loadTilesetFileToolStripMenuItem.Text = "Load Tileset File..";
             this.loadTilesetFileToolStripMenuItem.Click += new System.EventHandler(this.loadTilesetFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(197, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -352,6 +356,18 @@
             this.button_removeentity.UseVisualStyleBackColor = true;
             this.button_removeentity.Click += new System.EventHandler(this.button_removeentity_Click);
             // 
+            // toolStripMenuItem_loadentMnemo
+            // 
+            this.toolStripMenuItem_loadentMnemo.Name = "toolStripMenuItem_loadentMnemo";
+            this.toolStripMenuItem_loadentMnemo.Size = new System.Drawing.Size(200, 22);
+            this.toolStripMenuItem_loadentMnemo.Text = "Load Entity Mnemonic..";
+            this.toolStripMenuItem_loadentMnemo.Click += new System.EventHandler(this.toolStripMenuItem_loadentMnemo_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(197, 6);
+            // 
             // Form_editorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,6 +434,8 @@
         private System.Windows.Forms.Label label_rotateLabel;
         private System.Windows.Forms.Button button_addEntity;
         private System.Windows.Forms.Button button_removeentity;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_loadentMnemo;
     }
 }
 

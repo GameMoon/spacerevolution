@@ -61,6 +61,35 @@ namespace TileMapEditor
 
             }
         }
+
+        public static bool OpenMnemoFile()
+        {
+            string path = loadSavePopper.enMnemoFilePath;
+            if (path == "")
+            {
+                MessageBox.Show("Cannot Load from path: " + loadSavePopper.mapFilePath);
+                return false;
+            }
+            else
+            {
+                EntityMenmonics.EnMenmoList.Clear();
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] besor = sr.ReadLine().Split(';');
+                        EntityMenmoData varaddMnemo = new EntityMenmoData();
+                        varaddMnemo.id = int.Parse(besor[0]);
+                        varaddMnemo.name = besor[1];
+                        varaddMnemo.defaultText = besor[2];
+                        EntityMenmonics.EnMenmoList.Add(varaddMnemo);
+                    }
+                    sr.Close();
+                    return true;
+                }
+            }
+        }
+
         public static bool WriteFile()
         {
             string path = loadSavePopper.mapFilePath;

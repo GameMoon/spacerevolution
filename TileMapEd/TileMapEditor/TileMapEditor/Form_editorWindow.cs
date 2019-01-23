@@ -280,13 +280,12 @@ namespace TileMapEditor
                 }
             }
             loadSavePopper.savedSinceLastedit = false;
+            this.Cursor = Cursors.Default;
             reloadView();
         }
 
-        private void addEntity(string[] itemtag)
+        private void newEntityAdd(string[] itemtag)
         {
-            //itemtag[0] xcoord
-            //itemtag[1] ycoord
             string inputValue = "";
             if (loadSavePopper.InputBox("Entity Id", "Enter Entity ID:", ref inputValue) == DialogResult.OK)
             {
@@ -304,6 +303,35 @@ namespace TileMapEditor
                 }
                 else MessageBox.Show("Input data is incorrect");
             }
+        }
+
+        private void addEntity(string[] itemtag)
+        {
+            //itemtag[0] xcoord
+            //itemtag[1] ycoord
+            if (EntityMenmonics.EnMenmoList.Count() == 0)
+            {
+                newEntityAdd(itemtag);
+            }
+            else
+            {
+                int entid = 0;
+                if (loadSavePopper.enMnemoSelectorWindow(ref entid) == DialogResult.OK)
+                {
+                    if (entid<(EntityMenmonics.EnMenmoList.Count()))
+                    {
+                        EntityData attolt = new EntityData();
+                        attolt.xcoord = int.Parse(itemtag[0]);
+                        attolt.ycoord = int.Parse(itemtag[1]);
+                        attolt.entid = EntityMenmonics.EnMenmoList[entid].id;
+                        attolt.speechtext = EntityMenmonics.EnMenmoList[entid].defaultText;
+                        MapData.LevelList[loadedLevel].entities.Add(attolt);
+                        loadSavePopper.savedSinceLastedit = false;
+                    }
+                    else newEntityAdd(itemtag);
+                }
+            }
+            this.Cursor = Cursors.Default;
             reloadView();
         }
 
@@ -508,12 +536,12 @@ namespace TileMapEditor
 
         private void button_addEntity_Click(object sender, EventArgs e)
         {
-
+            this.Cursor = Cursors.Hand;
             addmode = true;
             removemode = false;
         }
 
-        private bool szamEVagyNem(string inString)
+        public static bool szamEVagyNem(string inString)
         {
             int i = 0;
             bool result = int.TryParse(inString, out i);
@@ -522,8 +550,15 @@ namespace TileMapEditor
 
         private void button_removeentity_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.Hand;
             addmode = true;
             removemode = true;
+        }
+
+        private void toolStripMenuItem_loadentMnemo_Click(object sender, EventArgs e)
+        {
+            if (loadSavePopper.LoadEntityMnemo()) if (!FileIO.OpenMnemoFile()) MessageBox.Show("Bad Entity Mnemonic File");
+                else;
         }
     }
 }
