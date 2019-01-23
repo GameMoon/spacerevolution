@@ -1,5 +1,5 @@
-0;Name;Default Text
-1;sanyi;deftext
+0;Player;Default Text
+1;WallHitBox;You shall not pass
 2;asf;deftext
 3;dsf;deftext
 4;sfdsd;deftext
