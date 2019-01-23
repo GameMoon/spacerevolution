@@ -8,3 +8,13 @@ D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\Tile
 D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.csproj.CoreCompileInputs.cache
 D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.exe
 D:\GitHub\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.pdb
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\bin\Release\TileMapEditor.exe.config
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\bin\Release\TileMapEditor.exe
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\bin\Release\TileMapEditor.pdb
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.csprojAssemblyReference.cache
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.Form_editorWindow.resources
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.Properties.Resources.resources
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.csproj.GenerateResource.cache
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.csproj.CoreCompileInputs.cache
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.exe
+C:\Users\mikaczo.david\Downloads\spacerevolution\TileMapEd\TileMapEditor\TileMapEditor\obj\Release\TileMapEditor.pdb
