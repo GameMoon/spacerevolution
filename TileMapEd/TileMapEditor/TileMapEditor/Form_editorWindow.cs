@@ -319,6 +319,7 @@ namespace TileMapEditor
                     attolt.entid = EntityMenmonics.EnMenmoList[entid].id;
                     attolt.speechtext = EntityMenmonics.EnMenmoList[entid].defaultText;
                     MapData.LevelList[loadedLevel].entities.Add(attolt);
+                    loadSavePopper.savedSinceLastedit = false;
                 }
             }
             this.Cursor = Cursors.Default;
