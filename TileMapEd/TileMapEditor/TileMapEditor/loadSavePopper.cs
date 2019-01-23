@@ -12,6 +12,7 @@ namespace TileMapEditor
     {
         public static string mapFilePath;
         public static string tileFilePath;
+        public static string enMnemoFilePath;
         public static bool savedSinceLastedit = true;
 
         public static bool SaveFileAsDialog()
@@ -56,7 +57,21 @@ namespace TileMapEditor
             }
             else return false;
         }
-        
+
+        public static bool LoadEntityMnemo()
+        {
+            OpenFileDialog openMapFile = new OpenFileDialog();
+            openMapFile.Filter = "Text File|*.txt|All Files|*.*";
+            openMapFile.Title = "Select an Entity Mnemonic File";
+
+            if (openMapFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                enMnemoFilePath = openMapFile.FileName;
+                return true;
+            }
+            else return false;
+        }
+
         public static bool progEnd()
         {
             if(savedSinceLastedit)
@@ -79,6 +94,45 @@ namespace TileMapEditor
                 }
                 else return false;
             }
+        }
+
+        public static DialogResult enMnemoSelectorWindow(ref int entid)
+        {
+            Form form = new Form();
+            Button buttonOk = new Button();
+            Button buttonCancel = new Button();
+            ListBox listBox = new ListBox();
+
+            form.Text = "Select an Entity";
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonOk.DialogResult = DialogResult.OK;
+            buttonCancel.DialogResult = DialogResult.Cancel;
+
+            buttonOk.SetBounds(10, 367, 75, 23);
+            buttonCancel.SetBounds(115, 367, 75, 23);
+            listBox.Location = new Point(5,5);
+            listBox.SetBounds(5, 5, 190, 357);
+            listBox.Size = new Size(190,357);
+
+            form.ClientSize = new Size(200, 400);
+            form.Controls.AddRange(new Control[] {listBox, buttonOk, buttonCancel });
+            form.ClientSize = new Size(form.ClientSize.Width, form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+            for (int i = 0; i < EntityMenmonics.EnMenmoList.Count(); i++)
+            {
+                listBox.Items.Add("Id: "+EntityMenmonics.EnMenmoList[i].id.ToString()+" "+ EntityMenmonics.EnMenmoList[i].name+ " "+ EntityMenmonics.EnMenmoList[i].defaultText);
+            }
+            listBox.SelectedIndex = 0;
+            DialogResult dialogResult = form.ShowDialog();
+            entid = listBox.SelectedIndex;
+            return dialogResult;
         }
 
         public static DialogResult InputBox(string title, string promptText, ref string value)
