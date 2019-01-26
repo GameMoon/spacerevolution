@@ -38,12 +38,10 @@ class Object
           Object *object = objects[k];
 
           if (newPosX < oPos->getX() + object->getWidth() && newPosX + width > oPos->getX() &&
-              newPosY < oPos->getY() + object->getHeight() && newPosY + height > oPos->getY() &&
-              object->isBlocking()
-          )
+              newPosY < oPos->getY() + object->getHeight() && newPosY + height > oPos->getY())
           { 
-            printf("%s\n",object->getText());
-            return true;
+            object->activate(this);
+            if(object->isBlocking()) return true;
           }
         }
         return false;
@@ -52,6 +50,7 @@ class Object
     void validate() { valid = true; }
     void invalidate() { valid = false; }
     virtual bool isBlocking(){ return false; }
+    virtual void activate(Object * source){   printf("%s\n", this->getText()); }
 };
 
 #endif
