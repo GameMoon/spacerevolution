@@ -69,6 +69,8 @@ Mission 1 Testlevel
 1;13;11;You shall not pass
 1;15;11;You shall not pass
 1;16;11;You shall not pass
+1;16;11;You shall not pass
+2;16;2;Hacking
 1;3;3;Hallo team!
 --
 newlevel
