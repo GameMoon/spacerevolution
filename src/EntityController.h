@@ -5,6 +5,7 @@
 
 #include "Player.h"
 #include "WallHitbox.h"
+#include "Terminal.h"
 
 class EntityController
 {
@@ -16,16 +17,14 @@ class EntityController
     {
         switch (id)
         {
-            case 1:
-                return new WallHitbox(pos, width, height);
-            default:
-                return nullptr;
+            case 1: return new WallHitbox(pos, width, height);
+            case 2: return new Terminal(pos);
+            default: return nullptr;
         }  
     }   
     Player *createPlayer(Vector2 *pos)
     {
-        Player *p = new Player(pos,
-                               new Sprite(
+        Player *p = new Player(pos, new Sprite(
                                    images[0].getPixels(),
                                    images[0].getWidth(),
                                    images[0].getHeight(),
