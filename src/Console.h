@@ -19,6 +19,7 @@ class Console
   int lastOutputSize;
   int bufferLimit;
   int charLimitInRow;
+  int lastBufferSize;
 
   Container< Container<Image> > buffer;
 public:
@@ -29,6 +30,7 @@ public:
       outputSize = lastOutputSize = 0;
       timeForFrame = 0;
       bufferLimit = 0;
+      lastBufferSize = 0;
       charLimitInRow = 43;
     }
 
@@ -62,10 +64,14 @@ public:
     }
 
     void draw(Screen * screen){
+        if (lastBufferSize == buffer.getSize() && 
+        lastOutputSize == buffer.at(buffer.getSize() - 1)->getSize()) return;
+        
         screen->clearArea2();
 
         int lineOffset = 0;
         if(buffer.getSize() == 0) return;
+
         for (int line = buffer.getSize() - bufferLimit; line < buffer.getSize(); line++)
         {
             if(line != buffer.getSize()-1) outputSize = buffer.at(line)->getSize();
@@ -80,6 +86,7 @@ public:
             }
             lineOffset += (buffer.at(line)->getSize() / charLimitInRow + 1) * text->getFontWidth();
         }
+        lastBufferSize = buffer.getSize();
     }
 };
 
