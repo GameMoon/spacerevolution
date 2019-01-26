@@ -24,7 +24,7 @@
     
     <script>
 
-        async function loadImage(src) {
+        async function loadImage(src,id) {
             // Load image
             const imgBlob = await fetch(src).then(resp => resp.blob());
             const img = await createImageBitmap(imgBlob);
@@ -40,7 +40,7 @@
             // console.log(imageData.data.length)
             dataPointer = Module._malloc(imageData.data.length);
             Module.writeArrayToMemory(imageData.data,dataPointer);
-            Module._addImage(dataPointer,img.width,img.height);
+            Module._addImage(dataPointer,img.width,img.height,id);
         }
         
         async function loadMap(src) {

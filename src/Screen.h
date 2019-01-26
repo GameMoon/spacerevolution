@@ -3,6 +3,16 @@
 
 #include <stdint.h>
 
+#define SCREEN1_XOFFSET 61
+#define SCREEN1_YOFFSET 183
+#define SCREEN1_WIDTH 1024
+#define SCREEN1_HEIGHT 768
+
+#define SCREEN2_XOFFSET 1137
+#define SCREEN2_YOFFSET 75
+#define SCREEN2_WIDTH 720
+#define SCREEN2_HEIGHT 480
+
 class Screen{
     uint8_t * pixels;
     int width;
@@ -25,9 +35,10 @@ class Screen{
             this->pixels[offset+3] = a;
         }
         
-        void draw(int x, int y, int r, int g, int b, int a = 255){
+        void draw(int x, int y, int r, int g, int b, int a = 255, int screen = 0){
             if(a == 255){
-             setPixel(x +61, y+183,r ,g, b, a);
+                if(screen == 0) setPixel(x + SCREEN1_XOFFSET, y + SCREEN1_YOFFSET, r, g, b, a);
+                else if(screen == 1) setPixel(x + SCREEN2_XOFFSET, y + SCREEN2_YOFFSET, r, g, b, a);
             }
         }
 
@@ -35,16 +46,16 @@ class Screen{
         uint8_t getPixel(int index){return pixels[index];}
 
         void clearArea1(){
-            
-            for (int x = 0; x < 1024; x++)
-                for (int y = 0; y < 768; y++)
-                    setPixel(x+61,y+183,0,200,0);
+
+            for (int x = 0; x < SCREEN1_WIDTH; x++)
+                for (int y = 0; y < SCREEN1_HEIGHT; y++)
+                    setPixel(x + SCREEN1_XOFFSET, y + SCREEN1_YOFFSET, 0, 200, 0);
         }
 
         void clearArea2(){
-            for (int x = 0; x < 720; x++)
-                for (int y = 0; y < 480; y++)
-                    setPixel(x + 1137, y + 75, 0, 0, 200);
+            for (int x = 0; x < SCREEN2_WIDTH; x++)
+                for (int y = 0; y < SCREEN2_HEIGHT; y++)
+                    setPixel(x + SCREEN2_XOFFSET, y + SCREEN2_YOFFSET, 0, 0, 0);
         }
 };
 

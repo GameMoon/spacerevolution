@@ -63,9 +63,9 @@ extern "C"
         return game->getScreen()->getHeight();
     }
 
-    EMSCRIPTEN_KEEPALIVE void addImage(int pointerValue, int width, int height)
+    EMSCRIPTEN_KEEPALIVE void addImage(int pointerValue, int width, int height,int id)
     {
-       game->loadImage(pointerValue,width,height);
+       game->loadImage(pointerValue,width,height,id);
     }
     EMSCRIPTEN_KEEPALIVE void addMap(int pointerValue)
     {
@@ -80,8 +80,8 @@ extern "C"
         Module.renderSetup();
     });
 
-    EM_JS(void, loadImage, (const char* str),{
-        loadImage(UTF8ToString(str));
+    EM_JS(void, loadImage, (const char* str,int id),{
+        loadImage(UTF8ToString(str),id);
     });
 
     EM_JS(void, loadMap, (const char* str),{
@@ -105,8 +105,9 @@ int main(void)
 {  
     game = new Game();
     renderSetup();
-    loadImage("assets/characters/mcharanimall.png");
-    loadImage("assets/tileset.png");
+    loadImage("assets/characters/mcharanimall.png",0);
+    loadImage("assets/tileset.png",1);
+    loadImage("assets/masikfont.png",2);
     loadMap("maps.txt");
 
     

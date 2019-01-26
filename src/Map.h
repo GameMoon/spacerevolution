@@ -7,8 +7,6 @@
 #include "Image.h"
 #include "Player.h"
 
-#define SCREEN1_W 1024
-#define SCREEN1_H 768
 
 class Map{
     TileController * tileController;
@@ -22,7 +20,7 @@ class Map{
     Player * player;
 
     void generateBackgroundImage(){
-        uint8_t *backgroundImage = new uint8_t[SCREEN1_W * SCREEN1_H * 4];
+        uint8_t *backgroundImage = new uint8_t[SCREEN1_WIDTH * SCREEN1_HEIGHT * 4];
         for (int k = 0; k < numberOfTiles; k++)
         {
             int xOffset = k % numberOfTilesInRow * TILE_SIZE;
@@ -30,7 +28,7 @@ class Map{
             Image* tile = this->tileController->getTile(groundTiles[k]);
             for(int x = 0; x < tile->getWidth(); x++){
                 for(int y = 0; y < tile->getHeight(); y++){
-                    int offset = (x+xOffset + (y+yOffset) * SCREEN1_W) *4;
+                    int offset = (x + xOffset + (y + yOffset) * SCREEN1_WIDTH) * 4;
                     int tileoffset = (x+y*tile->getWidth())*4;
 
                     int r = tile->getPixel(tileoffset);
@@ -45,7 +43,7 @@ class Map{
                 }
             }
         }
-        fullMap = new Image(backgroundImage,SCREEN1_W,SCREEN1_H);
+        fullMap = new Image(backgroundImage, SCREEN1_WIDTH, SCREEN1_HEIGHT);
     }
 
     public:

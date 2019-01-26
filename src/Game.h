@@ -10,16 +10,17 @@
 #include <emscripten/html5.h>
 
 #include "Screen.h"
-#include "Player.h"
 #include "PlayerController.h"
 #include "TileController.h"
 #include "Container.h"
-#include "Terminal.h"
 #include "Map.h"
-#include "WallHitbox.h"
+#include "Console.h"
 
 #define WIDTH 1920
 #define HEIGHT 1080
+
+#define IMAGES_TO_LOAD 3
+#define OTHER_FILES_TO_LOAD 1
 
 class Game
 {
@@ -34,6 +35,7 @@ class Game
 
     PlayerController * playerController;
     EntityController * entityController;
+    Console * console;
     Player *p;
     TileController *tileController;
 
@@ -57,10 +59,10 @@ class Game
         gameState = 0;
         
         numberOfImages = 0;
-        imagesToLoad = 2;
+        imagesToLoad = IMAGES_TO_LOAD;
         images = new Image[imagesToLoad];
 
-        filesToLoad = imagesToLoad + 1; //images + map
+        filesToLoad = imagesToLoad + OTHER_FILES_TO_LOAD; //images + map
         loadedFiles = 0;
         printf("Loading ... \n");
     }
@@ -72,12 +74,19 @@ class Game
     PlayerController* getPlayerController(){ return playerController;}
     Container<Object>& getObjects();
 
+    Image* getImage(int index){
+        for(int k = 0; k< numberOfImages; k++){
+            if(images[k].getID() == index ) return &images[k];
+        }
+        return nullptr;
+    }
 
-    void loadImage(int pointerValue, int width, int height)
+    void loadImage(int pointerValue, int width, int height, int id)
     {
         uint8_t *pointer = ((uint8_t *)(intptr_t)(pointerValue));
         images[numberOfImages].setPixels(pointer);
         images[numberOfImages].setSize(width, height);
+        images[numberOfImages].setID(id);
         numberOfImages++;
         loadedFiles++;
     }
@@ -98,16 +107,21 @@ class Game
         else if (gameState == 1)
         {
             //Loading Objects
+            for(int k = 0; k < numberOfImages;k++){
+                printf("%d, %d\n",images[k].getWidth(),images[k].getHeight());
+            }
             printf("Images loaded: %d\n",numberOfImages);
                        
-            tileController = new TileController(&images[1]);
+            tileController = new TileController(getImage(1));
             entityController = new EntityController(images);
             currentMap = new Map(tileController,entityController,mapContent,1);
 
             printf("Entities loaded: %d\n",currentMap->getObjects()->getSize());
 
             playerController = new PlayerController(currentMap->getPlayer());
-
+            
+            console = new Console(getImage(2));
+            
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
 
@@ -127,6 +141,7 @@ class Game
 
             //Render
             currentMap->draw(screen);
+            console->draw(screen);
         }
     } 
 };
