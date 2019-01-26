@@ -26,24 +26,6 @@ class Screen{
         }
         
         void draw(int x, int y, int r, int g, int b, int a = 255){
-            //Alpha blending
-          /*  int offset = (x + y * width) * 4;
-            
-            int backR = this->pixels[offset];
-            int backG = this->pixels[offset + 1];
-            int backB = this->pixels[offset + 2];
-            int backA = this->pixels[offset + 3];*/
-
-            /*float srcA = a / 255.0;
-            float dstA = backA / 255.0;
-
-            float alphaConstant = (1.0-srcA)*dstA;
-            float newAlpha = (srcA + alphaConstant);
-            setPixel(x, y,
-                     (srcA * r + alphaConstant * backR) / newAlpha,
-                     (srcA * g + alphaConstant * backG) / newAlpha,
-                     (srcA * b + alphaConstant * backB) / newAlpha,
-                     (int) newAlpha * 255);*/
             if(a == 255){
              setPixel(x +61, y+183,r ,g, b, a);
             }
