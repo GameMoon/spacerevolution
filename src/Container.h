@@ -24,6 +24,14 @@ class Container
     myType* at(int index){ return data[index];}
     myType ** getAll(){ return data;}
     int getSize(){ return size;}
+    
+    void clear(){
+        for(int k = 0; k <size; k++){
+            delete data[k];
+        }
+        delete data;
+        size = 0;
+    }
 };
 
 #endif

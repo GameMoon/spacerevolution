@@ -6,7 +6,7 @@
 class Player : public Character{
     public:
         Player(Vector2 * pos, Sprite * sprite) : Character(pos,sprite){ 
-            this->id = 1;
+            this->id = 0;
         }
        
 };

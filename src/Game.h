@@ -16,6 +16,7 @@
 #include "Container.h"
 #include "Terminal.h"
 #include "Map.h"
+#include "WallHitbox.h"
 
 #define WIDTH 1920
 #define HEIGHT 1080
@@ -32,8 +33,8 @@ class Game
     int loadedFiles;
 
     PlayerController * playerController;
+    EntityController * entityController;
     Player *p;
-    Container<Object> objects;
     TileController *tileController;
 
     struct timeval currentTimeVal;
@@ -98,23 +99,18 @@ class Game
         {
             //Loading Objects
             printf("Images loaded: %d\n",numberOfImages);
-            p = new Player(new Vector2(62, 184),
-                           new Sprite(
-                               images[0].getPixels(),
-                               images[0].getWidth(),
-                               images[0].getHeight(),
-                               4,
-                               10));
-            p->setSpeed(2);
-            playerController = new PlayerController(p);
-
+                       
             tileController = new TileController(&images[1]);
+            entityController = new EntityController(images);
+            currentMap = new Map(tileController,entityController,mapContent,1);
 
-            currentMap = new Map(tileController,mapContent,1);
+            printf("Entities loaded: %d\n",currentMap->getObjects()->getSize());
+
+            playerController = new PlayerController(currentMap->getPlayer());
+
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
 
-            objects.add(p);
             printf("Loading finished\n");
             gameState = 2;
            
@@ -127,15 +123,10 @@ class Game
             lastTime = currentTime;
             
             //Player update
-            playerController->update(objects,elapsedTime);
+            playerController->update(currentMap->getObjects(),elapsedTime);
 
             //Render
-            currentMap->draw(screen,objects); //clearscreen
-            
-            for(int k = 0; k<objects.getSize();k++){
-                objects.at(k)->draw(screen);
-            }
-           
+            currentMap->draw(screen);
         }
     } 
 };

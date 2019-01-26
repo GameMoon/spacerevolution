@@ -29,9 +29,9 @@ class Character : public Object
             sprite->setCurrentMovement(8); //standing animation
         }
         else{
-            pos->setX(x+pos->getX());
-            pos->setY(y+pos->getY());
-
+            this->pos->setX(x+pos->getX());
+            this->pos->setY(y+pos->getY());
+            
             if(x > 0 && y > 0) sprite->setCurrentMovement(5);
             else if(x < 0 && y < 0) sprite->setCurrentMovement(1);
             else if(x < 0 && y > 0) sprite->setCurrentMovement(2);

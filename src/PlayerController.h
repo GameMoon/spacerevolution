@@ -15,7 +15,7 @@ class PlayerController
     int pressedButtons[4];
 
   public:
-    PlayerController(Player *p) : player(p){}
+    PlayerController(Player *p) : player(p){ speedX = 0; speedY = 0;}
 
     void handleKeyboard(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
     {
@@ -43,7 +43,7 @@ class PlayerController
     }
 
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
-    void update(Container<Object>& objectContainer,int elapsedTime)
+    void update(Container<Object>* objectContainer,int elapsedTime)
     {
 
         if(pressedButtons[0] == 1) speedY = -player->getSpeed();
@@ -51,20 +51,20 @@ class PlayerController
         if(pressedButtons[2] == 1) speedX = -player->getSpeed();
         if(pressedButtons[3] == 1) speedX = player->getSpeed();
 
-        if (!player->isCollide(
+        // if (speedY == 0 && speedX == 0) return;
+
+        if (!player->isBlocked(
                 player->getPosition()->getX() + speedX,
                 player->getPosition()->getY() + speedY,
-                objectContainer.getAll(),
-                objectContainer.getSize()))
+                objectContainer->getAll(),
+                objectContainer->getSize()))
         {
+            
             player->move(speedX, speedY, elapsedTime);
         }
-        else player->move(0, 0, elapsedTime);
-
-        if(speedY != 0 || speedX  != 0){
-            speedX = 0;
-            speedY = 0;
-        }
+        else  player->move(0, 0, elapsedTime);
+        
+        if (speedY != 0 || speedX != 0) speedX = speedY = 0;
     }
 };
 

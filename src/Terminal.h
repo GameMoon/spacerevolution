@@ -12,7 +12,7 @@ class Terminal : public Object
         this->pos = pos;
         this->width = 20;
         this->height = 48;
-        this->id = 6;
+        this->id = 2;
     }
     
     void draw(Screen *screen) {

@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include "TileController.h"
+#include "EntityController.h"
 #include "Screen.h"
 #include "Image.h"
 #include "Player.h"
@@ -11,12 +12,14 @@
 
 class Map{
     TileController * tileController;
+    EntityController *entityController;
 
     int * groundTiles;
     int numberOfTiles;
     int numberOfTilesInRow;
     Image* fullMap;
-    Container<char> mapLines;
+    Container<Object> * objects;
+    Player * player;
 
     void generateBackgroundImage(){
         uint8_t *backgroundImage = new uint8_t[SCREEN1_W * SCREEN1_H * 4];
@@ -46,16 +49,12 @@ class Map{
     }
 
     public:
-        Map(TileController * tileController,char* file,int level) : tileController(tileController){
+        Map(TileController * tileController,EntityController * entityController,char* file,int level) : tileController(tileController), entityController(entityController){
             numberOfTilesInRow = 32;
             numberOfTiles = 32*24;
             groundTiles = new int[numberOfTiles];
+            objects = new Container<Object>();
 
-
-            /*for (int k = 0; k < numberOfTiles; k++)
-            {
-                groundTiles[k] = 12;//rand() % 3468;
-            }*/
             loadLevel(file,level);
 
             generateBackgroundImage();
@@ -63,7 +62,10 @@ class Map{
 
 
         void loadLevel(char* data, int level){
-           
+
+            Container<char> mapLines;
+            int mapSizeY = 24;
+
             char * line = strtok(data, "\n");
             while(line){
                 mapLines.add(line);
@@ -72,12 +74,13 @@ class Map{
             
             for(int k = 0; k< mapLines.getSize(); k++){
                 int mapLevel;
-                sscanf(mapLines.at(k), "Mission %d", &mapLevel);
+                char levelName[30];
+                sscanf(mapLines.at(k), "Mission %d %s", &mapLevel, levelName);
                 if (mapLevel == level)
                 {
-                 
+                    printf("Mission %d %s\n", mapLevel, levelName);
                     int tileIndex = 0;
-                    for (int l = k + 1; l < k + 25; l++)
+                    for (int l = k + 1; l < k + mapSizeY+1; l++)
                     {
                         char *tileId = strtok(mapLines.at(l), ";");
                         while (tileId)
@@ -87,26 +90,62 @@ class Map{
                             tileId = strtok(NULL, ";");
                         }
                    }
+
+                   int entityOffset = mapSizeY+1;
+                   for( int l = entityOffset; mapLines.at(l)[0] != '-'; l++)
+                   {
+                       char * entityText = new char[255];
+                       int entityID;
+                       int cellX;
+                       int cellY;
+                       sscanf(mapLines.at(l), "%d;%d;%d;%[^\t\n]\n", &entityID, &cellX, &cellY, entityText);
+
+                       cellX -= 1;
+                       cellY -= 1;
+                       Object *newObject = nullptr;
+                       
+                       if (entityID == 0)
+                       {
+                           player = entityController->createPlayer(new Vector2(cellX * 32, (cellY) * 32));
+                           newObject = player;
+                       }
+                       else{
+                           newObject = entityController->createObject(
+                               entityID,
+                               new Vector2(cellX * TILE_SIZE, cellY * TILE_SIZE),
+                               TILE_SIZE,
+                               TILE_SIZE);
+                       }
+                       
+                       if(newObject != nullptr){
+                           newObject->setText(entityText);
+                           this->objects->add(newObject);
+                       }
+                   }
                    return;
                 }
             }
         }
 
-        void draw(Screen * screen, Container<Object> & container){
+        void draw(Screen * screen){
       
-            for(int i = 0;i < container.getSize(); i++){
-                Object * currentObject = container.at(i);
+            for(int i = 0;i < objects->getSize(); i++){
+                Object *currentObject = objects->at(i);
                 if(!currentObject->isValid()){
                     fullMap->draw(0, 0, screen,
                                   currentObject->getPosition()->getX()-10,
                                   currentObject->getPosition()->getY()-10,
                                   currentObject->getPosition()->getX() + currentObject->getWidth()+10,
                                   currentObject->getPosition()->getY() + currentObject->getHeight()+10);
+                    //clearscreen
                     currentObject->validate();
                 }
+                currentObject->draw(screen);
             }
         }
+        Player * getPlayer(){ return this->player;}
         Image * getBackground(){ return fullMap;}
+        Container<Object>* getObjects(){ return this->objects;}
 };
 
 #endif
