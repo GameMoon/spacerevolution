@@ -18,7 +18,7 @@ class TextGenerator
             for(int x = 0; x < fontWidth; x++){
                 for(int y = 0; y < fontSprite->getHeight(); y++){
                     int baseOffset = (x + fontIndex * fontWidth + y * fontSprite->getWidth()) * 4;
-                    int fontImageOffset = (x+y*fontWidth)*4;
+                    int fontImageOffset = (x/2+y/2*fontWidth/2)*4;
 
                    
                     fontPixels[fontImageOffset] = r;//fontSprite->getPixel(baseOffset);
@@ -27,7 +27,7 @@ class TextGenerator
                     fontPixels[fontImageOffset + 3] = fontSprite->getPixel(baseOffset+3);
                 }
             }
-            alphabet.add(new Image(fontPixels,fontWidth,fontSprite->getHeight()));
+            alphabet.add(new Image(fontPixels,fontWidth/2,fontSprite->getHeight()/2));
         }
 
         //Space
@@ -67,7 +67,7 @@ class TextGenerator
     }
 
     int getFontWidth(){
-        return fontWidth;
+        return fontWidth/2;
     }
 };
 

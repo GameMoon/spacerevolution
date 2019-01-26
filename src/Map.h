@@ -92,10 +92,15 @@ class Map{
                    int entityOffset = mapSizeY+1;
                    for( int l = entityOffset; mapLines.at(l)[0] != '-'; l++)
                    {
-                       char * entityText = new char[255];
+                       int startPoint = (int) mapLines.at(l);
+                       int textStart = (int) strrchr( mapLines.at(l),';');
+                       int length = strlen(mapLines.at(l));
+
+                       char *entityText = new char[length - (textStart - startPoint)];
                        int entityID;
                        int cellX;
                        int cellY;
+
                        sscanf(mapLines.at(l), "%d;%d;%d;%[^\t\n]\n", &entityID, &cellX, &cellY, entityText);
 
                        cellX -= 1;

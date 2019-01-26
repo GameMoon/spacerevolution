@@ -55,7 +55,7 @@ class Game
     Game()
     {
         screen = new Screen(WIDTH, HEIGHT);
-        lastTime = 0;
+        lastTime = getTime();
         gameState = 0;
         
         numberOfImages = 0;
@@ -118,9 +118,10 @@ class Game
 
             printf("Entities loaded: %d\n",currentMap->getObjects()->getSize());
 
+            console = new Console(getImage(2));
+
             playerController = new PlayerController(currentMap->getPlayer());
             
-            console = new Console(getImage(2));
             
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
@@ -135,9 +136,10 @@ class Game
             int currentTime = getTime();
             int elapsedTime = currentTime - lastTime;
             lastTime = currentTime;
-            
+
             //Player update
             playerController->update(currentMap->getObjects(),elapsedTime);
+            console->updateFrame(elapsedTime);
 
             //Render
             currentMap->draw(screen);
