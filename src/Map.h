@@ -132,12 +132,12 @@ class Map{
             for(int i = 0;i < objects->getSize(); i++){
                 Object *currentObject = objects->at(i);
                 if(!currentObject->isValid()){
+                    //clearscreen
                     fullMap->draw(0, 0, screen,
                                   currentObject->getPosition()->getX()-10,
                                   currentObject->getPosition()->getY()-10,
                                   currentObject->getPosition()->getX() + currentObject->getWidth()+10,
                                   currentObject->getPosition()->getY() + currentObject->getHeight()+10);
-                    //clearscreen
                     currentObject->validate();
                 }
                 currentObject->draw(screen);

@@ -1,6 +1,8 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
+#define TILE_SIZE 32
+
 class Image{
     protected:
     uint8_t * pixels;

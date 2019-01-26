@@ -6,7 +6,6 @@
 #include <stdint.h>
 #include <math.h>
 
-#define TILE_SIZE 32
 
 class TileController{
     Image * tileSet;
