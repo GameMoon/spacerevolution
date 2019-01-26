@@ -121,12 +121,16 @@ class Game
             console = new Console(getImage(2));
 
             playerController = new PlayerController(currentMap->getPlayer());
-            
-            
+                        
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
 
             printf("Loading finished\n");
+            for(int k = 0;k < 30;k++){
+                console->addText("Hello world!asdaasdasdasdasdadasadasdasdasdasdasdasdadasada",true);
+                console->addText("H1231312312312312312312312312312312312312312312313123dasada",true);
+            }
+           
             gameState = 2;
            
         }

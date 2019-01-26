@@ -1,6 +1,7 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
+#include "Container.h"
 #include "Image.h"
 #include "Screen.h"
 #include "TextGenerator.h"
@@ -15,36 +16,69 @@ class Console
   int timeForFrame;
 
   int outputSize;
+  int lastOutputSize;
+  int bufferLimit;
+  int charLimitInRow;
+
+  Container< Container<Image> > buffer;
 public:
     Console(Image *image) : fontSprite(image)
     {
       text = new TextGenerator(image);
-      xOffset = yOffset = 20;
-      outputSize = 0;
-      timeForFrame = -100;
-
-      characterImages = text->create("> Welcome Traveler!");
+      xOffset = yOffset = 18;
+      outputSize = lastOutputSize = 0;
+      timeForFrame = 0;
+      bufferLimit = 0;
+      charLimitInRow = 43;
     }
 
     void updateFrame(int elapsedTime)
     {
-       
-        if (timeForFrame < 0 && outputSize < characterImages->getSize())
+        if (timeForFrame < 0 && bufferLimit > 0 && lastOutputSize < buffer.at(buffer.getSize() - 1)->getSize())
         {
-            outputSize++;
+            lastOutputSize++;
             timeForFrame = 1000 / 12;
         }
         timeForFrame -= elapsedTime;
     }
+    void addText(const char * string, bool isAnimated = false){
+        buffer.add(text->create(string));
+        if(isAnimated) lastOutputSize = 0;
+        else lastOutputSize = buffer.at(buffer.getSize()-1)->getSize();
+
+        int numberOfLines = 0;
+        int commands = 0;
+        for (int k = buffer.getSize()-1; k >= 0; k--)
+        {
+            numberOfLines += (buffer.at(k)->getSize() / charLimitInRow) + 1;
+            if(numberOfLines <= 28 ) commands++;
+        }
+
+        bufferLimit = commands;
+    }
+
+    void clear(){
+        buffer.clear();
+    }
 
     void draw(Screen * screen){
         screen->clearArea2();
-       
-        for (int k = 0; k < outputSize;k++){
-            characterImages->at(k)->drawConsole(
-                (k % 22) * text->getFontWidth() + xOffset,
-                k / 22 * text->getFontWidth() + yOffset,
-                screen);
+
+        int lineOffset = 0;
+        if(buffer.getSize() == 0) return;
+        for (int line = buffer.getSize() - bufferLimit; line < buffer.getSize(); line++)
+        {
+            if(line != buffer.getSize()-1) outputSize = buffer.at(line)->getSize();
+            else outputSize = lastOutputSize;
+
+            for (int k = 0; k < outputSize; k++)
+            {
+                buffer.at(line)->at(k)->drawConsole(
+                    (k % charLimitInRow) * text->getFontWidth() + xOffset,
+                    k / charLimitInRow * text->getFontWidth() + yOffset + lineOffset,
+                    screen);
+            }
+            lineOffset += (buffer.at(line)->getSize() / charLimitInRow + 1) * text->getFontWidth();
         }
     }
 };

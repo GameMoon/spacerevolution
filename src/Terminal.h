@@ -20,19 +20,19 @@ class Terminal : public Object
     }
     
     void draw(Screen *screen) {
-        for (int x = 0; x < width; x += 1)
-        {
-            for (int y = 0; y < height; y += 1)
-            {
-                screen->draw(
-                    x + this->pos->getX(),
-                    y + this->pos->getY(),
-                    255,
-                    0,
-                    0,
-                    255);
-            }
-        }
+        // for (int x = 0; x < width; x += 1)
+        // {
+        //     for (int y = 0; y < height; y += 1)
+        //     {
+        //         screen->draw(
+        //             x + this->pos->getX(),
+        //             y + this->pos->getY(),
+        //             255,
+        //             0,
+        //             0,
+        //             255);
+        //     }
+        // }
     }
 };
 
