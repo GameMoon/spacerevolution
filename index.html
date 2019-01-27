@@ -12,7 +12,7 @@
     <canvas id="screen" class="canvas" ></canvas>
     <img id="overlay" src="overlay.png" style="position: absolute; top: 0px; left: 0px;"></img>
     <!--<button class="mybutton">Run myFunction</button><br>-->
-    <button class="FullscreenButton">Start Game</button>
+    <!-- <button class="FullscreenButton">Start Game</button> -->
 
     <script>
         var Module = {
@@ -71,11 +71,11 @@
         Module.onRuntimeInitialized = function() {
            
 
-            document.querySelector('.FullscreenButton').addEventListener('click', function () {
-                openFullscreen();
-                StartGame();
-                running = false;
-            });
+            // document.querySelector('.FullscreenButton').addEventListener('click', function () {
+            //     openFullscreen();
+            //     StartGame();
+            //     running = false;
+            // });
             
             document.addEventListener('keydown', function(event) {
                 if(event.getModifierState("Alt") && event.keyCode == 13) {
