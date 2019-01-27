@@ -72,25 +72,25 @@ namespace TileMapEditor
                 }
             }
         }
-        
+
         private void newMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(loadSavePopper.SaveFileAsDialog()) FileIO.WriteFile();
+            if (loadSavePopper.SaveFileAsDialog()) FileIO.WriteFile();
         }
 
         private void saveMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(FileIO.WriteFile()) loadSavePopper.savedSinceLastedit=true;
+            if (FileIO.WriteFile()) loadSavePopper.savedSinceLastedit = true;
         }
 
         private void saveMapAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(loadSavePopper.SaveFileAsDialog()) FileIO.WriteFile();
+            if (loadSavePopper.SaveFileAsDialog()) FileIO.WriteFile();
         }
 
         private void loadMapFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(loadSavePopper.LoadMapFileDialog()) FileIO.ReadMapFile();
+            if (loadSavePopper.LoadMapFileDialog()) FileIO.ReadMapFile();
             reloadView();
         }
 
@@ -148,7 +148,7 @@ namespace TileMapEditor
         private void reloadView()
         {
             this.Text = "TileMapEditor " + loadSavePopper.mapFilePath;
-            if((MapData.LevelList.Count()>0) &&(MapData.LevelList.Count()>loadedLevel))
+            if ((MapData.LevelList.Count() > 0) && (MapData.LevelList.Count() > loadedLevel))
             {
                 label_levelCountNumber.Text = (loadedLevel + 1).ToString();
                 textBox_LevelName.Text = MapData.LevelList[loadedLevel].name;
@@ -169,7 +169,7 @@ namespace TileMapEditor
                                 }
                             }
 
-                            int transformid= MapData.LevelList[loadedLevel].tiledata[j, i] % 12;
+                            int transformid = MapData.LevelList[loadedLevel].tiledata[j, i] % 12;
                             int sanitycheck = transformid;
                             if (sanitycheck < 4)
                             {
@@ -196,23 +196,23 @@ namespace TileMapEditor
                                     InterFaceElements.editarea[j, i].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                                 }
                             }
-                            else MessageBox.Show("Error? TransformId: "+transformid);
+                            else MessageBox.Show("Error? TransformId: " + transformid);
                             InterFaceElements.editarea[j, i].Refresh();
                         }
                     }
                 }
             }
         }
-        
+
         private void SelectTileClick(object sender, EventArgs e)
         {
             selectedtilemodifier = 0;
             HorMir = false;
             vertMir = false;
             PictureBox item = (PictureBox)sender;
-            selectedtileindex=int.Parse(item.Tag.ToString());
+            selectedtileindex = int.Parse(item.Tag.ToString());
             pictureBox_previewTile.Image = TileData.tileSetTiles[selectedtileindex];
-            picboxImage= TileData.tileSetTiles[selectedtileindex];
+            picboxImage = TileData.tileSetTiles[selectedtileindex];
         }
 
         private void MapSelectClickLabel(object sender, EventArgs e)
@@ -335,7 +335,7 @@ namespace TileMapEditor
 
         private void button_rotateLeft_Click(object sender, EventArgs e)
         {
-            int lowlimit=0;
+            int lowlimit = 0;
             if (selectedtilemodifier < 4)
             {
                 lowlimit = 0;
@@ -481,7 +481,7 @@ namespace TileMapEditor
             int levelCount = MapData.LevelList.Count();
             if ((levelCount == 0))
             {
-                if(loadSavePopper.SaveFileAsDialog()) addLevelConditionTrue();
+                if (loadSavePopper.SaveFileAsDialog()) addLevelConditionTrue();
             }
             else addLevelConditionTrue();
             loadSavePopper.savedSinceLastedit = false;
@@ -517,19 +517,19 @@ namespace TileMapEditor
 
         private void textBox_LevelName_TextChanged(object sender, EventArgs e)
         {
-            if(MapData.LevelList.Count()!=0) MapData.LevelList[loadedLevel].name = textBox_LevelName.Text;
+            if (MapData.LevelList.Count() != 0) MapData.LevelList[loadedLevel].name = textBox_LevelName.Text;
             loadSavePopper.savedSinceLastedit = false;
             reloadView();
         }
 
         private void Form_editorWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel= !loadSavePopper.progEnd();
+            e.Cancel = !loadSavePopper.progEnd();
         }
 
         private void button_addEntity_Click(object sender, EventArgs e)
         {
-            if (addmode==false)
+            if (addmode == false)
             {
                 this.Cursor = Cursors.Hand;
                 addmode = true;
@@ -569,11 +569,16 @@ namespace TileMapEditor
 
         private void button_selectentity_Click(object sender, EventArgs e)
         {
-            int refvalue = 0;
-            if (loadSavePopper.enMnemoSelectorWindow(ref refvalue) == DialogResult.OK)
+            if (EntityMenmonics.EnMenmoList.Count() > 0)
             {
-                selectedentity = refvalue;
+                int refvalue = 0;
+                if (loadSavePopper.enMnemoSelectorWindow(ref refvalue) == DialogResult.OK)
+                {
+                    selectedentity = refvalue;
+                }
             }
+            else MessageBox.Show("No Entity Mnemonic file loaded!");
+
         }
     }
 }
