@@ -1,6 +1,6 @@
 0;Player;Default Text
 1;WallHitBox;You shall not pass
-2;asf;deftext
-3;dsf;deftext
-4;sfdsd;deftext
-5;ssdf;deftext
+2;Terminal1;Hacking Challenge Easy
+3;Terminal2;Hacking Challenge Medium
+4;Terminal3;Hacking Challenge Hard
+5;MapEnd;Exit
