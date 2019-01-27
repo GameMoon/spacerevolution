@@ -6,3 +6,4 @@
 5;Terminal2;Hacking Challenge Medium
 6;Terminal3;Hacking Challenge Hard
 7;MapEnd;Exit
+8;Door;Door

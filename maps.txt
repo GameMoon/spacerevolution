@@ -9,7 +9,7 @@ Mission 1 Testlevel
 1;1;1;1;1;1;1;1;1;337;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;229;1;1;1;1;1;1;1;685;517;517;517;517;517;517;613;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;1;1;1;1;1;1;1;1;685;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
-1;1;1;1;1;1;1;1;1;313;349;613;349;553;349;349;325;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
+1;1;1;1;1;1;1;1;1;313;349;613;349;625;349;349;325;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;1;1;1;1;1;1;1;1;376;577;589;577;589;577;589;374;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;1;1;1;1;1;1;1;1;376;577;589;577;589;577;589;374;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;1;1;1;1;1;1;1;1;376;577;589;577;589;577;589;374;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
@@ -70,7 +70,6 @@ Mission 1 Testlevel
 1;16;11;You shall not pass
 1;16;11;You shall not pass
 1;3;3;Hallo team!
-
 1;6;1;You shall not pass
 1;5;1;You shall not pass
 1;7;2;You shall not pass
@@ -120,4 +119,28 @@ Mission 1 Testlevel
 3;17;3;SpaceMarine
 8;14;11;It's locked
 0;3;4;Default Text
+1;18;11;You shall not pass
+1;18;12;You shall not pass
+1;18;13;You shall not pass
+1;18;14;You shall not pass
+1;18;15;You shall not pass
+1;18;15;You shall not pass
+1;18;16;You shall not pass
+1;18;17;You shall not pass
+1;17;17;You shall not pass
+1;16;17;You shall not pass
+1;15;17;You shall not pass
+1;14;17;You shall not pass
+1;13;17;You shall not pass
+1;12;17;You shall not pass
+1;11;17;You shall not pass
+1;10;17;You shall not pass
+1;9;17;You shall not pass
+1;9;16;You shall not pass
+1;9;15;You shall not pass
+1;9;14;You shall not pass
+1;9;13;You shall not pass
+1;9;12;You shall not pass
+1;9;12;You shall not pass
+1;9;11;You shall not pass
 --
