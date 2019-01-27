@@ -113,7 +113,7 @@ class Game
             printf("Images loaded: %d\n",numberOfImages);
                        
             tileController = new TileController(getImage(1));
-            entityController = new EntityController(images,numberOfImages);
+            entityController = new EntityController(images,numberOfImages,tileController);
             currentMap = new Map(tileController,entityController,mapContent,1);
 
             printf("Entities loaded: %d\n",currentMap->getObjects()->getSize());

@@ -24,7 +24,6 @@ Mission 1 Testlevel
 1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;9;1;You shall not pass
-0;3;4;Default Text
 1;10;1;You shall not pass
 1;11;1;You shall not pass
 1;12;1;You shall not pass
@@ -71,9 +70,7 @@ Mission 1 Testlevel
 1;16;11;You shall not pass
 1;16;11;You shall not pass
 1;3;3;Hallo team!
-3;11;3;SpaceMarine
-3;14;3;SpaceMarine
-3;17;3;SpaceMarine
+
 1;6;1;You shall not pass
 1;5;1;You shall not pass
 1;7;2;You shall not pass
@@ -118,4 +115,9 @@ Mission 1 Testlevel
 2;9;13;Danger
 2;9;12;Danger
 2;9;11;Danger
+3;11;3;SpaceMarine
+3;14;3;SpaceMarine
+3;17;3;SpaceMarine
+8;14;11;It's locked
+0;3;4;Default Text
 --

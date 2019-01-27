@@ -7,10 +7,12 @@
 #include "WallHitbox.h"
 #include "Terminal.h"
 #include "NPC.h"
+#include "Door.h"
 
 class EntityController
 {
     Image *images;
+    TileController * tileController;
     int numberOfImages;
 
     Image *getImage(int index)
@@ -24,15 +26,19 @@ class EntityController
     }
 
   public:
-    EntityController(Image *images,int numberOfImages) : images(images) , numberOfImages(numberOfImages){}
+    EntityController(Image *images,int numberOfImages, TileController * tileController) : images(images) , numberOfImages(numberOfImages), tileController(tileController){}
     Object *createObject(int id, Vector2 *pos, int width = 0, int height = 0, Image *img = nullptr, Sprite *sprite = nullptr)
     {
         switch (id)
         {
             //0 Player
             case 1: return new WallHitbox(pos, width, height);
-            case 2: return new Terminal(pos);
+            //2 Youdie
             //3 NPC
+            case 4: return new Terminal(pos);
+            case 5: return new Terminal(pos);
+            case 6: return new Terminal(pos);
+            case 8: return new Door(pos,tileController->getTile(635),tileController->getTile(623));
             default: return nullptr;
         }  
     }   
