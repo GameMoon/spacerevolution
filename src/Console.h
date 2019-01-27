@@ -20,6 +20,7 @@ class Console
   int bufferLimit;
   int charLimitInRow;
   int lastBufferSize;
+  bool drawingDone;
 
   Container< Container<Image> > buffer;
 public:
@@ -32,6 +33,7 @@ public:
       bufferLimit = 0;
       lastBufferSize = 0;
       charLimitInRow = 43;
+      drawingDone = false;
     }
 
     void updateFrame(int elapsedTime)
@@ -55,7 +57,7 @@ public:
             numberOfLines += (buffer.at(k)->getSize() / charLimitInRow) + 1;
             if(numberOfLines <= 28 ) commands++;
         }
-
+        drawingDone = false;
         bufferLimit = commands;
     }
 
@@ -64,9 +66,9 @@ public:
     }
 
     void draw(Screen * screen){
-        if (lastBufferSize == buffer.getSize() && 
-        lastOutputSize == buffer.at(buffer.getSize() - 1)->getSize()) return;
         
+        if(drawingDone) return;
+
         screen->clearArea2();
 
         int lineOffset = 0;
@@ -86,7 +88,9 @@ public:
             }
             lineOffset += (buffer.at(line)->getSize() / charLimitInRow + 1) * text->getFontWidth();
         }
-        lastBufferSize = buffer.getSize();
+        if (lastBufferSize == buffer.getSize() &&  lastOutputSize == buffer.at(buffer.getSize() - 1)->getSize()){
+            drawingDone = true;
+        }
     }
 };
 

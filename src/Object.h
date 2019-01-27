@@ -47,6 +47,7 @@ class Object
         }
         return false;
     }
+    
     Container<Object> getColliding(int newPosX = -1, int newPosY = -1, Object** objects = nullptr, int size = 0){
         if(newPosX == -1) newPosX = this->pos->getX();
         if(newPosY == -1) newPosY = this->pos->getY();
@@ -71,7 +72,7 @@ class Object
     void validate() { valid = true; }
     void invalidate() { valid = false; }
     virtual bool isBlocking(Object * source) { return false; }
-    virtual void activate(Object * source){   printf("%s\n", this->getText()); }
+    virtual void activate(Object * source){   /*printf("%s\n", this->getText());*/ }
 };
 
 #endif

@@ -12,6 +12,7 @@
 #include "Screen.h"
 #include "PlayerController.h"
 #include "TileController.h"
+#include "ConsoleController.h"
 #include "Container.h"
 #include "Map.h"
 #include "Console.h"
@@ -35,6 +36,7 @@ class Game
 
     PlayerController * playerController;
     EntityController * entityController;
+    ConsoleController * consoleController;
     Console * console;
     Player *p;
     TileController *tileController;
@@ -115,12 +117,13 @@ class Game
             tileController = new TileController(getImage(1));
             entityController = new EntityController(images,numberOfImages,tileController);
             currentMap = new Map(tileController,entityController,mapContent,1);
-
-            printf("Entities loaded: %d\n",currentMap->getObjects()->getSize());
+            printf("Entities loaded: %d\n", currentMap->getObjects()->getSize());
 
             console = new Console(getImage(2));
 
             playerController = new PlayerController(currentMap->getPlayer());
+
+            consoleController = new ConsoleController(console,playerController,currentMap->getObjects());
                         
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
@@ -143,7 +146,7 @@ class Game
 
             //Player update
             playerController->update(currentMap->getObjects(),elapsedTime);
-            console->updateFrame(elapsedTime);
+            consoleController->update(elapsedTime);
             currentMap->update(elapsedTime);
 
             //Render

@@ -12,44 +12,33 @@ class PlayerController
   
     int speedX;
     int speedY;
-    int pressedButtons[4];
+    // int pressedButtons[4];
+
+    bool consoleMode;
+    int * pressedButtons;
 
   public:
-    PlayerController(Player *p) : player(p){ speedX = 0; speedY = 0;}
+    PlayerController(Player *p) : player(p){ speedX = 0; speedY = 0; consoleMode = false; pressedButtons = new int[200];}
+    ~PlayerController(){ delete pressedButtons;}
 
     void handleKeyboard(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
     {
-        if (strcmp(e->code, "KeyW") == 0)
-        {
-            if (eventType == 2) pressedButtons[0] = 1;
-            else pressedButtons[0] = 0;
-        }
-        else if (strcmp(e->code, "KeyS") == 0)
-        {
-            if (eventType == 2) pressedButtons[1] = 1;
-            else pressedButtons[1] = 0;
-        }
-
-        if (strcmp(e->code, "KeyA") == 0)
-        {
-            if (eventType == 2) pressedButtons[2] = 1;
-            else pressedButtons[2] = 0;
-        }
-        else if (strcmp(e->code, "KeyD") == 0)
-        {
-            if (eventType == 2) pressedButtons[3] = 1;
-            else pressedButtons[3] = 0;
-        }
+        char c = e->key[0];
+        if (eventType == 2)  pressedButtons[c] = 1;
+        else  pressedButtons[c] = 0;
     }
 
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
     void update(Container<Object>* objectContainer,int elapsedTime)
     {
 
-        if(pressedButtons[0] == 1) speedY = -player->getSpeed();
-        if(pressedButtons[1] == 1) speedY = player->getSpeed();
-        if(pressedButtons[2] == 1) speedX = -player->getSpeed();
-        if(pressedButtons[3] == 1) speedX = player->getSpeed();
+        if(pressedButtons[66] == 1) consoleMode = false; //Backspace
+        if(consoleMode) return;
+
+        if(pressedButtons[119] == 1) speedY = -player->getSpeed(); //w
+        if(pressedButtons[115] == 1) speedY = player->getSpeed(); //s
+        if(pressedButtons[97] == 1) speedX = -player->getSpeed(); //a
+        if(pressedButtons[100] == 1) speedX = player->getSpeed(); //d
 
         // if (speedY == 0 && speedX == 0) return;
 
@@ -59,13 +48,14 @@ class PlayerController
                 objectContainer->getAll(),
                 objectContainer->getSize()))
         {
-            
             player->move(speedX, speedY, elapsedTime);
         }
         else  player->move(0, 0, elapsedTime);
         
         if (speedY != 0 || speedX != 0) speedX = speedY = 0;
     }
+    int* getPressedKeys(){ return pressedButtons;}
+    void setConsoleMode(bool active){ consoleMode = active;}
 };
 
 #endif

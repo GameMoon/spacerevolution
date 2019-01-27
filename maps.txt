@@ -114,10 +114,11 @@ Mission 1 Testlevel
 2;9;13;Danger
 2;9;12;Danger
 2;9;11;Danger
+8;14;11;It's locked
+4;10;2;Default Text
 3;11;3;SpaceMarine
 3;14;3;SpaceMarine
 3;17;3;SpaceMarine
-8;14;11;It's locked
 0;3;4;Default Text
 1;18;11;You shall not pass
 1;18;12;You shall not pass

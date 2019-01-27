@@ -19,6 +19,7 @@ class Map{
     Container<Object> * objects;
     Player * player;
     Container<NPC> npcs;
+    Container<Terminal> * terminals;
 
     void generateBackgroundImage(){
         uint8_t *backgroundImage = new uint8_t[SCREEN1_WIDTH * SCREEN1_HEIGHT * 4];
@@ -53,6 +54,7 @@ class Map{
             numberOfTiles = 32*24;
             groundTiles = new int[numberOfTiles];
             objects = new Container<Object>();
+            terminals = new Container<Terminal>();
 
             loadLevel(file,level);
             generateBackgroundImage();
@@ -123,6 +125,10 @@ class Map{
                                new Vector2(cellX * TILE_SIZE, cellY * TILE_SIZE),
                                TILE_SIZE,
                                TILE_SIZE);
+                            /*if(entityID == 4){
+                               Terminal * newTerminal = (Terminal) newObject;
+                               terminals->add(newTerminal);
+                            }*/
                        }
                        
                        if(newObject != nullptr){

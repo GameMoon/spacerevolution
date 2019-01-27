@@ -8,6 +8,7 @@
 #include "Terminal.h"
 #include "NPC.h"
 #include "Door.h"
+#include "Terminal.h"
 
 class EntityController
 {
@@ -35,10 +36,11 @@ class EntityController
             case 1: return new WallHitbox(pos, width, height);
             //2 Youdie
             //3 NPC
-            case 4: return new Terminal(pos);
-            case 5: return new Terminal(pos);
-            case 6: return new Terminal(pos);
-            case 8: return new Door(pos,tileController->getTile(635),tileController->getTile(623));
+            case 4: return new Terminal(pos,tileController->getTile(649));
+            case 5: return new Terminal(pos,tileController->getTile(661));
+            case 6: return new Terminal(pos,tileController->getTile(673));
+
+            case 8: return new Door(pos,tileController->getTile(625),tileController->getTile(613));
             default: return nullptr;
         }  
     }   
