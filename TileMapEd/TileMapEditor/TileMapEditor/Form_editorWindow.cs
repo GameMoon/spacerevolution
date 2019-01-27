@@ -16,6 +16,7 @@ namespace TileMapEditor
         public static int tileGridHeigth = 24;
         public static int tileSizeInPixels = 32;
 
+        public static int selectedentity = 0;
         public bool vertMir = false;
         public bool HorMir = false;
         public bool removemode = false;
@@ -279,6 +280,8 @@ namespace TileMapEditor
                 }
             }
             loadSavePopper.savedSinceLastedit = false;
+            addmode = false;
+            removemode = false;
             this.Cursor = Cursors.Default;
             reloadView();
         }
@@ -314,21 +317,13 @@ namespace TileMapEditor
             }
             else
             {
-                int entid = 0;
-                if (loadSavePopper.enMnemoSelectorWindow(ref entid) == DialogResult.OK)
-                {
-                    if (entid<(EntityMenmonics.EnMenmoList.Count()))
-                    {
-                        EntityData attolt = new EntityData();
-                        attolt.xcoord = int.Parse(itemtag[0]);
-                        attolt.ycoord = int.Parse(itemtag[1]);
-                        attolt.entid = EntityMenmonics.EnMenmoList[entid].id;
-                        attolt.speechtext = EntityMenmonics.EnMenmoList[entid].defaultText;
-                        MapData.LevelList[loadedLevel].entities.Add(attolt);
-                        loadSavePopper.savedSinceLastedit = false;
-                    }
-                    else newEntityAdd(itemtag);
-                }
+                EntityData attolt = new EntityData();
+                attolt.xcoord = int.Parse(itemtag[0]);
+                attolt.ycoord = int.Parse(itemtag[1]);
+                attolt.entid = EntityMenmonics.EnMenmoList[selectedentity].id;
+                attolt.speechtext = EntityMenmonics.EnMenmoList[selectedentity].defaultText;
+                MapData.LevelList[loadedLevel].entities.Add(attolt);
+                loadSavePopper.savedSinceLastedit = false;
             }
             reloadView();
         }
@@ -563,6 +558,7 @@ namespace TileMapEditor
             this.Cursor = Cursors.Hand;
             addmode = true;
             removemode = true;
+            button_addEntity.Text = "Add Entity Mode: OFF";
         }
 
         private void toolStripMenuItem_loadentMnemo_Click(object sender, EventArgs e)
@@ -573,7 +569,11 @@ namespace TileMapEditor
 
         private void button_selectentity_Click(object sender, EventArgs e)
         {
-
+            int refvalue = 0;
+            if (loadSavePopper.enMnemoSelectorWindow(ref refvalue) == DialogResult.OK)
+            {
+                selectedentity = refvalue;
+            }
         }
     }
 }
