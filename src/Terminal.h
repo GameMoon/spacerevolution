@@ -22,9 +22,8 @@ class Terminal : public Object
             activated = true;
             printf("Terminal activated\n");
         }
-       
     }
-    
+   
     void draw(Screen *screen) {
         // for (int x = 0; x < width; x += 1)
         // {
