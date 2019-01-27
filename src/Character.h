@@ -27,6 +27,7 @@ class Character : public Object
         if(x == 0 && y == 0){
             sprite->setCurrentFrame(0); //standing animation
             sprite->setCurrentMovement(8); //standing animation
+            this->invalidate();
         }
         else{
             this->pos->setX(x+pos->getX());
