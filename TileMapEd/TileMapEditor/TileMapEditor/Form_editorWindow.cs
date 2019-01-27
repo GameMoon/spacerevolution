@@ -257,7 +257,6 @@ namespace TileMapEditor
                 {
                     addEntity(itemtag);
                 }
-                addmode = false;
             }
             else
             {
@@ -331,7 +330,6 @@ namespace TileMapEditor
                     else newEntityAdd(itemtag);
                 }
             }
-            this.Cursor = Cursors.Default;
             reloadView();
         }
 
@@ -536,9 +534,21 @@ namespace TileMapEditor
 
         private void button_addEntity_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.Hand;
-            addmode = true;
-            removemode = false;
+            if (addmode==false)
+            {
+                this.Cursor = Cursors.Hand;
+                addmode = true;
+                removemode = false;
+                button_addEntity.Text = "Add Entity Mode: ON";
+            }
+            else
+            {
+                this.Cursor = Cursors.Default;
+                addmode = false;
+                removemode = false;
+                button_addEntity.Text = "Add Entity Mode: OFF";
+            }
+
         }
 
         public static bool szamEVagyNem(string inString)
@@ -559,6 +569,11 @@ namespace TileMapEditor
         {
             if (loadSavePopper.LoadEntityMnemo()) if (!FileIO.OpenMnemoFile()) MessageBox.Show("Bad Entity Mnemonic File");
                 else;
+        }
+
+        private void button_selectentity_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

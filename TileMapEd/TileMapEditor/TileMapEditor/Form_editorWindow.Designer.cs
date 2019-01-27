@@ -38,6 +38,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.loadMapFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTilesetFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem_loadentMnemo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer_Main = new System.Windows.Forms.SplitContainer();
@@ -57,8 +59,7 @@
             this.button_addLevel = new System.Windows.Forms.Button();
             this.button_addEntity = new System.Windows.Forms.Button();
             this.button_removeentity = new System.Windows.Forms.Button();
-            this.toolStripMenuItem_loadentMnemo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.button_selectentity = new System.Windows.Forms.Button();
             this.toolStrip_MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
             this.splitContainer_Main.Panel1.SuspendLayout();
@@ -75,7 +76,7 @@
             this.toolStripDropDownButton_FileMenu});
             this.toolStrip_MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_MenuStrip.Name = "toolStrip_MenuStrip";
-            this.toolStrip_MenuStrip.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip_MenuStrip.Size = new System.Drawing.Size(932, 25);
             this.toolStrip_MenuStrip.TabIndex = 0;
             this.toolStrip_MenuStrip.Text = "toolStrip_MenuStrip";
             // 
@@ -145,6 +146,18 @@
             this.loadTilesetFileToolStripMenuItem.Text = "Load Tileset File..";
             this.loadTilesetFileToolStripMenuItem.Click += new System.EventHandler(this.loadTilesetFileToolStripMenuItem_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(197, 6);
+            // 
+            // toolStripMenuItem_loadentMnemo
+            // 
+            this.toolStripMenuItem_loadentMnemo.Name = "toolStripMenuItem_loadentMnemo";
+            this.toolStripMenuItem_loadentMnemo.Size = new System.Drawing.Size(200, 22);
+            this.toolStripMenuItem_loadentMnemo.Text = "Load Entity Mnemonic..";
+            this.toolStripMenuItem_loadentMnemo.Click += new System.EventHandler(this.toolStripMenuItem_loadentMnemo_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -174,7 +187,7 @@
             // 
             this.splitContainer_Main.Panel2.AutoScroll = true;
             this.splitContainer_Main.Panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.splitContainer_Main.Size = new System.Drawing.Size(800, 425);
+            this.splitContainer_Main.Size = new System.Drawing.Size(932, 425);
             this.splitContainer_Main.SplitterDistance = 151;
             this.splitContainer_Main.TabIndex = 1;
             // 
@@ -318,7 +331,7 @@
             // 
             // button_deleteLevel
             // 
-            this.button_deleteLevel.Location = new System.Drawing.Point(713, 1);
+            this.button_deleteLevel.Location = new System.Drawing.Point(535, 1);
             this.button_deleteLevel.Name = "button_deleteLevel";
             this.button_deleteLevel.Size = new System.Drawing.Size(75, 23);
             this.button_deleteLevel.TabIndex = 7;
@@ -328,7 +341,7 @@
             // 
             // button_addLevel
             // 
-            this.button_addLevel.Location = new System.Drawing.Point(632, 1);
+            this.button_addLevel.Location = new System.Drawing.Point(454, 1);
             this.button_addLevel.Name = "button_addLevel";
             this.button_addLevel.Size = new System.Drawing.Size(75, 23);
             this.button_addLevel.TabIndex = 8;
@@ -338,17 +351,17 @@
             // 
             // button_addEntity
             // 
-            this.button_addEntity.Location = new System.Drawing.Point(454, 1);
+            this.button_addEntity.Location = new System.Drawing.Point(697, 1);
             this.button_addEntity.Name = "button_addEntity";
-            this.button_addEntity.Size = new System.Drawing.Size(75, 23);
+            this.button_addEntity.Size = new System.Drawing.Size(123, 23);
             this.button_addEntity.TabIndex = 9;
-            this.button_addEntity.Text = "Add Entity..";
+            this.button_addEntity.Text = "Add Entity Mode: OFF";
             this.button_addEntity.UseVisualStyleBackColor = true;
             this.button_addEntity.Click += new System.EventHandler(this.button_addEntity_Click);
             // 
             // button_removeentity
             // 
-            this.button_removeentity.Location = new System.Drawing.Point(535, 1);
+            this.button_removeentity.Location = new System.Drawing.Point(826, 1);
             this.button_removeentity.Name = "button_removeentity";
             this.button_removeentity.Size = new System.Drawing.Size(91, 23);
             this.button_removeentity.TabIndex = 10;
@@ -356,23 +369,22 @@
             this.button_removeentity.UseVisualStyleBackColor = true;
             this.button_removeentity.Click += new System.EventHandler(this.button_removeentity_Click);
             // 
-            // toolStripMenuItem_loadentMnemo
+            // button_selectentity
             // 
-            this.toolStripMenuItem_loadentMnemo.Name = "toolStripMenuItem_loadentMnemo";
-            this.toolStripMenuItem_loadentMnemo.Size = new System.Drawing.Size(200, 22);
-            this.toolStripMenuItem_loadentMnemo.Text = "Load Entity Mnemonic..";
-            this.toolStripMenuItem_loadentMnemo.Click += new System.EventHandler(this.toolStripMenuItem_loadentMnemo_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(197, 6);
+            this.button_selectentity.Location = new System.Drawing.Point(616, 1);
+            this.button_selectentity.Name = "button_selectentity";
+            this.button_selectentity.Size = new System.Drawing.Size(75, 23);
+            this.button_selectentity.TabIndex = 11;
+            this.button_selectentity.Text = "Select Entity";
+            this.button_selectentity.UseVisualStyleBackColor = true;
+            this.button_selectentity.Click += new System.EventHandler(this.button_selectentity_Click);
             // 
             // Form_editorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(932, 450);
+            this.Controls.Add(this.button_selectentity);
             this.Controls.Add(this.button_removeentity);
             this.Controls.Add(this.button_addEntity);
             this.Controls.Add(this.button_addLevel);
@@ -436,6 +448,7 @@
         private System.Windows.Forms.Button button_removeentity;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_loadentMnemo;
+        private System.Windows.Forms.Button button_selectentity;
     }
 }
 
