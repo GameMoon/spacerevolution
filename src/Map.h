@@ -18,6 +18,7 @@ class Map{
     Image* fullMap;
     Container<Object> * objects;
     Player * player;
+    Container<NPC> npcs;
 
     void generateBackgroundImage(){
         uint8_t *backgroundImage = new uint8_t[SCREEN1_WIDTH * SCREEN1_HEIGHT * 4];
@@ -54,7 +55,6 @@ class Map{
             objects = new Container<Object>();
 
             loadLevel(file,level);
-
             generateBackgroundImage();
         }
 
@@ -109,8 +109,13 @@ class Map{
                        
                        if (entityID == 0)
                        {
-                           player = entityController->createPlayer(new Vector2(cellX * 32, (cellY) * 32));
+                           player = entityController->createPlayer(new Vector2(cellX * TILE_SIZE, (cellY)*TILE_SIZE));
                            newObject = player;
+                       }
+                       else if(entityID == 3){
+                           NPC * npc = entityController->createNPC(new Vector2(cellX * TILE_SIZE, (cellY)*TILE_SIZE));
+                           npcs.add(npc);
+                           newObject = npc;
                        }
                        else{
                            newObject = entityController->createObject(
@@ -137,13 +142,18 @@ class Map{
                 if(!currentObject->isValid()){
                     //clearscreen
                     fullMap->draw(0, 0, screen,
-                                  currentObject->getPosition()->getX()-10,
-                                  currentObject->getPosition()->getY()-10,
-                                  currentObject->getPosition()->getX() + currentObject->getWidth()+10,
-                                  currentObject->getPosition()->getY() + currentObject->getHeight()+10);
+                                  currentObject->getPosition()->getX()-3,
+                                  currentObject->getPosition()->getY()-3,
+                                  currentObject->getPosition()->getX() + currentObject->getWidth()+3,
+                                  currentObject->getPosition()->getY() + currentObject->getHeight()+3);
                     currentObject->validate();
                 }
                 currentObject->draw(screen);
+            }
+        }
+        void update(int elapsedTime){
+            for(int k = 0; k < npcs.getSize();k++){
+                npcs.at(k)->update(elapsedTime,objects);
             }
         }
         Player * getPlayer(){ return this->player;}

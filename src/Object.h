@@ -41,7 +41,7 @@ class Object
               newPosY < oPos->getY() + object->getHeight() && newPosY + height > oPos->getY())
           { 
             object->activate(this);
-            if(object->isBlocking()) return true;
+            if(object->isBlocking(this)) return true;
           }
         }
         return false;
@@ -49,7 +49,7 @@ class Object
     bool isValid() { return valid; }
     void validate() { valid = true; }
     void invalidate() { valid = false; }
-    virtual bool isBlocking(){ return false; }
+    virtual bool isBlocking(Object * source) { return false; }
     virtual void activate(Object * source){   printf("%s\n", this->getText()); }
 };
 

@@ -8,7 +8,10 @@ class Player : public Character{
         Player(Vector2 * pos, Sprite * sprite) : Character(pos,sprite){ 
             this->id = 0;
         }
-       
+        bool isBlocking(Object * source)
+        {
+            return true;
+        }
 };
 
 #endif

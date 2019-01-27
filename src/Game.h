@@ -19,7 +19,7 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
-#define IMAGES_TO_LOAD 3
+#define IMAGES_TO_LOAD 4
 #define OTHER_FILES_TO_LOAD 1
 
 class Game
@@ -113,7 +113,7 @@ class Game
             printf("Images loaded: %d\n",numberOfImages);
                        
             tileController = new TileController(getImage(1));
-            entityController = new EntityController(images);
+            entityController = new EntityController(images,numberOfImages);
             currentMap = new Map(tileController,entityController,mapContent,1);
 
             printf("Entities loaded: %d\n",currentMap->getObjects()->getSize());
@@ -144,6 +144,7 @@ class Game
             //Player update
             playerController->update(currentMap->getObjects(),elapsedTime);
             console->updateFrame(elapsedTime);
+            currentMap->update(elapsedTime);
 
             //Render
             currentMap->draw(screen);

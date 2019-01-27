@@ -6,17 +6,23 @@
 
 class Terminal : public Object
 {
-   
+   bool activated;
   public:
     Terminal(Vector2 *pos) {
         this->pos = pos;
         this->width = TILE_SIZE;
         this->height = TILE_SIZE;
         this->id = 2;
+
+        activated = false;
     }
 
     void activate(Object* source){
-        
+        if(!activated){
+            activated = true;
+            printf("Terminal activated\n");
+        }
+       
     }
     
     void draw(Screen *screen) {

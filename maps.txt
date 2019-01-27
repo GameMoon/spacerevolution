@@ -25,6 +25,9 @@ Mission 1 Testlevel
 1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
 1;9;1;You shall not pass
 0;3;4;Default Text
+3;10;3;Default Text
+3;14;3;Default Text
+3;17;3;Default Text
 1;10;1;You shall not pass
 1;11;1;You shall not pass
 1;12;1;You shall not pass

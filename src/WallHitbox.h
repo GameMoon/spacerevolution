@@ -16,7 +16,7 @@ class WallHitbox : public Object
         this->height = height;
     }
     
-    bool isBlocking(){
+    bool isBlocking(Object * source){
         return true;
     }
     void draw(Screen * screen){}

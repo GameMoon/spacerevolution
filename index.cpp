@@ -108,6 +108,7 @@ int main(void)
     loadImage("assets/characters/mcharanimall.png",0);
     loadImage("assets/tileset.png",1);
     loadImage("assets/masikfont.png",2);
+    loadImage("assets/characters/joskaanimall.png", 3);
     loadMap("maps.txt");
 
     
