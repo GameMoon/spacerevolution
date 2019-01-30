@@ -323,30 +323,30 @@ Mission 2 - Save Your Friends - Your Mission is to rescue your fellow space mari
 1;21;16;You shall not pass
 --
 Mission 3 - Get The Data - Hack into the Servers to aquire critical data that may help your cause.
-289;349;349;349;349;349;349;349;349;301;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
-337;517;517;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;460;433;433;433;433;433;433;433;433;433;469;1;1
-337;517;517;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;433;517;637;529;517;637;529;517;637;529;433;1;1
-337;517;109;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;433;517;517;517;517;517;517;517;517;517;433;49;38
-337;517;517;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;433;517;637;529;517;637;529;517;637;529;433;38;50
-337;517;517;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;433;517;517;517;517;517;517;517;517;517;433;50;50
-337;517;517;517;517;517;517;517;517;337;1;1;1;1;1;1;1;1;1;433;517;637;529;517;637;529;517;637;529;433;50;50
-313;349;349;349;349;349;349;349;349;325;1;1;1;1;1;1;1;1;1;433;517;517;517;517;517;517;517;517;517;433;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;471;433;433;433;433;433;433;433;433;433;458;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;361;373;373;373;373;373;362;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;374;529;389;637;389;637;374;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;374;529;389;637;389;637;374;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;374;529;389;637;389;637;374;1;50;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;374;529;389;637;389;637;51;51;39;50
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;374;529;389;637;389;637;51;51;51;39
-1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;364;373;373;373;373;373;363;1;1;1
+289;349;349;349;349;349;349;349;349;301;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
+337;169;517;517;517;517;517;517;529;337;577;589;577;589;577;589;577;589;577;460;433;433;433;433;433;433;433;433;433;469;577;589
+337;517;517;517;517;517;517;517;517;337;577;589;577;589;577;589;577;589;577;433;517;637;529;517;637;529;517;637;529;433;577;589
+337;517;109;517;517;517;517;517;517;337;373;373;373;373;373;373;373;373;373;433;517;517;517;517;517;517;517;517;661;49;49;38
+337;517;517;517;517;517;517;517;517;625;517;517;517;517;517;517;517;517;517;625;517;637;529;517;637;529;517;637;529;49;38;50
+337;169;517;517;517;517;517;517;661;337;517;517;517;517;517;517;517;517;517;433;517;517;517;517;517;517;517;517;517;433;50;50
+337;169;169;517;517;517;517;517;517;337;373;373;373;362;517;361;373;373;373;433;517;637;529;517;637;529;517;637;529;433;50;50
+313;349;349;349;349;349;349;349;349;325;577;589;577;374;517;374;577;589;577;433;517;517;517;517;517;517;517;517;517;433;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;374;517;374;577;589;577;471;433;433;433;433;433;433;433;433;433;458;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;374;517;374;577;589;577;589;577;589;577;589;577;589;577;589;577;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;374;517;374;577;589;577;589;577;589;577;589;577;589;577;589;577;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;374;517;374;577;481;493;493;493;493;482;589;577;589;577;589;577;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;374;517;364;229;496;505;505;169;505;494;589;577;589;577;589;577;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;374;517;517;613;505;505;505;505;169;494;589;577;589;577;589;577;589;50;50
+361;373;373;373;373;373;373;373;362;589;577;589;577;374;517;361;229;496;505;505;505;505;494;589;577;589;577;589;577;589;50;50
+376;169;169;517;517;169;517;517;374;373;373;373;373;363;517;374;577;484;495;495;495;495;483;589;577;589;577;589;577;589;50;50
+376;169;121;517;517;517;517;517;625;517;517;517;517;517;517;374;577;589;577;589;577;589;577;589;577;589;577;589;577;589;50;50
+376;517;517;517;169;517;637;529;374;373;373;373;373;373;373;363;577;589;577;589;577;589;361;373;373;373;373;373;362;589;50;50
+364;373;373;373;373;373;373;373;363;589;577;589;577;589;577;589;577;589;577;589;577;589;374;529;389;637;389;637;374;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;374;529;389;637;389;637;374;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;374;529;389;637;389;637;374;589;50;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;374;529;389;637;389;637;51;51;39;50
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;374;529;389;637;389;637;51;51;51;39
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;364;373;373;373;373;373;363;589;577;589
 0;3;4;Default Text
 3;8;3;SpaceMarine
 3;6;3;SpaceMarine
@@ -385,10 +385,199 @@ Mission 3 - Get The Data - Hack into the Servers to aquire critical data that ma
 1;10;8;You shall not pass
 1;10;7;You shall not pass
 1;10;6;You shall not pass
-1;10;5;You shall not pass
-1;10;5;You shall not pass
 1;10;4;You shall not pass
 1;10;3;You shall not pass
 1;10;2;You shall not pass
 1;10;2;You shall not pass
+3;19;13;SpaceMarine
+1;11;4;You shall not pass
+1;12;4;You shall not pass
+1;12;4;You shall not pass
+1;13;4;You shall not pass
+1;14;4;You shall not pass
+1;14;4;You shall not pass
+1;15;4;You shall not pass
+1;16;4;You shall not pass
+1;17;4;You shall not pass
+1;18;4;You shall not pass
+1;19;4;You shall not pass
+1;11;7;You shall not pass
+1;12;7;You shall not pass
+1;13;7;You shall not pass
+1;14;7;You shall not pass
+1;14;7;You shall not pass
+1;14;8;You shall not pass
+1;14;9;You shall not pass
+1;14;10;You shall not pass
+1;14;11;You shall not pass
+1;14;12;You shall not pass
+1;14;13;You shall not pass
+1;14;13;You shall not pass
+1;14;14;You shall not pass
+1;14;15;You shall not pass
+1;14;16;You shall not pass
+1;13;16;You shall not pass
+1;12;16;You shall not pass
+1;11;16;You shall not pass
+1;10;16;You shall not pass
+1;9;16;You shall not pass
+1;9;15;You shall not pass
+1;8;15;You shall not pass
+1;7;15;You shall not pass
+1;7;15;You shall not pass
+1;6;15;You shall not pass
+1;5;15;You shall not pass
+1;4;15;You shall not pass
+1;3;15;You shall not pass
+1;2;15;You shall not pass
+1;2;15;You shall not pass
+1;1;15;You shall not pass
+1;1;16;You shall not pass
+1;1;17;You shall not pass
+1;1;18;You shall not pass
+1;1;19;You shall not pass
+1;3;19;You shall not pass
+1;5;19;You shall not pass
+1;6;19;You shall not pass
+1;7;19;You shall not pass
+1;9;19;You shall not pass
+1;9;19;You shall not pass
+1;9;18;You shall not pass
+1;7;19;You shall not pass
+1;8;19;You shall not pass
+1;4;19;You shall not pass
+1;2;19;You shall not pass
+1;10;18;You shall not pass
+1;11;18;You shall not pass
+1;14;18;You shall not pass
+1;15;18;You shall not pass
+1;16;18;You shall not pass
+1;16;17;You shall not pass
+1;16;16;You shall not pass
+1;16;16;You shall not pass
+1;16;15;You shall not pass
+1;13;18;You shall not pass
+1;12;18;You shall not pass
+1;17;15;You shall not pass
+1;17;13;You shall not pass
+1;16;13;You shall not pass
+1;16;12;You shall not pass
+1;16;12;You shall not pass
+1;16;11;You shall not pass
+1;16;10;You shall not pass
+1;16;9;You shall not pass
+1;16;9;You shall not pass
+1;16;8;You shall not pass
+1;16;7;You shall not pass
+1;17;7;You shall not pass
+1;17;7;You shall not pass
+1;18;7;You shall not pass
+1;19;7;You shall not pass
+1;17;12;You shall not pass
+1;17;11;You shall not pass
+1;18;11;You shall not pass
+1;19;11;You shall not pass
+1;20;11;You shall not pass
+1;21;11;You shall not pass
+1;22;11;You shall not pass
+1;23;11;You shall not pass
+1;23;11;You shall not pass
+1;24;12;You shall not pass
+1;24;11;You shall not pass
+1;24;13;You shall not pass
+1;24;14;You shall not pass
+1;24;15;You shall not pass
+1;24;15;You shall not pass
+1;24;16;You shall not pass
+1;24;17;You shall not pass
+1;23;17;You shall not pass
+1;22;17;You shall not pass
+1;21;17;You shall not pass
+1;21;17;You shall not pass
+1;20;17;You shall not pass
+1;19;17;You shall not pass
+1;18;17;You shall not pass
+1;17;17;You shall not pass
+1;17;16;You shall not pass
+1;17;14;You shall not pass
+1;21;13;You shall not pass
+1;22;14;You shall not pass
+1;20;4;You shall not pass
+1;20;3;You shall not pass
+1;20;2;You shall not pass
+1;21;2;You shall not pass
+1;22;2;You shall not pass
+1;23;2;You shall not pass
+1;24;2;You shall not pass
+1;24;2;You shall not pass
+1;25;2;You shall not pass
+1;26;2;You shall not pass
+1;27;2;You shall not pass
+1;28;2;You shall not pass
+1;29;2;You shall not pass
+1;29;2;You shall not pass
+1;30;3;You shall not pass
+1;30;4;You shall not pass
+1;30;2;You shall not pass
+1;30;5;You shall not pass
+1;30;6;You shall not pass
+1;30;7;You shall not pass
+1;30;7;You shall not pass
+1;30;8;You shall not pass
+1;30;9;You shall not pass
+1;29;9;You shall not pass
+1;29;9;You shall not pass
+1;28;9;You shall not pass
+1;27;9;You shall not pass
+1;27;9;You shall not pass
+1;26;9;You shall not pass
+1;26;9;You shall not pass
+1;25;9;You shall not pass
+1;24;9;You shall not pass
+1;23;9;You shall not pass
+1;23;9;You shall not pass
+1;22;9;You shall not pass
+1;21;9;You shall not pass
+1;20;9;You shall not pass
+1;20;8;You shall not pass
+1;20;7;You shall not pass
+1;20;6;You shall not pass
+1;20;6;You shall not pass
+1;22;3;You shall not pass
+1;23;3;You shall not pass
+1;22;5;You shall not pass
+1;23;5;You shall not pass
+1;22;7;You shall not pass
+1;23;7;You shall not pass
+1;25;7;You shall not pass
+1;26;7;You shall not pass
+1;28;7;You shall not pass
+1;30;7;You shall not pass
+1;29;7;You shall not pass
+1;29;5;You shall not pass
+1;28;5;You shall not pass
+1;26;5;You shall not pass
+1;25;5;You shall not pass
+1;25;3;You shall not pass
+1;26;3;You shall not pass
+1;28;3;You shall not pass
+1;29;3;You shall not pass
+1;9;2;You shall not pass
+1;2;2;You shall not pass
+1;2;6;You shall not pass
+1;2;7;You shall not pass
+1;3;7;You shall not pass
+1;3;16;You shall not pass
+1;2;16;You shall not pass
+1;2;17;You shall not pass
+1;5;18;You shall not pass
+1;6;16;You shall not pass
+1;7;18;You shall not pass
+1;8;18;You shall not pass
+4;9;6;Hacking Challenge Easy
+8;10;5;Door
+8;20;5;Door
+4;29;4;Hacking Challenge Easy
+8;9;17;Door
+7;3;17;Exit
 --
