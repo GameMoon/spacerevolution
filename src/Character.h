@@ -18,6 +18,8 @@ class Character : public Object
         this->sprite = sprite;
         this->width = this->sprite->getFrameWidth();
         this->height = this->sprite->getFrameHeight();
+        this->hitboxPos = new Vector2(pos->getX(),pos->getY());
+        this->hitBoxHeight = height / 2;
         speed = 1;
     }
     ~Character(){ delete sprite;}
@@ -32,6 +34,9 @@ class Character : public Object
         else{
             this->pos->setX(x+pos->getX());
             this->pos->setY(y+pos->getY());
+
+            this->hitboxPos->setX(this->pos->getX());
+            this->hitboxPos->setY(this->pos->getY()+hitBoxHeight);
             
             if(x > 0 && y > 0) sprite->setCurrentMovement(5);
             else if(x < 0 && y < 0) sprite->setCurrentMovement(1);

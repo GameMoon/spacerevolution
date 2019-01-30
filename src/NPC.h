@@ -27,8 +27,8 @@ class NPC : public Character
     }
     void update(int elapsedTime,Container<Object>* objectContainer){
         if (!this->isBlocked(
-                this->getPosition()->getX() + speedX,
-                this->getPosition()->getY() + speedY,
+                this->hitboxPos->getX() + speedX,
+                this->hitboxPos->getY() + speedY,
                 objectContainer->getAll(),
                 objectContainer->getSize()))
         {

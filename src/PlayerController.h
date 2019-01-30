@@ -45,8 +45,8 @@ class PlayerController
         // if (speedY == 0 && speedX == 0) return;
 
         if (!player->isBlocked(
-                player->getPosition()->getX() + speedX,
-                player->getPosition()->getY() + speedY,
+                player->getHitBoxPos()->getX() + speedX,
+                player->getHitBoxPos()->getY() + speedY,
                 objectContainer->getAll(),
                 objectContainer->getSize()))
         {
