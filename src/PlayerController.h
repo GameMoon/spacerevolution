@@ -48,9 +48,22 @@ class PlayerController
                 player->getHitBoxPos()->getX() + speedX,
                 player->getHitBoxPos()->getY() + speedY,
                 objectContainer->getAll(),
-                objectContainer->getSize()))
-        {
+                objectContainer->getSize())){
             player->move(speedX, speedY, elapsedTime);
+        }
+        else if (!player->isBlocked(
+                player->getHitBoxPos()->getX() + speedX,
+                player->getHitBoxPos()->getY(),
+                objectContainer->getAll(),
+                objectContainer->getSize())){
+            player->move(speedX, 0, elapsedTime);
+        }
+        else if (!player->isBlocked(
+                player->getHitBoxPos()->getX() ,
+                player->getHitBoxPos()->getY() + speedY,
+                objectContainer->getAll(),
+                objectContainer->getSize())){
+            player->move(0, speedY, elapsedTime);
         }
         else  player->move(0, 0, elapsedTime);
         
