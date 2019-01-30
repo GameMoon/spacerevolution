@@ -99,7 +99,7 @@ class Map{
                         }
                    }
 
-                   int entityOffset = mapSizeY+1;
+                   int entityOffset = k+ mapSizeY+1;
                    for( int l = entityOffset; mapLines.at(l)[0] != '-'; l++)
                    {
                        int startPoint = (int) mapLines.at(l);
