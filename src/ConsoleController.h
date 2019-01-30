@@ -27,7 +27,7 @@ class ConsoleController
                 
                     if(terminal->isActive()){
                         console->clear();
-                        console->addText("This is a minigame",true);
+                        console->addText("This is a minigame");
                         pController->setConsoleMode(true);
                         terminal->deactivate();
                     }
