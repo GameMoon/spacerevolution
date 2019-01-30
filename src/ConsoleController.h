@@ -26,8 +26,9 @@ class ConsoleController
                     Terminal * terminal = (Terminal*) objects->at(k);
                 
                     if(terminal->isActive()){
-                        console->clear();
-                        console->addText("This is a minigame");
+                        // console->clear();
+                        // console->addText("This is a minigame");
+                        terminal->openDoors();
                         pController->setConsoleMode(true);
                         terminal->deactivate();
                     }

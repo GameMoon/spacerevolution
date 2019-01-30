@@ -3,10 +3,12 @@
 
 #include "Object.h"
 #include "Vector2.h"
+#include "Door.h"
 
 class Terminal : public Object
 {
   bool activated;
+  Container<Door> doors;
   
   public:
     Terminal(Vector2 *pos,Image* img) {
@@ -17,6 +19,14 @@ class Terminal : public Object
         this->id = 4;
 
         activated = false;
+    }
+
+    void addDoor(Door * door){
+        doors.add(door);
+    }
+    
+    void openDoors(){
+        for(int k = 0; k< doors.getSize();k++) doors.at(k)->open();
     }
 
     void activate(Object* source){

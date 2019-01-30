@@ -109,31 +109,21 @@ class Game
         else if (gameState == 1)
         {
             //Loading Objects
-            for(int k = 0; k < numberOfImages;k++){
-                printf("%d, %d\n",images[k].getWidth(),images[k].getHeight());
-            }
-            printf("Images loaded: %d\n",numberOfImages);
-                       
             tileController = new TileController(getImage(1));
             entityController = new EntityController(images,numberOfImages,tileController);
-            currentMap = new Map(tileController,entityController,mapContent,1);
-            printf("Entities loaded: %d\n", currentMap->getObjects()->getSize());
+            currentMap = new Map(tileController,entityController,mapContent);
 
             console = new Console(getImage(2));
+            currentMap->setupConsole(console);
+
+            currentMap->loadLevel(1);
 
             playerController = new PlayerController(currentMap->getPlayer());
-
             consoleController = new ConsoleController(console,playerController,currentMap->getObjects());
                         
             //Drawing full background
             currentMap->getBackground()->draw(0,0,screen);
 
-            printf("Loading finished\n");
-            for(int k = 0;k < 5;k++){
-                console->addText("Hello world!asdaasdasdasdasdadasadasdasdasdasdasdasdadasada");
-                console->addText("H1231312312312312312312312312312312312312312312313123dasada");
-            }
-           
             gameState = 2;
            
         }

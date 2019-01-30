@@ -10,6 +10,8 @@ class Container
     Container(int size = 0): size(size){
         data = new myType*[size];
     }
+    ~Container(){ delete data;}
+
     void add(myType *newObject)
     {
         myType **temp = new myType *[size + 1];
@@ -29,7 +31,6 @@ class Container
         for(int k = 0; k <size; k++){
             delete data[k];
         }
-        delete data;
         size = 0;
     }
 };

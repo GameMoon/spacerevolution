@@ -19,12 +19,13 @@ class Door : public Object
         activated = false;
     }
 
-    void activate(Object *source)
-    {
-        if (!activated)
-        {
-            activated = true;
-        }
+    void open(){
+        activated = true;
+    }
+
+    bool isBlocking(Object* source){
+        if(!activated) return true;
+        else return false;
     }
 
     void draw(Screen *screen)

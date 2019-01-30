@@ -19,7 +19,9 @@ class Map{
     Container<Object> * objects;
     Player * player;
     Container<NPC> npcs;
-    Container<Terminal> * terminals;
+    Terminal * lastTerminal;
+    char * file;
+    Console * console;
 
     void generateBackgroundImage(){
         uint8_t *backgroundImage = new uint8_t[SCREEN1_WIDTH * SCREEN1_HEIGHT * 4];
@@ -49,36 +51,42 @@ class Map{
     }
 
     public:
-        Map(TileController * tileController,EntityController * entityController,char* file,int level) : tileController(tileController), entityController(entityController){
+        Map(TileController * tileController,EntityController * entityController, char* file) : 
+        tileController(tileController), entityController(entityController) {
             numberOfTilesInRow = 32;
             numberOfTiles = 32*24;
             groundTiles = new int[numberOfTiles];
             objects = new Container<Object>();
-            terminals = new Container<Terminal>();
-
-            loadLevel(file,level);
-            generateBackgroundImage();
+            this->file = file;
         }
 
+        void setupConsole(Console* console){
+            this->console = console;
+        }
 
-        void loadLevel(char* data, int level){
+        void loadLevel(int level){
 
             Container<char> mapLines;
             int mapSizeY = 24;
 
-            char * line = strtok(data, "\n");
+            char * line = strtok(file, "\n");
             while(line){
                 mapLines.add(line);
                 line = strtok(NULL, "\n");
             }
             
             for(int k = 0; k< mapLines.getSize(); k++){
-                int mapLevel;
-                char levelName[30];
-                sscanf(mapLines.at(k), "Mission %d %s", &mapLevel, levelName);
+                char* tileprefix = strtok(mapLines.at(k)," ");
+                char* mapLevelStr = strtok(NULL," ");
+                char* levelName = strtok(NULL,"\n");
+                
+                int mapLevel = atoi(mapLevelStr);
+
                 if (mapLevel == level)
                 {
-                    printf("Mission %d %s\n", mapLevel, levelName);
+                    this->console->clear();
+                    this->console->addText(levelName);
+
                     int tileIndex = 0;
                     for (int l = k + 1; l < k + mapSizeY+1; l++)
                     {
@@ -125,10 +133,12 @@ class Map{
                                new Vector2(cellX * TILE_SIZE, cellY * TILE_SIZE),
                                TILE_SIZE,
                                TILE_SIZE);
-                            /*if(entityID == 4){
-                               Terminal * newTerminal = (Terminal) newObject;
-                               terminals->add(newTerminal);
-                            }*/
+
+                            //Terminálok és ajtók összerendelése
+                            if(entityID == 8){
+                               lastTerminal->addDoor((Door*) newObject);
+                            }
+                            if(entityID == 4) lastTerminal = (Terminal*) newObject;
                        }
                        
                        if(newObject != nullptr){
@@ -136,9 +146,11 @@ class Map{
                            this->objects->add(newObject);
                        }
                    }
+                   generateBackgroundImage();
                    return;
                 }
             }
+   
         }
 
         void draw(Screen * screen){
