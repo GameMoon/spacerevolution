@@ -30,6 +30,10 @@ class PlayerController
         if (eventType == 2)  pressedButtons[c] = 1;
         else  pressedButtons[c] = 0;
     }
+    Container<Object> *getCollidedObjects(Container<Object> *objectContainer)
+    {
+        return this->player->getColliding(-1,-1,objectContainer->getAll(),objectContainer->getSize());
+    }
 
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
     void update(Container<Object>* objectContainer,int elapsedTime)

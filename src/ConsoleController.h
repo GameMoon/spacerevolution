@@ -20,11 +20,14 @@ class ConsoleController
     void update(int elapsedTime){
         //Activation
         if( pController->getPressedKeys()[101]== 1){
-            for (int k = 0; k < objects->getSize(); k++)
+            Container<Object> * collidedObjects = pController->getCollidedObjects(objects);
+
+            for (int k = 0; k < collidedObjects->getSize(); k++)
             {
-                if(objects->at(k)->getID() == 4){
-                    Terminal * terminal = (Terminal*) objects->at(k);
-                
+                if (collidedObjects->at(k)->getID() == 4)
+                {
+                    Terminal *terminal = (Terminal *) collidedObjects->at(k);
+
                     if(terminal->isActive()){
                         // console->clear();
                         // console->addText("This is a minigame");
@@ -34,6 +37,7 @@ class ConsoleController
                     }
                 }
             }
+            delete collidedObjects;
         }
 
         console->updateFrame(elapsedTime);

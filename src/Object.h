@@ -76,37 +76,37 @@ class Object
         return false;
     }
     
-    Container<Object> getColliding(int newPosX = -1, int newPosY = -1, Object** objects = nullptr, int size = 0){
-        if(hitboxPos != nullptr && newPosX == -1 && newPosY == -1){
-          newPosX = hitboxPos->getX();
-          newPosY = hitboxPos->getY();
-        }
+    Container<Object>* getColliding(int newPosX = -1, int newPosY = -1, Object** objects = nullptr, int size = 0){
+        // if(hitboxPos != nullptr && newPosX == -1 && newPosY == -1){
+        //   newPosX = hitboxPos->getX();
+        //   newPosY = hitboxPos->getY();
+        // }
 
         if(newPosX == -1) newPosX = this->pos->getX();
         if(newPosY == -1) newPosY = this->pos->getY();
-        int hitHeight = height;
-        int hitWidth = width;
+        // int hitHeight = height;
+        // int hitWidth = width;
 
-        if (hitboxPos != nullptr)
-        {
-          newPosX = hitboxPos->getX();
-          newPosY = hitboxPos->getY();
-        }
+        // if (hitboxPos != nullptr)
+        // {
+        //   newPosX = hitboxPos->getX();
+        //   newPosY = hitboxPos->getY();
+        // }
 
-        if(hitBoxHeight != -1) hitHeight = hitBoxHeight;
-        if(hitBoxWidth != -1) hitWidth = hitBoxWidth;
+        // if(hitBoxHeight != -1) hitHeight = hitBoxHeight;
+        // if(hitBoxWidth != -1) hitWidth = hitBoxWidth;
 
-        Container<Object> collidedEntities;
+        Container<Object>* collidedEntities = new Container<Object>();
 
         for(int k = 0; k < size; k++){
           if (objects[k] == this) continue;
           Vector2 * oPos = objects[k]->getPosition();
           Object *object = objects[k];
 
-          if (newPosX < oPos->getX() + object->getWidth() && newPosX + hitWidth > oPos->getX() &&
-              newPosY < oPos->getY() + object->getHeight() && newPosY + hitHeight > oPos->getY())
+          if (newPosX < oPos->getX() + object->getWidth() && newPosX + width > oPos->getX() &&
+              newPosY < oPos->getY() + object->getHeight() && newPosY + height > oPos->getY())
           {
-            collidedEntities.add(object);
+            collidedEntities->add(object);
           }
         }
 

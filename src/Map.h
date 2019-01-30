@@ -210,11 +210,12 @@ class Map{
                                   currentObject->getPosition()->getX() + currentObject->getWidth()+3,
                                   currentObject->getPosition()->getY() + currentObject->getHeight()+3);
                     //Redraw collided entitys
-                    Container<Object> collidedEntities = currentObject->getColliding(-1,-1,objects->getAll(),objects->getSize());
-                    for (int k = 0; k < collidedEntities.getSize(); k++)
+                    Container<Object> * collidedEntities = currentObject->getColliding(-1,-1,objects->getAll(),objects->getSize());
+                    for (int k = 0; k < collidedEntities->getSize(); k++)
                     {
-                        collidedEntities.at(k)->draw(screen);
+                        collidedEntities->at(k)->draw(screen);
                     }
+                    delete collidedEntities;
                     currentObject->validate();
                 }
                 currentObject->draw(screen);
