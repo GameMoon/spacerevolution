@@ -129,9 +129,9 @@ class Game
             currentMap->getBackground()->draw(0,0,screen);
 
             printf("Loading finished\n");
-            for(int k = 0;k < 30;k++){
-                console->addText("Hello world!asdaasdasdasdasdadasadasdasdasdasdasdasdadasada",true);
-                console->addText("H1231312312312312312312312312312312312312312312313123dasada",true);
+            for(int k = 0;k < 5;k++){
+                console->addText("Hello world!asdaasdasdasdasdadasadasdasdasdasdasdasdadasada");
+                console->addText("H1231312312312312312312312312312312312312312312313123dasada");
             }
            
             gameState = 2;
