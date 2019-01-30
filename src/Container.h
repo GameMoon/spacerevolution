@@ -31,7 +31,15 @@ class Container
         for(int k = 0; k <size; k++){
             delete data[k];
         }
+        delete data;
+
         size = 0;
+        data = new myType *[size];
+    }
+    void erase(){
+        size = 0;
+        delete data;
+        data = new myType *[size];
     }
 };
 

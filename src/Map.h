@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include "TileController.h"
+#include "PlayerController.h"
 #include "EntityController.h"
 #include "Screen.h"
 #include "Image.h"
@@ -11,6 +12,7 @@
 class Map{
     TileController * tileController;
     EntityController *entityController;
+    PlayerController * playerController;
 
     int * groundTiles;
     int numberOfTiles;
@@ -18,12 +20,22 @@ class Map{
     Image* fullMap;
     Container<Object> * objects;
     Player * player;
+    TrapDoor * trapDoor;
+
     Container<NPC> npcs;
     Terminal * lastTerminal;
     char * file;
     Console * console;
 
+    Container<char> mapLines;
+
+    bool initState;
+
+    int level;
+    int mapSizeY;
+
     void generateBackgroundImage(){
+        printf("generate backgroundimage\n");
         uint8_t *backgroundImage = new uint8_t[SCREEN1_WIDTH * SCREEN1_HEIGHT * 4];
         for (int k = 0; k < numberOfTiles; k++)
         {
@@ -47,7 +59,15 @@ class Map{
                 }
             }
         }
+      
         fullMap = new Image(backgroundImage, SCREEN1_WIDTH, SCREEN1_HEIGHT);
+    }
+    void clear(){
+        objects->erase();
+        npcs.erase();
+        delete fullMap;
+        delete groundTiles;
+        groundTiles = new int[numberOfTiles];
     }
 
     public:
@@ -58,32 +78,45 @@ class Map{
             groundTiles = new int[numberOfTiles];
             objects = new Container<Object>();
             this->file = file;
+            level = 0;
+            
+            mapSizeY = 24;
+            char *line = strtok(file, "\n");
+            while (line)
+            {
+                mapLines.add(line);
+                line = strtok(NULL, "\n");
+            }
         }
 
+        void setupPlayerController(PlayerController * playerController){
+            this->playerController = playerController;
+        }
         void setupConsole(Console* console){
             this->console = console;
         }
 
         void loadLevel(int level){
+            initState = true;
+            this->level = level;
 
-            Container<char> mapLines;
-            int mapSizeY = 24;
-
-            char * line = strtok(file, "\n");
-            while(line){
-                mapLines.add(line);
-                line = strtok(NULL, "\n");
+            //Map cleanup before new level
+            if(objects->getSize() > 0){
+                clear();
+                printf("Cleaned up\n");
             }
-            
+           
+            printf("Numberof map: %d\n",mapLines.getSize());
+
             for(int k = 0; k< mapLines.getSize(); k++){
                 char* tileprefix = strtok(mapLines.at(k)," ");
                 char* mapLevelStr = strtok(NULL," ");
                 char* levelName = strtok(NULL,"\n");
                 
                 int mapLevel = atoi(mapLevelStr);
-
                 if (mapLevel == level)
                 {
+                    printf("Loaded level: %d\n", mapLevel);
                     this->console->clear();
                     this->console->addText(levelName);
 
@@ -98,6 +131,7 @@ class Map{
                             tileId = strtok(NULL, ";");
                         }
                    }
+                   generateBackgroundImage();
 
                    int entityOffset = k+ mapSizeY+1;
                    for( int l = entityOffset; mapLines.at(l)[0] != '-'; l++)
@@ -120,6 +154,7 @@ class Map{
                        if (entityID == 0)
                        {
                            player = entityController->createPlayer(new Vector2(cellX * TILE_SIZE, (cellY)*TILE_SIZE));
+                           this->playerController->setPlayer(player);
                            newObject = player;
                        }
                        else if(entityID == 3){
@@ -139,6 +174,11 @@ class Map{
                                lastTerminal->addDoor((Door*) newObject);
                             }
                             if(entityID == 4) lastTerminal = (Terminal*) newObject;
+
+                            //Trapdoor pálya beállítás
+                           if(entityID == 7){
+                                trapDoor = (TrapDoor*) newObject;
+                            }
                        }
                        
                        if(newObject != nullptr){
@@ -146,7 +186,8 @@ class Map{
                            this->objects->add(newObject);
                        }
                    }
-                   generateBackgroundImage();
+                  
+                
                    return;
                 }
             }
@@ -154,7 +195,11 @@ class Map{
         }
 
         void draw(Screen * screen){
-      
+            if(initState){
+                this->getBackground()->draw(0, 0, screen);
+                initState = false;
+            }
+
             for(int i = 0;i < objects->getSize(); i++){
                 Object *currentObject = objects->at(i);
                 if(!currentObject->isValid()){
@@ -178,6 +223,12 @@ class Map{
         void update(int elapsedTime){
             for(int k = 0; k < npcs.getSize();k++){
                 npcs.at(k)->update(elapsedTime,objects);
+            }
+
+            if(trapDoor->isActive()){
+                trapDoor->deactivate();
+                printf("next level - %d\n",this->level+1);
+                loadLevel(this->level+1);
             }
         }
         Player * getPlayer(){ return this->player;}

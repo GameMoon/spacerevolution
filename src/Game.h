@@ -116,13 +116,16 @@ class Game
             console = new Console(getImage(2));
             currentMap->setupConsole(console);
 
+
+            playerController = new PlayerController();
+            currentMap->setupPlayerController(playerController);
+
             currentMap->loadLevel(1);
 
-            playerController = new PlayerController(currentMap->getPlayer());
             consoleController = new ConsoleController(console,playerController,currentMap->getObjects());
                         
             //Drawing full background
-            currentMap->getBackground()->draw(0,0,screen);
+            
 
             gameState = 2;
            

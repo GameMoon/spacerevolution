@@ -18,7 +18,9 @@ class Object
     char * text;
 
   public:
-    ~Object(){ delete text;}
+    virtual ~Object(){
+      delete text;
+    }
     void setPosition(Vector2 * pos) {this->pos = pos; }
     Vector2* getPosition() { return this->pos; }
     virtual void draw(Screen *screen) = 0;

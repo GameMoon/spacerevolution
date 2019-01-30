@@ -26,7 +26,6 @@ class NPC : public Character
         timeToWait = 0;
     }
     void update(int elapsedTime,Container<Object>* objectContainer){
-        
         if (!this->isBlocked(
                 this->getPosition()->getX() + speedX,
                 this->getPosition()->getY() + speedY,

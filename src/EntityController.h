@@ -9,6 +9,7 @@
 #include "NPC.h"
 #include "Door.h"
 #include "Terminal.h"
+#include "TrapDoor.h"
 
 class EntityController
 {
@@ -39,7 +40,9 @@ class EntityController
             case 4: return new Terminal(pos,tileController->getTile(649));
             case 5: return new Terminal(pos,tileController->getTile(661));
             case 6: return new Terminal(pos,tileController->getTile(673));
-            //7 Mapend
+
+            case 7: return new TrapDoor(pos);
+            
             case 8: return new Door(pos,tileController->getTile(625),tileController->getTile(613));
             default: return nullptr;
         }  

@@ -18,9 +18,12 @@ class PlayerController
     int * pressedButtons;
 
   public:
-    PlayerController(Player *p) : player(p){ speedX = 0; speedY = 0; consoleMode = false; pressedButtons = new int[200];}
+    PlayerController() { speedX = 0; speedY = 0; consoleMode = false; pressedButtons = new int[200];}
     ~PlayerController(){ delete pressedButtons;}
 
+    void setPlayer(Player * p){
+        this->player = p;
+    }
     void handleKeyboard(int eventType, const EmscriptenKeyboardEvent *e, void *userData)
     {
         char c = e->key[0];
@@ -31,7 +34,6 @@ class PlayerController
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
     void update(Container<Object>* objectContainer,int elapsedTime)
     {
-
         if(pressedButtons[66] == 1) consoleMode = false; //Backspace
         if(consoleMode) return;
 

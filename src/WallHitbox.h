@@ -19,7 +19,8 @@ class WallHitbox : public Object
     bool isBlocking(Object * source){
         return true;
     }
-    void draw(Screen * screen){}
+    void draw(Screen * screen){
+    }
 };
 
 #endif
