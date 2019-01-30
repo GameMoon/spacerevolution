@@ -1,10 +1,10 @@
 Mission 1 - Intro - Welcome to Space Revolution! In the year 2077, the evil Fidas regime took over the government and started to rule with an iron fist over the whole galaxy. Their leader is the notorius bastard Orbon Viktr who is a cold hearted sonofabench, many cruelties are bound to his name and he literally has blood on his hands. In this time of opression the only people who are brave enough to face the merciless regime is the fearless Space Resistance Marine corps, whose duty is to overthrow Fidas and bring peace to the universe. You are Colonel Shepherd, one of the best Hacker in the Space Resistance Marine corps. Your job is to lead your team and to help them get to where they need to be even int the face of danger.
-577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
-577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
-577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
-577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
-577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
-577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;409;409;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;409;409;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
+577;589;577;589;577;589;577;589;577;589;577;589;577;589;409;409;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
+577;589;577;589;577;589;577;589;577;589;289;349;349;349;613;613;349;349;349;301;577;589;577;589;577;589;577;589;577;589;577;589
+577;589;577;589;577;589;577;589;577;589;337;517;517;517;517;517;517;517;517;337;577;589;577;589;577;589;577;589;577;589;577;589
+577;589;577;589;577;589;577;589;577;589;313;349;349;349;349;349;349;349;349;325;577;589;577;589;577;589;577;589;577;589;577;589
 577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
 577;589;577;589;577;289;349;349;349;349;349;349;349;349;349;349;349;349;349;349;349;349;349;349;349;349;301;589;577;589;577;589
 577;589;577;589;577;337;517;517;517;517;517;517;517;517;517;517;517;517;517;517;517;517;517;517;517;517;337;589;577;589;577;589
@@ -81,6 +81,35 @@ Mission 1 - Intro - Welcome to Space Revolution! In the year 2077, the evil Fida
 1;6;9;You shall not pass
 1;6;9;You shall not pass
 7;25;10;Exit
+1;11;4;You shall not pass
+1;12;4;You shall not pass
+1;13;4;You shall not pass
+1;14;4;You shall not pass
+1;15;4;You shall not pass
+1;16;4;You shall not pass
+1;17;4;You shall not pass
+1;18;4;You shall not pass
+1;19;4;You shall not pass
+1;19;4;You shall not pass
+1;20;4;You shall not pass
+1;20;5;You shall not pass
+1;20;6;You shall not pass
+1;19;6;You shall not pass
+1;19;6;You shall not pass
+1;18;6;You shall not pass
+1;16;6;You shall not pass
+1;16;6;You shall not pass
+1;15;6;You shall not pass
+1;14;6;You shall not pass
+1;13;6;You shall not pass
+1;13;6;You shall not pass
+1;12;6;You shall not pass
+1;11;6;You shall not pass
+1;11;5;You shall not pass
+1;17;6;You shall not pass
+3;13;5;SpaceMarine
+3;16;5;SpaceMarine
+3;19;5;SpaceMarine
 --
 Mission 2 - Save Your Friends - Your Mission is to rescue your fellow space marines from the imprisonment of the regime.
 1;1;1;1;1;289;349;349;697;349;349;349;229;349;349;349;349;349;349;349;349;349;301;565;565;565;565;565;565;565;565;565
