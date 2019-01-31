@@ -12,4 +12,5 @@ Go trough the trapdoor to proceed to the next level.
 
 Credits:
 GameMoon - Dániel Ugrin -  ugrindaniel@gmail.com
+
 Rou Bang - Dávid Mikáczó - neverming5214@gmail.com
