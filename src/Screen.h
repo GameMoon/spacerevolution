@@ -39,6 +39,7 @@ class Screen{
             if(a == 255){
                 if(screen == 0) setPixel(x + SCREEN1_XOFFSET, y + SCREEN1_YOFFSET, r, g, b, a);
                 else if(screen == 1) setPixel(x + SCREEN2_XOFFSET, y + SCREEN2_YOFFSET, r, g, b, a);
+                else if(screen == -1) setPixel(x , y , r, g, b, a);
             }
         }
 

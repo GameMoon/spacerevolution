@@ -10,9 +10,6 @@
  
 <body>
     <canvas id="screen" class="canvas" ></canvas>
-    <img id="overlay" src="overlay.png" style="position: absolute; top: 0px; left: 0px;"></img>
-    <!--<button class="mybutton">Run myFunction</button><br>-->
-    <!-- <button class="FullscreenButton">Start Game</button> -->
 
     <script>
         var Module = {
@@ -53,7 +50,6 @@
 
         Module.renderImageFromMemory = function(){
             this.canvasContext.putImageData(this.imageData,0,0);
-           // this.canvasContext.drawImage(overlay, 0, 0);
         }
         
         Module.renderSetup = function(){
@@ -69,40 +65,16 @@
         }   
       
         Module.onRuntimeInitialized = function() {
-           
-
-            // document.querySelector('.FullscreenButton').addEventListener('click', function () {
-            //     openFullscreen();
-            //     StartGame();
-            //     running = false;
-            // });
             
             document.addEventListener('keydown', function(event) {
                 if(event.getModifierState("Alt") && event.keyCode == 13) {
                     openFullscreen();
-                    StartGame();
-            }
+                }
             });
-          /*  canvas.addEventListener('click', function(event) {
-                var clickXPos=event.x;
-                var clickYPos=event.y;
-                alert("Mouse X: "+event.x+" Mouse Y: "+event.y);
-            });*/
-
-            /*document.querySelector('.mybutton').addEventListener('click', function () {
-                alert("Run myFunction");
-                Module.renderImageFromMemory();
-                running = false;
-            });*/
-        }
-
-        function StartGame() {
-
-            Module._startgame();
         }
 
         function openFullscreen() {
-                var canvas = document.getElementsByTagName('body')[0];
+                var canvas = document.getElementsByTagName('canvas')[0];
                 if (canvas.requestFullscreen) {
                     canvas.requestFullscreen();
                 } else if (canvas.mozRequestFullScreen) { /* Firefox */

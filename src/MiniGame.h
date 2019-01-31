@@ -67,12 +67,11 @@ class MiniGame
     }
 
     void update(int elapsedTime){
+        showMessage();
+        sprintf(buffer, "Buttonpresses/second: %d", bps);
+        console->addLine(buffer);
         if(timeLeft <= 0){
             timeLeft = 1000;
-            showMessage();
-
-            sprintf(buffer, "Buttonpresses/second: %d", bps);
-            console->addLine(buffer);
             if(bps >= bpsLimit){
                 terminal->openDoors();
                 active = false;

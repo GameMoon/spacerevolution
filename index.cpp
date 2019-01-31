@@ -90,7 +90,6 @@ extern "C"
 
     EMSCRIPTEN_KEEPALIVE void startgame()
     {
-        printf("startgamesdfsdf\n");
     }
 }
 
@@ -109,6 +108,7 @@ int main(void)
     loadImage("assets/tileset.png",1);
     loadImage("assets/masikfont.png",2);
     loadImage("assets/characters/joskaanimall.png", 3);
+    loadImage("overlay.png", 4);
     loadMap("maps.txt");
 
     

@@ -35,7 +35,6 @@ class Map{
     int mapSizeY;
 
     void generateBackgroundImage(){
-        printf("generate backgroundimage\n");
         uint8_t *backgroundImage = new uint8_t[SCREEN1_WIDTH * SCREEN1_HEIGHT * 4];
         for (int k = 0; k < numberOfTiles; k++)
         {
@@ -103,10 +102,8 @@ class Map{
             //Map cleanup before new level
             if(objects->getSize() > 0){
                 clear();
-                printf("Cleaned up\n");
             }
            
-            printf("Numberof map: %d\n",mapLines.getSize());
 
             for(int k = 0; k< mapLines.getSize(); k++){
                 char* tileprefix = strtok(mapLines.at(k)," ");
@@ -116,7 +113,6 @@ class Map{
                 int mapLevel = atoi(mapLevelStr);
                 if (mapLevel == level)
                 {
-                    printf("Loaded level: %d\n", mapLevel);
                     this->console->clear();
                     this->console->addText(levelName);
                     this->console->setDefaultText(levelName);
@@ -229,7 +225,6 @@ class Map{
 
             if(trapDoor->isActive()){
                 trapDoor->deactivate();
-                printf("next level - %d\n",this->level+1);
                 loadLevel(this->level+1);
             }
         }

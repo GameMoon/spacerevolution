@@ -20,7 +20,7 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
-#define IMAGES_TO_LOAD 4
+#define IMAGES_TO_LOAD 5
 #define OTHER_FILES_TO_LOAD 1
 
 class Game
@@ -125,8 +125,9 @@ class Game
             consoleController = new ConsoleController(console,playerController,currentMap->getObjects());
                         
             //Drawing full background
-            
+            getImage(4)->draw(0,0,screen,0,0,-1,-1,-1);
 
+            printf("Loaded\n");
             gameState = 2;
            
         }

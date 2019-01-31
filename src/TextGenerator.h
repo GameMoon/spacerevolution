@@ -39,7 +39,6 @@ class TextGenerator
     TextGenerator(Image * image) : fontSprite(image) {
         fontWidth = 0;
         initAlphabet(91,0,100,0);
-        printf("ABC: %d\n",alphabet.getSize());
     }
 
     Container<Image>* create(const char * text){
