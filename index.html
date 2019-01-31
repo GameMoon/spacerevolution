@@ -47,7 +47,7 @@
             // Load image
             const data = await fetch(src).then(resp => resp.text());
             dataPointer = Module._malloc(data.length);
-            stringToUTF8(data, dataPointer, data.length);
+            Module.stringToUTF8(data, dataPointer, data.length);
             Module._addMap(dataPointer);
         }
 
@@ -68,6 +68,14 @@
                 width, height);
         }
 
+        Module.loadAssets = function () {
+            loadImage("assets/characters/mcharanimall.png", 0);
+            loadImage("assets/tileset.png", 1);
+            loadImage("assets/masikfont.png", 2);
+            loadImage("assets/characters/joskaanimall.png", 3);
+            loadImage("overlay.png", 4);
+            loadMap("assets/maps.txt");
+        }
         Module.onRuntimeInitialized = function () {
 
             document.addEventListener('keydown', function (event) {
@@ -75,6 +83,7 @@
                     openFullscreen();
                 }
             });
+            Module.loadAssets();
         }
 
         function openFullscreen() {
