@@ -18,7 +18,7 @@ namespace TileMapEditor
         public static bool SaveFileAsDialog()
         {
             SaveFileDialog newMapFile = new SaveFileDialog();
-            newMapFile.Filter = "SR Map|*.srm|All Files|*.*";
+            newMapFile.Filter = "Text File|*.txt|All Files|*.*";
             newMapFile.Title = "Select SR mapfile...";
             if (newMapFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -47,7 +47,7 @@ namespace TileMapEditor
         public static bool LoadMapFileDialog()
         {
             OpenFileDialog openMapFile = new OpenFileDialog();
-            openMapFile.Filter = "SR Map|*.srm|All Files|*.*";
+            openMapFile.Filter = "Text File|*.txt|All Files|*.*";
             openMapFile.Title = "Select a Map File";
 
             if (openMapFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)

@@ -51,7 +51,11 @@ namespace TileMapEditor
                                 MapData.LevelList[mapindex].entities[entitityindex].entid = int.Parse(darabsor[0]);
                                 MapData.LevelList[mapindex].entities[entitityindex].xcoord = int.Parse(darabsor[1]) - 1;
                                 MapData.LevelList[mapindex].entities[entitityindex].ycoord = int.Parse(darabsor[2]) - 1;
-                                MapData.LevelList[mapindex].entities[entitityindex].speechtext = darabsor[3];
+                                if(darabsor.Count()<4)
+                                {
+                                    MapData.LevelList[mapindex].entities[entitityindex].speechtext = "";
+                                }
+                                else MapData.LevelList[mapindex].entities[entitityindex].speechtext = darabsor[3];
                             }
                         }
                     }
@@ -117,7 +121,7 @@ namespace TileMapEditor
                         }
                         for (int l = 0; l < MapData.LevelList[i].entities.Count(); l++)
                         {
-                            sw.WriteLine(MapData.LevelList[i].entities[l].entid + ";" + (MapData.LevelList[i].entities[l].xcoord+1) + ";" + (MapData.LevelList[i].entities[l].ycoord+1) + ";" + (MapData.LevelList[i].entities[l].speechtext));
+                            sw.WriteLine(MapData.LevelList[i].entities[l].entid + ";" + (MapData.LevelList[i].entities[l].xcoord+1) + ";" + (MapData.LevelList[i].entities[l].ycoord+1));
                         }
                         sw.WriteLine("--");
                     }
