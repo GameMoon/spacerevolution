@@ -37,7 +37,7 @@
         {
             "label": "Build Optmized WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js  -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] -s TOTAL_MEMORY=134217728",
+            "command": "emcc index.cpp -s WASM=1 -o index.js -g0 -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] -s TOTAL_MEMORY=134217728",
             "problemMatcher": []
         }
     ]
