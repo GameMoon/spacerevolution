@@ -70,7 +70,7 @@
         }
 
         function openFullscreen() {
-            var canvas = document.getElementsByTagName('canvas')[0];
+            var canvas = document.getElementById('screen');
             if (canvas.requestFullscreen) {
                 canvas.requestFullscreen();
             } else if (canvas.mozRequestFullScreen) {
