@@ -109,7 +109,7 @@ int main(void)
     loadImage("assets/masikfont.png",2);
     loadImage("assets/characters/joskaanimall.png", 3);
     loadImage("overlay.png", 4);
-    loadMap("maps.txt");
+    loadMap("assets/maps.txt");
 
     
     //Callback setup
