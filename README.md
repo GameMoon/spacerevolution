@@ -1,5 +1,3 @@
-# spacerevolution
-
 # Welcome to Space Revolution! 
 ## -Intro-
 
