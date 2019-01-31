@@ -11,8 +11,8 @@ Press E to use a terminal and press Backspace to exit our of it
 Go trough the trapdoor to proceed to the next level.
 ```
 
-# Credits:
+## Credits:
 ```
 GameMoon - Dániel Ugrin -  ugrindaniel@gmail.com
-Rou Bang - Dávid Mikáczó - neverming5214@gmail.com
+Rou Bang - Dávid Mikáczó - nevermind5214@gmail.com
 ```
