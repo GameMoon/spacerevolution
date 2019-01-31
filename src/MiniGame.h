@@ -70,6 +70,9 @@ class MiniGame
         showMessage();
         sprintf(buffer, "Buttonpresses/second: %d", bps);
         console->addLine(buffer);
+        console->addLine("");
+        console->addLine("");
+        console->addLine("Press backspace to exit");
         if(timeLeft <= 0){
             timeLeft = 1000;
             if(bps >= bpsLimit){
