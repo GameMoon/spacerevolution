@@ -1,4 +1,4 @@
-Mission 1                 - Intro -                  Welcome to Space Revolution!                                                          In the year 2077, the evil Fidas regime    took over the government and started to    rule with an iron fist over the whole      galaxy. Their leader is the notorius       bastard Oroban Vikar who is a cold hearted sonofabench, many cruelties are bound to   his name and he literally has blood on his hands. In this time of opression the only  people who are brave enough to face the    merciless regime is the fearless Space     Resistance Marine corps, whose duty is to  overthrow Fidas and bring peace to the     universe. You are Colonel Shepherd, one of the best Hacker in the Space Resistance    Marine corps. Your job is to lead your teamand to help them get to where they need to be even in the face of danger.                                                        Press Alt+Enter to go Fullscreen           Use WASD to move around and please proceed to the next level trough the trap.
+Mission 1                 - Intro -                  Welcome to Space Revolution!                                                          In the year 2077, the evil Fidas regime    took over the government and started to    rule with an iron fist over the whole      galaxy. Their leader is the notorius       bastard Oroban Vikar who is a cold hearted sonofabench, many cruelties are bound to   his name and he literally has blood on his hands. In this time of opression the only  people who are brave enough to face the    merciless regime is the fearless Space     Resistance Marine corps, whose duty is to  overthrow Fidas and bring peace to the     universe. You are Colonel Shepherd, one of the best Hacker in the Space Resistance    Marine corps. Your job is to lead your teamand to help them get to where they need to be even in the face of danger.                                                        Press Alt+Enter to go Fullscreen           Use WASD to move around and please proceed to the next level trough the trapdoor.
 577;589;577;589;577;589;577;589;577;589;577;589;577;589;409;409;577;589;577;589;577;589;577;589;577;589;577;589;577;589;577;589
 577;589;577;589;577;589;577;589;577;589;577;589;577;589;409;409;577;589;577;589;577;589;577;589;169;589;577;589;577;589;577;589
 577;589;577;589;577;589;577;589;577;589;289;349;349;349;613;613;349;349;349;301;577;589;577;589;169;589;577;589;577;589;577;589
@@ -79,7 +79,7 @@ Mission 1                 - Intro -                  Welcome to Space Revolution
 1;6;10
 1;6;9
 1;6;9
-7;25;10;Exit
+7;25;10
 1;11;4
 1;20;4
 1;20;5
@@ -114,7 +114,7 @@ Mission 1                 - Intro -                  Welcome to Space Revolution
 3;19;4
 0;8;10
 --
-Mission 2           - Save Your Friends -            Your Mission is to rescue your fellow s from the imprisonment of the regime                                           Press E to use a terminal and Backspace to exit out of it.
+Mission 2           - Save Your Friends -            Your Mission is to rescue your fellow spacemarines from the imprisonment of the regime                                           Press E to use a terminal and Backspace to exit out of it.
 577;589;577;589;577;289;349;349;697;349;349;349;229;349;349;349;699;699;699;349;349;349;301;565;565;565;565;565;565;565;565;565
 577;481;493;482;577;337;529;637;517;385;389;661;337;385;529;517;517;517;517;517;385;529;337;589;577;13;25;25;25;25;25;14
 577;496;109;494;397;625;517;517;517;517;517;517;337;517;517;517;517;517;517;517;517;517;337;25;25;15;361;373;373;373;362;26
@@ -301,7 +301,7 @@ Mission 2           - Save Your Friends -            Your Mission is to rescue y
 1;20;19
 1;20;18
 1;20;18
-7;8;20;Exit
+7;8;20
 4;12;2
 8;13;4
 4;22;7
@@ -595,7 +595,7 @@ Mission 3               - Get The Data -             Hack into the Servers to aq
 8;20;5
 6;29;4
 8;9;17
-7;3;17;Exit
+7;3;17
 0;3;4
 --
 Mission 4             - Upload The Data -            Upload the critical data to the news media server to leak the horrible truth about thecurrent regime.
@@ -845,7 +845,7 @@ Mission 4             - Upload The Data -            Upload the critical data to
 1;26;1
 1;31;4
 1;31;5
-7;29;21;Exit
+7;29;21
 5;11;3
 8;10;5
 5;3;2
