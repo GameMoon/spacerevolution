@@ -27,7 +27,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "em++ index.cpp -s WASM=1 -o index.js -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] -s TOTAL_MEMORY=134217728",
+            "command": "em++ index.cpp -s WASM=1 -o index.js --closure 0 --llvm-lto 1 -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory','stringToUTF8'] -s TOTAL_MEMORY=134217728",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -37,7 +37,7 @@
         {
             "label": "Build Optmized WASM",
             "type": "shell",
-            "command": "emcc index.cpp -s WASM=1 -o index.js  -Oz -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory'] -s TOTAL_MEMORY=134217728",
+            "command": "emcc index.cpp -s WASM=1 -o index.js -Oz --closure 1 --llvm-lto 1 -s EXPORTED_FUNCTIONS=['_main','_getMemoryOffset','_getScreenWidth','_getScreenHeight','_addImage','_addMap'] -s EXTRA_EXPORTED_RUNTIME_METHODS=['writeArrayToMemory','stringToUTF8'] -s TOTAL_MEMORY=134217728",
             "problemMatcher": []
         }
     ]

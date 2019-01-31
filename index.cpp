@@ -27,11 +27,6 @@ Y=554
 
 #include "src/Game.h"
 
-
-
-//int screenMem1 [1024][768][3];
-//int screenMem2 [720][480][3];
-
 Game * game;
 
 //Callbacks
@@ -79,18 +74,6 @@ extern "C"
     EM_JS(void, renderSetup, (), {
         Module.renderSetup();
     });
-
-    EM_JS(void, loadImage, (const char* str,int id),{
-        loadImage(UTF8ToString(str),id);
-    });
-
-    EM_JS(void, loadMap, (const char* str),{
-        loadMap(UTF8ToString(str));
-    });
-
-    EMSCRIPTEN_KEEPALIVE void startgame()
-    {
-    }
 }
 
 void updateLoop()
@@ -104,14 +87,7 @@ int main(void)
 {  
     game = new Game();
     renderSetup();
-    loadImage("assets/characters/mcharanimall.png",0);
-    loadImage("assets/tileset.png",1);
-    loadImage("assets/masikfont.png",2);
-    loadImage("assets/characters/joskaanimall.png", 3);
-    loadImage("overlay.png", 4);
-    loadMap("assets/maps.txt");
 
-    
     //Callback setup
     emscripten_set_keydown_callback(0, 0, 1, handleKeyboard);
     emscripten_set_keyup_callback(0, 0, 1, handleKeyboard);
