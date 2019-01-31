@@ -83,7 +83,7 @@ class MiniGame
                 console->addLine("");
                 console->addLine("Congratulation!");
                 console->addLine("");
-                console->addLine("You are successfully hacked the door");
+                console->addLine("You have successfully hacked the door");
             }
             bps = 0;
         }
