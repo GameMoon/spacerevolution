@@ -1,91 +1,51 @@
-<!DOCTYPE html>
-<html>
- 
-<head>
-    <title>Space Revolution</title>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
- 
-<body>
-    <canvas id="screen" class="canvas" ></canvas>
-
-    <script>
-        var Module = {
-            print: function(text) { console.log('stdout: ' + text) },
-            printErr: function(text) { console.error('stderr: ' + text) },
-        };
-    </script>
-    <script src="index.js"></script>
-    
-    <script>
-
-        async function loadImage(src,id) {
-            // Load image
+<!doctypehtml><title>Space Revolution</title><meta charset=utf-8><meta content="text/html; charset=utf-8"http-equiv=Content-Type><link href=style.css rel=stylesheet><canvas class=canvas id=screen></canvas><script>var Module={print:function(o){console.log("stdout: "+o)},printErr:function(o){console.error("stderr: "+o)}}</script><script src=index.js></script><script>async function loadImage(src,id) {
             const imgBlob = await fetch(src).then(resp => resp.blob());
             const img = await createImageBitmap(imgBlob);
-            // Make canvas same size as image
             const canvas = document.createElement('canvas');
             canvas.width = img.width;
             canvas.height = img.height;
-            // Draw image onto canvas
             const ctx = canvas.getContext('2d');
-
             ctx.drawImage(img, 0, 0);
             var imageData = ctx.getImageData(0, 0, img.width, img.height);
-            // console.log(imageData.data.length)
             dataPointer = Module._malloc(imageData.data.length);
             Module.writeArrayToMemory(imageData.data,dataPointer);
             Module._addImage(dataPointer,img.width,img.height,id);
         }
-        
         async function loadMap(src) {
-            // Load image
             const data = await fetch(src).then(resp => resp.text());
             dataPointer = Module._malloc(data.length);
             stringToUTF8(data,dataPointer,data.length);
             Module._addMap(dataPointer);
         }
-
         Module.renderImageFromMemory = function(){
             this.canvasContext.putImageData(this.imageData,0,0);
         }
-        
         Module.renderSetup = function(){
             var canvas = document.getElementById('screen');
             this.canvasContext = canvas.getContext('2d');
             var width = this._getScreenWidth();
             var height = this._getScreenHeight();
             var offset = this._getMemoryOffset();
-
             canvas.width = width;
             canvas.height = height;
             this.imageData = new ImageData(new Uint8ClampedArray(this.wasmMemory.buffer, offset, width * height * 4), width, height);  
         }   
-      
         Module.onRuntimeInitialized = function() {
-            
             document.addEventListener('keydown', function(event) {
                 if(event.getModifierState("Alt") && event.keyCode == 13) {
                     openFullscreen();
                 }
             });
         }
-
         function openFullscreen() {
                 var canvas = document.getElementsByTagName('canvas')[0];
                 if (canvas.requestFullscreen) {
                     canvas.requestFullscreen();
-                } else if (canvas.mozRequestFullScreen) { /* Firefox */
+                } else if (canvas.mozRequestFullScreen) {
                     canvas.mozRequestFullScreen();
-                } else if (canvas.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                } else if (canvas.webkitRequestFullscreen) {
                     canvas.webkitRequestFullscreen();
-                } else if (canvas.msRequestFullscreen) { /* IE/Edge */
+                } else if (canvas.msRequestFullscreen) {
                     canvas.msRequestFullscreen();
                 }
-            }
-    </script>
-</body>
- 
-</html>
+            }</script>
