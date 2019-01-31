@@ -119,6 +119,7 @@ class Map{
                     printf("Loaded level: %d\n", mapLevel);
                     this->console->clear();
                     this->console->addText(levelName);
+                    this->console->setDefaultText(levelName);
 
                     int tileIndex = 0;
                     for (int l = k + 1; l < k + mapSizeY+1; l++)
@@ -173,7 +174,7 @@ class Map{
                             if(entityID == 8){
                                lastTerminal->addDoor((Door*) newObject);
                             }
-                            if(entityID == 4) lastTerminal = (Terminal*) newObject;
+                            if(entityID >= 4 && entityID <=6) lastTerminal = (Terminal*) newObject;
 
                             //Trapdoor pálya beállítás
                            if(entityID == 7){

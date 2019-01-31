@@ -38,7 +38,6 @@ class PlayerController
     void handleMouse(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData) {}
     void update(Container<Object>* objectContainer,int elapsedTime)
     {
-        if(pressedButtons[66] == 1) consoleMode = false; //Backspace
         if(consoleMode) return;
 
         if(pressedButtons[119] == 1) speedY = -player->getSpeed(); //w

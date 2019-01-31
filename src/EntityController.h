@@ -37,9 +37,9 @@ class EntityController
             case 1: return new WallHitbox(pos, width, height);
             //2 Youdie
             //3 NPC
-            case 4: return new Terminal(pos,tileController->getTile(649));
-            case 5: return new Terminal(pos,tileController->getTile(661));
-            case 6: return new Terminal(pos,tileController->getTile(673));
+            case 4: return new Terminal(pos,tileController->getTile(649),30);
+            case 5: return new Terminal(pos,tileController->getTile(661),40);
+            case 6: return new Terminal(pos,tileController->getTile(673),50);
 
             case 7: return new TrapDoor(pos);
             

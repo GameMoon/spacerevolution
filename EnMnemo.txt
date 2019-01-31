@@ -1,5 +1,5 @@
 0;Player;Default Text
-1;WallHitBox;You shall not pass
+1;WallHitBox;
 2;YouDie;Danger
 3;NPCSpMarine;SpaceMarine
 4;Terminal1;Hacking Challenge Easy

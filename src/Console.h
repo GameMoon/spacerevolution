@@ -20,6 +20,7 @@ class Console
   int charLimitInRow;
   int lastBufferSize;
   bool drawingDone;
+  char * defaultText;
 
   Container< Container<Image> > buffer;
 public:
@@ -34,7 +35,9 @@ public:
       charLimitInRow = 43;
       drawingDone = false;
     }
-
+    void setDefaultText(char * text){ defaultText = text;}
+    void showDefaultText(){ clear(); addText(defaultText);}
+    
     void updateFrame(int elapsedTime)
     {
         if (timeForFrame < 0 && bufferLimit > 0)
@@ -57,6 +60,20 @@ public:
         }
         drawingDone = false;
         bufferLimit = commands;
+    }
+    void addLine(const char * string){
+        if(strlen(string) < charLimitInRow){
+            char * newString = new char[charLimitInRow+1];
+            newString[charLimitInRow] = '\0';
+
+            for (int k = 0; k < charLimitInRow; k++)
+            {
+                if (k >=strlen(string)) newString[k] = ' ';
+                else newString[k] = string[k];
+            }
+            addText(newString);
+        }
+        else addText(string);
     }
 
     void clear(){

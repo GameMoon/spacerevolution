@@ -9,15 +9,16 @@ class Terminal : public Object
 {
   bool activated;
   Container<Door> doors;
-  
+  int bps;
+
   public:
-    Terminal(Vector2 *pos,Image* img) {
+    Terminal(Vector2 *pos,Image* img,int bps) {
         this->img = img;
         this->pos = pos;
         this->width = TILE_SIZE;
         this->height = TILE_SIZE;
         this->id = 4;
-
+        this->bps = bps;
         activated = false;
     }
 
@@ -32,7 +33,6 @@ class Terminal : public Object
     void activate(Object* source){
         if(!activated && source->getID() == 0){
             activated = true;
-            printf("Terminal activated\n");
         }
     }
     
@@ -41,6 +41,7 @@ class Terminal : public Object
     }
     void deactivate(){ activated = false;}
     bool isActive(){ return activated;}
+    int getBPS(){ return bps;}
 };
 
 
