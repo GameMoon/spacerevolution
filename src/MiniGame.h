@@ -70,6 +70,9 @@ class MiniGame
         showMessage();
         sprintf(buffer, "Buttonpresses/second: %d", bps);
         console->addLine(buffer);
+        console->addLine("");
+        console->addLine("");
+        console->addLine("Press backspace to exit");
         if(timeLeft <= 0){
             timeLeft = 1000;
             if(bps >= bpsLimit){
@@ -80,7 +83,7 @@ class MiniGame
                 console->addLine("");
                 console->addLine("Congratulation!");
                 console->addLine("");
-                console->addLine("You are successfully hacked the door");
+                console->addLine("You have successfully hacked the door");
             }
             bps = 0;
         }
